@@ -1,0 +1,9 @@
+---
+// A stack of rows separated by hairlines (timelines, credentials, checklists). Put one element per row inside.
+interface Props {
+  class?: string;
+}
+const { class: extra } = Astro.props;
+---
+
+<div class:list={['flex flex-col border-b border-line *:border-t *:border-line', extra]}><slot /></div>

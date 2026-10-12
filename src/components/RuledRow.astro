@@ -1,0 +1,21 @@
+---
+// One row of a RuledList: a short lead (year, number, label) beside a title and detail.
+// Put the rows inside <RuledList>; it draws the hairlines.
+interface Props {
+  lead: string;
+  title?: string;
+  /** Width of the lead column. */
+  leadWidth?: 'sm' | 'md';
+  leadTone?: 'mint' | 'amber';
+}
+const { lead, title, leadWidth = 'md', leadTone = 'mint' } = Astro.props;
+const widths = { sm: 'grid-cols-[56px_minmax(0,1fr)] gap-5 py-5.5', md: 'grid-cols-[120px_minmax(0,1fr)] gap-6 py-6.5' };
+---
+
+<div class:list={['grid', widths[leadWidth]]}>
+  <span class:list={['text-lg tabular-nums', leadTone === 'amber' ? 'text-amber' : 'text-mint']}>{lead}</span>
+  <div class="flex flex-col gap-1.5">
+    {title && <b class="text-3xl font-semibold">{title}</b>}
+    <span class="text-lg leading-body text-ink-dim"><slot /></span>
+  </div>
+</div>

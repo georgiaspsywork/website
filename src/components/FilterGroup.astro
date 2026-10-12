@@ -1,0 +1,47 @@
+---
+import Chip from './Chip.astro';
+
+// Filter chips + a count, wrapped around a list of items. Items opt in with data-filter-item and data-category
+// (ArticleRow and ResourceCard do this). Filtering happens in the browser; every item is in the page HTML.
+interface Props {
+  options: string[]; // category chips, "All" is added first
+  noun: string; // singular, for the count: "article" -> "7 articles"
+  total: number;
+  class?: string;
+  barClass?: string;
+}
+const { options, noun, total, class: extra, barClass } = Astro.props;
+---
+
+<section class:list={['flex flex-col', extra]} data-filter-group data-noun={noun}>
+  <div class:list={['flex flex-wrap items-center justify-between gap-x-10 gap-y-5', barClass]}>
+    <div class="flex flex-wrap gap-2.5">
+      {['All', ...options].map((option) => <Chip pressed={option === 'All'} data-filter={option}>{option}</Chip>)}
+    </div>
+    <span class="text-base text-subtle tabular-nums" data-count>{total} {noun}{total === 1 ? '' : 's'}</span>
+  </div>
+  <slot />
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) => {
+    const chips = group.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const items = group.querySelectorAll<HTMLElement>('[data-filter-item]');
+    const count = group.querySelector('[data-count]')!;
+    const noun = group.dataset.noun ?? 'item';
+
+    chips.forEach((chip) =>
+      chip.addEventListener('click', () => {
+        const category = chip.dataset.filter;
+        let shown = 0;
+        items.forEach((item) => {
+          const visible = category === 'All' || item.dataset.category === category;
+          item.hidden = !visible;
+          if (visible) shown++;
+        });
+        chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+        count.textContent = `${shown} ${noun}${shown === 1 ? '' : 's'}`;
+      }),
+    );
+  });
+</script>

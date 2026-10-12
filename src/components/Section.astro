@@ -1,0 +1,19 @@
+---
+// A full-width band. Colour, vertical rhythm and side gutters live here so every page agrees.
+// Layout inside the band (grid, flex, gaps) is passed in with `class`.
+interface Props {
+  tone?: 'ground' | 'deep' | 'brand';
+  size?: 'default' | 'sm' | 'none'; // vertical padding
+  gutter?: 'default' | 'reading'; // side padding: default lines up with the header, reading is a little wider
+  class?: string;
+  id?: string;
+}
+const { tone = 'ground', size = 'default', gutter = 'default', class: extra, id } = Astro.props;
+const tones = { ground: '', deep: 'bg-deep', brand: 'bg-brand text-white' };
+const sizes = { default: 'py-section', sm: 'py-section-sm', none: '' };
+const gutters = { default: 'px-gutter', reading: 'px-gutter-reading' };
+---
+
+<section id={id} class:list={[tones[tone], sizes[size], gutters[gutter], extra]}>
+  <slot />
+</section>

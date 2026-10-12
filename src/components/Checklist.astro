@@ -1,0 +1,74 @@
+---
+import Eyebrow from './Eyebrow.astro';
+import Button from './Button.astro';
+
+// "Which of these sound like your operation?" tick-list. Nothing is stored or sent.
+interface Item {
+  title: string;
+  body: string;
+}
+interface Props {
+  eyebrow: string;
+  title: string;
+  items: Item[];
+  /** One message per tick count: verdicts[0] for none ticked ... verdicts[items.length] for all. */
+  verdicts: string[];
+  cta: { label: string; href: string };
+}
+const { eyebrow, title, items, verdicts, cta } = Astro.props;
+---
+
+<section class="bg-brand px-gutter py-section-sm text-white" data-checklist data-verdicts={JSON.stringify(verdicts)}>
+  <div class="mb-12 flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
+    <div class="flex flex-col gap-4.5">
+      <Eyebrow tone="amber">{eyebrow}</Eyebrow>
+      <h2 class="max-w-[15em] text-title-lg leading-title tracking-heading">{title}</h2>
+    </div>
+    <p class="text-7xl text-amber tabular-nums">
+      <span data-count>0</span> of {items.length}
+      <span class="mt-2 block text-xs tracking-label text-on-brand-muted uppercase">Nothing is sent anywhere</span>
+    </p>
+  </div>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-x-12">
+    {
+      items.map((item) => (
+        <button
+          type="button"
+          aria-pressed="false"
+          data-item
+          class="group grid cursor-pointer grid-cols-[44px_1fr] items-start gap-5 border-t border-white/15 px-5 py-7 text-left text-white hover:bg-white/5 aria-pressed:bg-amber/8"
+        >
+          <span class="mt-[3px] flex size-7.5 items-center justify-center rounded-xs border-[1.5px] border-amber text-lg text-transparent group-aria-pressed:bg-amber group-aria-pressed:text-ground">
+            ✓
+          </span>
+          <span class="flex flex-col gap-2">
+            <b class="text-3xl leading-heading font-semibold">{item.title}</b>
+            <span class="text-lg leading-snug text-on-brand">{item.body}</span>
+          </span>
+        </button>
+      ))
+    }
+  </div>
+  <div class="mt-12 flex flex-wrap items-center justify-between gap-x-10 gap-y-6">
+    <p class="max-w-[30em] text-3xl italic" data-verdict>{verdicts[0]}</p>
+    <Button href={cta.href} variant="amber" class="whitespace-nowrap">{cta.label}</Button>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-checklist]').forEach((root) => {
+    const items = root.querySelectorAll<HTMLButtonElement>('[data-item]');
+    const count = root.querySelector('[data-count]')!;
+    const verdict = root.querySelector('[data-verdict]')!;
+    const verdicts: string[] = JSON.parse(root.dataset.verdicts ?? '[]');
+
+    items.forEach((item) =>
+      item.addEventListener('click', () => {
+        item.setAttribute('aria-pressed', String(item.getAttribute('aria-pressed') !== 'true'));
+        const n = root.querySelectorAll('[data-item][aria-pressed="true"]').length;
+        count.textContent = String(n);
+        verdict.textContent = verdicts[n] ?? '';
+      }),
+    );
+  });
+</script>

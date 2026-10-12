@@ -1,0 +1,27 @@
+---
+import { getEntry } from 'astro:content';
+import ResourceLayout from '../../layouts/ResourceLayout.astro';
+import RotaBuilder from '../../components/RotaBuilder.astro';
+import Button from '../../components/Button.astro';
+
+// Bespoke resource page: the standard resource layout with the interactive rota builder as its centrepiece.
+// The words around it come from src/content/resources/rota-builder.md.
+const resource = (await getEntry('resources', 'rota-builder'))!;
+---
+
+<ResourceLayout resource={resource}>
+  <Fragment slot="tool">
+    <RotaBuilder>
+      <div class="flex flex-col gap-5">
+        <p class="text-2xl leading-snug text-pretty">
+          A real review goes further: incident and absence data laid over the rota, and conversations with people on every shift. Then we help redesign the work.
+        </p>
+        <div class="flex flex-wrap gap-3.5">
+          <Button href="#">Send us your real rota</Button>
+          <Button href="#" variant="outline" class="px-6.5 py-3.5 text-md">Book a chat</Button>
+        </div>
+        <p class="text-xs text-faint">Rules simplified for illustration.</p>
+      </div>
+    </RotaBuilder>
+  </Fragment>
+</ResourceLayout>

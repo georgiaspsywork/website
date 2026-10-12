@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import MarginSection from '../components/MarginSection.astro';
+import FilterGroup from '../components/FilterGroup.astro';
+import ResourceCard from '../components/ResourceCard.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+
+const library = (await getCollection('resources', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const featured = library.find((r) => r.data.featured);
+const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => library.some((r) => r.data.type === t));
+---
+
+<BaseLayout title="Resources · Georgia's PsyWork">
+  <PageHero
+    eyebrow="Resources · the shift kit"
+    title="Tools you can use <em>before</em> the next night shift starts."
+    intro="Checklists, templates, short videos and calculators for operations leaders. Free to use with your teams. Articles live on the blog; these are the things you put to work."
+  />
+
+  {/* Featured */}
+  {
+    featured?.data.featured && (
+      <section class="px-gutter pb-section-sm">
+        <a
+          href={featured.data.href ?? `/resources/${featured.id}`}
+          class="grid items-center gap-x-16 gap-y-8 rounded-sm bg-brand p-[clamp(28px,4vw,48px)] text-white hover:bg-brand-lift hover:text-white md:grid-cols-2"
+        >
+          <div class="flex flex-col gap-4.5">
+            <div class="flex flex-wrap gap-x-5 gap-y-2.5 text-xs tracking-label text-amber uppercase">
+              <span>Featured</span><span class="text-on-brand-muted">{featured.data.featured.meta}</span>
+            </div>
+            <h2 class="text-quote leading-title tracking-heading">{featured.data.title}</h2>
+            <p class="max-w-[30em] text-lg leading-body text-on-brand text-pretty">{featured.data.featured.blurb}</p>
+            <span class="self-start rounded-xs bg-amber px-6 py-3.5 text-md font-semibold text-ground">Open the resource</span>
+          </div>
+          <ImagePlaceholder label={featured.data.featured.previewLabel} ratio="16/10" class="bg-brand-deep" />
+        </a>
+      </section>
+    )
+  }
+
+  {/* Library */}
+  <FilterGroup
+    options={types}
+    noun="resource"
+    total={library.length}
+    class="gap-9 px-gutter pb-section"
+    barClass="border-t border-line pt-8"
+  >
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,320px),1fr))] gap-x-10 gap-y-12">
+      {library.map((resource) => <ResourceCard resource={resource} filterable />)}
+    </div>
+  </FilterGroup>
+
+  {/* Ask */}
+  <MarginSection label="Missing something?" tone="deep" size="sm" class="md:grid-cols-[200px_minmax(0,720px)]">
+    <p class="text-lead-xl leading-lead text-pretty">
+      If there's a tool you wish you had for your shift teams, tell us. Most of these started as a question from a client.
+    </p>
+    <a class="self-start border-b border-mint text-lg text-mint" href="#">Suggest a resource</a>
+  </MarginSection>
+</BaseLayout>

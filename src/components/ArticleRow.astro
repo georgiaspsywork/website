@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { plain, shortDate } from '../lib/format';
+import Arrow from './Arrow.astro';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+}
+const { article } = Astro.props;
+const { title, dek, date, topic, readMinutes } = article.data;
+---
+
+<a
+  href={`/articles/${article.id}`}
+  data-filter-item
+  data-category={topic}
+  class="grid gap-x-12 md:grid-cols-[160px_minmax(0,1fr)] gap-y-3 border-t border-line py-8 text-ink hover:bg-ink/3 hover:text-ink"
+>
+  <div class="flex min-w-40 flex-col gap-1.5 tabular-nums">
+    <span class="text-base text-soft">{shortDate(date)}</span>
+    <span class="text-xs tracking-label text-mint uppercase">{topic}</span>
+  </div>
+  <div class="flex max-w-[760px] flex-col gap-2.5">
+    <h3 class="text-subtitle leading-heading text-pretty">{plain(title)}</h3>
+    <p class="text-lg leading-body text-muted text-pretty">{dek}</p>
+    <span class="text-sm text-amber">{readMinutes} min read <Arrow /></span>
+  </div>
+</a>
