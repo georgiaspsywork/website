@@ -33,7 +33,7 @@ const rest = all.filter((a) => a !== lead);
           href={`/articles/${lead.id}`}
           class="grid items-center gap-x-16 gap-y-8 text-ink hover:text-ink md:grid-cols-2"
         >
-          <ImagePlaceholder label="Lead image" ratio="3/2" />
+          <ImagePlaceholder label={`Lead image${lead.data.imageNote ? ` — ${lead.data.imageNote}` : ''}`} ratio="3/2" />
           <div class="flex flex-col gap-4.5">
             <div class="flex flex-wrap gap-x-5 gap-y-2.5 text-xs tracking-label uppercase">
               <span class="text-amber">Latest</span>

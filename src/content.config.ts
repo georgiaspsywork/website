@@ -14,6 +14,8 @@ const articles = defineCollection({
     topic: z.string(),
     readMinutes: z.number().int().positive(),
     author: z.string().default('Georgia Hodkinson GMBPsS'), // see src/data/site.ts
+    /** Describes the missing lead photo while it is a placeholder, e.g. "Depot at night". */
+    imageNote: z.string().optional(),
     /** The article featured at the top of the articles page. */
     lead: z.boolean().default(false),
     /** Draft articles are not built or listed. */

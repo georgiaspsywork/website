@@ -12,7 +12,7 @@ interface Props {
   related: CollectionEntry<'articles'>[];
 }
 const { article, headings, related } = Astro.props;
-const { title, dek, date, topic, readMinutes, author, placeholder } = article.data;
+const { title, dek, date, topic, readMinutes, author, placeholder, imageNote } = article.data;
 const toc = headings.filter((h) => h.depth === 2);
 ---
 
@@ -34,7 +34,7 @@ const toc = headings.filter((h) => h.depth === 2);
 
   {/* Lead image */}
   <section class="flex flex-col gap-3 px-gutter pb-section-sm">
-    <ImagePlaceholder label="Lead image" ratio="21/9" />
+    <ImagePlaceholder label={`Lead image${imageNote ? ` — ${imageNote}` : ''}`} ratio="21/9" />
     <span class="text-xs text-faint">Caption or credit sits here.</span>
   </section>
 
