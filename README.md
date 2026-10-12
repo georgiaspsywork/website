@@ -53,7 +53,7 @@ Desktop-first, responsive mock-up of a new website for **Georgia's PsyWork Ltd**
 
 **Layout:** fluid. Horizontal padding `clamp(24px,6vw,80–96px)`; section vertical padding `clamp(72px,9–10vw,112–128px)`. Grids use `repeat(auto-fit,minmax(min(100%,Npx),1fr))` so everything stacks on mobile. Flex/grid + `gap`, no margins between siblings. Radius 2px on buttons, 4px on cards/panels.
 
-**Components (repeat these, don't invent new ones):** header nav (brand left, links right, "Book a chat" underlined mint → Contact); hero (small label, display headline, one supporting paragraph, ≤2 buttons); green full-bleed section; left-margin reading section; numbered/time-stamped 3–4 column steps; ruled list rows; filter chips (mint fill when active); footer (CTA + Contact + Elsewhere columns).
+**Components (repeat these, don't invent new ones):** header nav (brand left, links right, "Contact" underlined mint → contact.html); hero (small label, display headline, one supporting paragraph, ≤2 buttons); green full-bleed section; left-margin reading section; numbered/time-stamped 3–4 column steps; ruled list rows; filter chips (mint fill when active); footer (CTA + Contact + Elsewhere columns).
 
 **Copy rules:** keep client-supplied copy verbatim. Plain, matter-of-fact UK English. No stats unless sourced. Placeholders are labelled in uppercase inside the green image boxes.
 
@@ -61,6 +61,4 @@ Desktop-first, responsive mock-up of a new website for **Georgia's PsyWork Ltd**
 - All imagery is placeholder (portrait, lead images, previews).
 - Placeholder/invented copy needing Georgia's sign-off: About story, career timeline dates, MSc, client quote, all resource and article copy, "note from Georgia", tick-list items.
 - Sign-off needed on: Dawson & Reid comparison, rota rule thresholds, alertness curve (labelled illustrative).
-- Nav items "Fatigue & Human Factors" and "How we work" link to `#` — pages not built yet.
-- Homepage nav is missing About/Resources links (other pages have them) — add for consistency.
 - Contact form backend, newsletter backend, real Calendly URLs, social links.
