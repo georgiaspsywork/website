@@ -1,0 +1,31 @@
+---
+import { Picture } from 'astro:assets';
+
+// A real photo. Astro resizes it and serves WebP at several widths, so a big original never reaches visitors.
+// Put the picture in src/assets/images (run scripts/optimise-images.mjs first), then:
+//   import hero from '../assets/images/georgia-on-site.webp';
+//   <Photo src={hero} alt="Georgia on site at 06:00, talking to the night shift" ratio="4/5" />
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  /** Describe what the picture shows. Use alt="" only for purely decorative images. */
+  alt: string;
+  ratio?: string;
+  sizes?: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+}
+const { src, alt, ratio, sizes = '(min-width: 1024px) 50vw, 100vw', class: extra, loading = 'lazy' } = Astro.props;
+---
+
+<Picture
+  src={src}
+  alt={alt}
+  formats={['webp']}
+  widths={[480, 800, 1200, 1600]}
+  sizes={sizes}
+  loading={loading}
+  class:list={['w-full rounded-sm object-cover', extra]}
+  style={ratio ? `aspect-ratio: ${ratio}` : undefined}
+/>

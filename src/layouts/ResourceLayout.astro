@@ -91,7 +91,7 @@ const hasTool = Astro.slots.has('tool');
   {
     d.steps.length > 0 && (
       <Section tone="brand" class="flex flex-col gap-12">
-        <SectionHeader eyebrow={d.stepsEyebrow} title={d.stepsTitle ?? ''} tone="amber" />
+        <SectionHeader eyebrow={d.stepsEyebrow} title={d.stepsTitle ?? ""} tone="amber" size="md" />
         <StepGrid>
           {d.steps.map((step) => (
             <Step stamp={step.stamp} title={step.title} tone="brand">{step.body}</Step>
