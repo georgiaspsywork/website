@@ -25,7 +25,7 @@ const articles = defineCollection({
   }),
 });
 
-// Resources: tools, templates, guides. Detail pages are built from these fields.
+// Resources: tools, templates, guides. Library cards and standard detail pages are built from these fields.
 const resources = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
   schema: z.object({
@@ -34,22 +34,41 @@ const resources = defineCollection({
     type: z.string(),
     /** Short detail shown on the card, e.g. "5 min" or "PDF · 8 pages". */
     meta: z.string(),
+    /** One or two sentences on the card. */
     summary: z.string(),
     /** Who it is for, completing "For ___". */
     audience: z.string(),
     /** Card call to action, e.g. "Use the tool", "Download", "Watch". */
     action: z.string(),
-    /** Multi-part resources show as a stack of cards: how many extra layers. */
+    /** Position in the library, lowest first. */
+    order: z.number().int().default(100),
+    /** Multi-part resources show as a stack of cards: how many extra layers (0-3). */
     parts: z.number().int().min(0).max(3).default(0),
-    /** Use when the resource lives on its own bespoke page instead of the standard resource page. */
+    /** Set when the resource has its own bespoke page (e.g. the rota builder) instead of the standard resource page. */
     href: z.string().optional(),
+    /** Shown large at the top of the resources page (use on one resource only). */
+    featured: z
+      .object({ meta: z.string(), blurb: z.string(), previewLabel: z.string() })
+      .optional(),
     draft: z.boolean().default(false),
+    /** True while the text is stand-in copy; `npm run check` lists these before publishing. */
     placeholder: z.boolean().default(false),
-    /** Standard resource page extras. */
+
+    // Detail page content
+    /** Page headline if different from the card title. */
+    heading: z.string().optional(),
+    intro: z.string().optional(),
+    buttons: z.array(z.object({ label: z.string(), href: z.string(), style: z.enum(['primary', 'outline']).default('primary') })).default([]),
     facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+    previewLabel: z.string().optional(),
+    insideTitle: z.string().default("What's inside"),
     inside: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
+    stepsEyebrow: z.string().default('How to use it'),
+    stepsTitle: z.string().optional(),
     steps: z.array(z.object({ stamp: z.string(), title: z.string(), body: z.string() })).default([]),
-    note: z.string().optional(),
+    note: z.object({ label: z.string().default('Why we made this'), quote: z.string(), by: z.string() }).optional(),
+    /** Slugs of resources to suggest underneath. */
+    related: z.array(z.string()).default([]),
   }),
 });
 

@@ -1,0 +1,128 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import MarginSection from '../components/MarginSection.astro';
+import RuledList from '../components/RuledList.astro';
+import RuledRow from '../components/RuledRow.astro';
+import StepGrid from '../components/StepGrid.astro';
+import Step from '../components/Step.astro';
+import Button from '../components/Button.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import ResourceCard from '../components/ResourceCard.astro';
+import { plain } from '../lib/format';
+
+// Standard resource page, built from a resources collection entry.
+// A bespoke tool can be dropped in with <Fragment slot="tool">.
+interface Props {
+  resource: CollectionEntry<'resources'>;
+}
+const { resource } = Astro.props;
+const d = resource.data;
+
+const everything = await getCollection('resources', ({ data }) => !data.draft);
+const related = d.related.map((id) => everything.find((r) => r.id === id)).filter((r) => r !== undefined);
+const hasTool = Astro.slots.has('tool');
+---
+
+<BaseLayout
+  title={`${plain(d.heading ?? d.title)} · Georgia's PsyWork`}
+  description={d.intro ?? d.summary}
+  footer={{ heading: "Found three or more flags? Let's talk it through." }}
+>
+  {/* Resource header */}
+  <section class="flex flex-col gap-6.5 px-gutter-reading py-section-sm">
+    <div class="flex flex-wrap gap-2.5 text-sm text-subtle">
+      <a class="text-mint" href="/resources">Resources</a><span>/</span><span>{d.type}</span>
+    </div>
+    <h1 class="max-w-[14em] text-display leading-display font-normal tracking-display text-balance">{d.heading ?? d.title}</h1>
+    <p class="max-w-[32em] text-lead leading-body text-muted text-pretty">{d.intro ?? d.summary}</p>
+    {
+      d.buttons.length > 0 && (
+        <div class="mt-1.5 flex flex-wrap items-center gap-4">
+          {d.buttons.map((b) => (
+            <Button href={b.href} variant={b.style === 'primary' ? 'amber' : 'outline'}>{b.label}</Button>
+          ))}
+        </div>
+      )
+    }
+  </section>
+
+  {/* Facts */}
+  {
+    d.facts.length > 0 && (
+      <section class="px-gutter-reading pb-section-sm">
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,180px),1fr))] border-y border-line">
+          {d.facts.map((fact) => (
+            <div class="flex flex-col gap-1.5 py-5.5 pr-6">
+              <span class="text-2xs tracking-label text-subtle uppercase">{fact.label}</span>
+              <span class="text-xl">{fact.value}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {/* Tool (bespoke) or preview image */}
+  {hasTool ? <slot name="tool" /> : d.previewLabel && (
+    <section class="px-gutter pb-section">
+      <ImagePlaceholder label={d.previewLabel} ratio="16/8" />
+    </section>
+  )}
+
+  {/* Inside */}
+  {
+    d.inside.length > 0 && (
+      <MarginSection label={d.insideTitle} labelTone="mint" class="pt-0">
+        <RuledList>
+          {d.inside.map((item, i) => (
+            <RuledRow lead={String(i + 1).padStart(2, '0')} title={item.title} leadWidth="sm" leadTone="amber">
+              {item.body}
+            </RuledRow>
+          ))}
+        </RuledList>
+      </MarginSection>
+    )
+  }
+
+  {/* How to use */}
+  {
+    d.steps.length > 0 && (
+      <Section tone="brand" class="flex flex-col gap-12">
+        <SectionHeader eyebrow={d.stepsEyebrow} title={d.stepsTitle ?? ''} tone="amber" />
+        <StepGrid>
+          {d.steps.map((step) => (
+            <Step stamp={step.stamp} title={step.title} tone="brand">{step.body}</Step>
+          ))}
+        </StepGrid>
+      </Section>
+    )
+  }
+
+  {/* Georgia note */}
+  {
+    d.note && (
+      <MarginSection label={d.note.label} class="md:grid-cols-[200px_minmax(0,720px)]">
+        <p class="text-lead-xl leading-lead italic text-pretty">"{d.note.quote}"</p>
+        <p class="text-lg text-muted">{d.note.by}</p>
+      </MarginSection>
+    )
+  }
+
+  {/* Related */}
+  {
+    related.length > 0 && (
+      <Section tone="deep" class="flex flex-col gap-9">
+        <div class="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
+          <h2 class="text-quote tracking-heading">Use it alongside</h2>
+          <a class="border-b border-mint text-lg text-mint" href="/resources">All resources</a>
+        </div>
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,300px),1fr))] gap-8">
+          {related.map((r) => <ResourceCard resource={r} />)}
+        </div>
+      </Section>
+    )
+  }
+</BaseLayout>

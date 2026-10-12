@@ -5,6 +5,12 @@ import HoursAwake from '../components/HoursAwake.astro';
 import AlertnessChart from '../components/AlertnessChart.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import Button from '../components/Button.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import StepGrid from '../components/StepGrid.astro';
+import Step from '../components/Step.astro';
+import MarginSection from '../components/MarginSection.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 
 const checklist = [
   { title: 'Incidents cluster at the same points in the rota', body: 'Late in a night run, the third early in a row, the first shift after a changeover. Everyone has noticed. Nobody has joined it up.' },
@@ -26,15 +32,13 @@ const verdicts = [
 ---
 <BaseLayout title="Georgia's PsyWork">
 {/* Hero */}
-<section class="flex flex-col gap-10 pb-[clamp(96px,13vw,176px)] pt-[clamp(80px,12vw,160px)] px-gutter-reading">
-<div class="flex flex-col gap-6">
-<h1 class="max-w-[11em] font-normal text-display-xl text-balance leading-none tracking-display">Rested people make <em>safer</em> decisions.</h1>
-<p class="max-w-[24em] italic text-lead-xl text-mint text-pretty leading-quote">Fatigue doesn't show on the rota. It shows in the incident log.</p>
-</div>
-<div class="flex">
-<a class="px-7.5 py-[17px] font-semibold text-lg text-ink-bright whitespace-nowrap bg-brand rounded-xs hover:text-ink-bright hover:bg-brand-hover" href="/about">About Georgia</a>
-</div>
-</section>
+<Section size="none" gutter="reading" class="flex flex-col gap-10 pt-[clamp(80px,12vw,160px)] pb-[clamp(96px,13vw,176px)]">
+  <div class="flex flex-col gap-6">
+    <h1 class="max-w-[11em] font-normal text-display-xl text-balance leading-none tracking-display">Rested people make <em>safer</em> decisions.</h1>
+    <p class="max-w-[24em] italic text-lead-xl text-mint text-pretty leading-quote">Fatigue doesn't show on the rota. It shows in the incident log.</p>
+  </div>
+  <Button href="/about" variant="brand" class="self-start">About Georgia</Button>
+</Section>
 {/* Checklist */}
 <Checklist
   eyebrow="02:00 · the circadian low"
@@ -46,28 +50,31 @@ const verdicts = [
 {/* Hours awake */}
 <HoursAwake />
 {/* Three pressures */}
-<section class="flex flex-col gap-14 pb-section pt-section-sm px-gutter bg-ground">
-<div class="flex flex-col max-w-[820px] gap-4.5">
-<p class="text-sm text-mint tracking-label uppercase">04:00 · what sits underneath</p>
-<h2 class="text-title-lg leading-title tracking-heading">Three pressures, one cost</h2>
-<p class="text-ink-soft text-xl text-pretty leading-body">Fatigue Management, Change Management and AI Transformation are three interconnected pressures reshaping how people experience work and why they leave.</p>
-</div>
-<div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-x-14 gap-y-12">
-<div class="flex flex-col gap-3.5"><span class="text-sm text-mint tracking-label">01</span><h3 class="text-5xl">Fatigue</h3><p class="text-ink-dim text-lg leading-body">Shift length, rotation and recovery time, and what they do to attention and judgement on the floor.</p></div>
-<div class="flex flex-col gap-3.5"><span class="text-sm text-mint tracking-label">02</span><h3 class="text-5xl">Change</h3><p class="text-ink-dim text-lg leading-body">New systems, new rotas and restructures land on people who are already tired. How it's done decides who stays.</p></div>
-<div class="flex flex-col gap-3.5"><span class="text-sm text-mint tracking-label">03</span><h3 class="text-5xl">AI</h3><p class="text-ink-dim text-lg leading-body">Automation shifts workload and decision-making. We look at where it helps tired teams, and where it quietly adds risk.</p></div>
-</div>
-</section>
+{/* Three pressures */}
+<Section size="none" class="flex flex-col gap-14 pt-section-sm pb-section">
+  <SectionHeader eyebrow="04:00 · what sits underneath" title="Three pressures, one cost">
+    <p class="text-ink-soft text-xl text-pretty leading-body">Fatigue Management, Change Management and AI Transformation are three interconnected pressures reshaping how people experience work and why they leave.</p>
+  </SectionHeader>
+  <StepGrid>
+    <Step variant="number" stamp="01" title="Fatigue">Shift length, rotation and recovery time, and what they do to attention and judgement on the floor.</Step>
+    <Step variant="number" stamp="02" title="Change">New systems, new rotas and restructures land on people who are already tired. How it's done decides who stays.</Step>
+    <Step variant="number" stamp="03" title="AI">Automation shifts workload and decision-making. We look at where it helps tired teams, and where it quietly adds risk.</Step>
+  </StepGrid>
+</Section>
 {/* Georgia */}
-<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-center gap-x-18 gap-y-12 pb-section pt-0 px-gutter bg-ground">
-<div class="flex aspect-[4/5] w-full max-w-[380px] items-end p-4.5 text-2xs text-on-brand-muted tracking-label bg-brand rounded-sm">GEORGIA — PORTRAIT</div>
-<div class="flex flex-col gap-5.5">
-<p class="text-sm text-mint tracking-label uppercase">06:00 · handover</p>
-<h2 class="text-title leading-title tracking-heading">Georgia Hodkinson GMBPsS</h2>
-<p class="max-w-[36em] text-ink-soft text-xl text-pretty leading-prose">By combining occupational psychology and systems thinking, we uncover the conditions affecting performance, retention, sickness absence, and risk, then help redesign work so people and organisations can perform sustainably.</p>
-<div class="flex flex-wrap gap-x-6 gap-y-4 text-lg"><a class="text-mint border-b border-mint" href="#">Read client references</a><a class="border-b border-brand-edge" href="#">Ethics &amp; qualifications</a></div>
-</div>
-</section>
+{/* Georgia */}
+<Section size="none" class="grid items-center gap-x-18 gap-y-12 pb-section md:grid-cols-2">
+  <ImagePlaceholder label="GEORGIA — PORTRAIT" ratio="4/5" class="max-w-[380px]" />
+  <div class="flex flex-col gap-5.5">
+    <Eyebrow>06:00 · handover</Eyebrow>
+    <h2 class="text-title leading-title tracking-heading">Georgia Hodkinson GMBPsS</h2>
+    <p class="max-w-[36em] text-ink-soft text-xl text-pretty leading-prose">By combining occupational psychology and systems thinking, we uncover the conditions affecting performance, retention, sickness absence, and risk, then help redesign work so people and organisations can perform sustainably.</p>
+    <div class="flex flex-wrap gap-x-6 gap-y-4 text-lg">
+      <a class="border-b border-mint text-mint" href="#">Read client references</a>
+      <a class="border-b border-brand-edge" href="#">Ethics &amp; qualifications</a>
+    </div>
+  </div>
+</Section>
 {/* 24-hour alertness */}
 <AlertnessChart>
   <Fragment slot="intro">
@@ -82,12 +89,12 @@ const verdicts = [
   </div>
 </AlertnessChart>
 {/* Note from Georgia */}
-<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,200px),max-content)_minmax(0,720px))] gap-x-12 gap-y-6 px-gutter-reading py-section text-prose bg-ground">
-<span class="min-w-50 pt-2.5 text-sm text-subtle tracking-label uppercase">A note from Georgia</span>
-<div class="flex flex-col gap-5.5 text-ink-soft text-2xl leading-loose">
-<p>Placeholder: a short letter to the operations director, in Georgia's own voice. Why fatigue keeps being treated as a personal failing on the night shift, and why it's really about how the work is designed.</p>
-<p>We help organisations reduce staff turnover and sickness absence by fixing the work conditions that drive burnout, fatigue, and misuse of AI.</p>
-<p class="italic text-prose text-4xl">Georgia Hodkinson GMBPsS</p>
-</div>
-</section>
+{/* Note from Georgia */}
+<MarginSection label="A note from Georgia" class="text-prose">
+  <div class="flex flex-col gap-5.5 text-ink-soft text-2xl leading-loose">
+    <p>Placeholder: a short letter to the operations director, in Georgia's own voice. Why fatigue keeps being treated as a personal failing on the night shift, and why it's really about how the work is designed.</p>
+    <p>We help organisations reduce staff turnover and sickness absence by fixing the work conditions that drive burnout, fatigue, and misuse of AI.</p>
+    <p class="italic text-4xl text-prose">Georgia Hodkinson GMBPsS</p>
+  </div>
+</MarginSection>
 </BaseLayout>
