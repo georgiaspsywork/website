@@ -29,7 +29,7 @@ lead: false                 # true only if she wants it as the featured article 
 - File name: short, lowercase, hyphenated, from the headline (`costing-turnover.mdx`). If an article with that name exists (a placeholder piece), replace its text rather than creating a duplicate.
 
 ## 3. Convert the body to MDX
-- Document headings -> `##` (second level) and `###`. The title is not repeated in the body. Headings become the "In this article" contents list automatically.
+- Leave the title (and the standfirst, which becomes `dek`) out of the body. Document headings -> `##` (second level) and `###`. Headings become the "In this article" contents list automatically.
 - Paragraphs, **bold**, *italic*, links, bullet and numbered lists: plain Markdown. Numbered lists get the amber numbers automatically.
 - A call-out she marks (e.g. "In short") -> `<Callout label="In short">text</Callout>`. A standout quotation -> `<PullQuote>"..."</PullQuote>`. A link to a resource -> `<ResourceLink href="/resources/<slug>" title="..." />`. Add the `import` lines for these components at the top of the body (see `rota-compliant-not-safe.mdx`). Don't add them if she didn't ask.
 - Escape characters MDX would misread: a literal `{` or `<` in the text (write `\{` / `&lt;`).
