@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro build && node scripts/check.mjs",
+    "optimise-images": "node scripts/optimise-images.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.3",

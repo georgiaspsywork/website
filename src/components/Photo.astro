@@ -11,11 +11,20 @@ interface Props {
   src: ImageMetadata;
   /** Describe what the picture shows. Use alt="" only for purely decorative images. */
   alt: string;
-  ratio?: string;
+  ratio?: '4/5' | '3/2' | '4/3' | '16/10' | '16/8' | '21/9' | '1/1';
   sizes?: string;
   class?: string;
   loading?: 'lazy' | 'eager';
 }
+const ratios = {
+  '4/5': 'aspect-[4/5]',
+  '3/2': 'aspect-[3/2]',
+  '4/3': 'aspect-[4/3]',
+  '16/10': 'aspect-[16/10]',
+  '16/8': 'aspect-[16/8]',
+  '21/9': 'aspect-[21/9]',
+  '1/1': 'aspect-square',
+};
 const { src, alt, ratio, sizes = '(min-width: 1024px) 50vw, 100vw', class: extra, loading = 'lazy' } = Astro.props;
 ---
 
@@ -26,6 +35,5 @@ const { src, alt, ratio, sizes = '(min-width: 1024px) 50vw, 100vw', class: extra
   widths={[480, 800, 1200, 1600]}
   sizes={sizes}
   loading={loading}
-  class:list={['w-full rounded-sm object-cover', extra]}
-  style={ratio ? `aspect-ratio: ${ratio}` : undefined}
+  class:list={['w-full rounded-sm object-cover', ratio && ratios[ratio], extra]}
 />
