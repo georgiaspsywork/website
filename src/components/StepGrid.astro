@@ -1,0 +1,9 @@
+---
+// Responsive columns of Step components (3 or 4 across on desktop, stacking on small screens).
+interface Props {
+  class?: string;
+}
+const { class: extra } = Astro.props;
+---
+
+<div class:list={['grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-x-14 gap-y-12', extra]}><slot /></div>

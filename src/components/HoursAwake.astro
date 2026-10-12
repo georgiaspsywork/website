@@ -1,0 +1,50 @@
+---
+import { awakeLine, clockAfter } from '../lib/alertness';
+
+// Slider: how long someone has been awake, and what that is comparable to.
+interface Props {
+  start?: number; // initial hours awake
+  wokeAt?: number; // hour of waking (24h clock)
+}
+const { start = 23, wokeAt = 7 } = Astro.props;
+---
+
+<section
+  class="grid gap-x-12 gap-y-6 bg-ground px-gutter-reading py-section md:grid-cols-[200px_minmax(0,1fr)]"
+  data-awake
+  data-woke-at={wokeAt}
+>
+  <span class="pt-5 text-sm tracking-label text-subtle uppercase">Hours awake</span>
+  <div class="flex flex-wrap items-center gap-x-14 gap-y-8 rounded-sm bg-brand p-[clamp(28px,4vw,48px)]">
+    <div class="flex flex-none flex-col gap-3.5">
+      <span class="text-gauge leading-none tracking-numeral text-ink-bright tabular-nums" data-value>{start}</span>
+      <span class="text-base text-on-brand-muted">
+        hours · woke at {String(wokeAt).padStart(2, '0')}:00, now <span data-clock>{clockAfter(wokeAt, start)}</span>
+      </span>
+    </div>
+    <div class="flex min-w-0 flex-[1_1_320px] flex-col gap-5.5">
+      <input type="range" min="8" max="24" step="1" value={start} aria-label="Hours awake" class="h-7 w-full accent-mint" data-input />
+      <p class="text-4xl leading-lead text-ink-bright text-pretty" data-line>{awakeLine(start)}</p>
+      <p class="text-sm text-on-brand-muted">Dawson &amp; Reid, <em>Nature</em>, 1997. Drag to a typical night-shift finish.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { awakeLine, clockAfter } from '../lib/alertness';
+
+  document.querySelectorAll<HTMLElement>('[data-awake]').forEach((root) => {
+    const input = root.querySelector<HTMLInputElement>('[data-input]')!;
+    const value = root.querySelector('[data-value]')!;
+    const clock = root.querySelector('[data-clock]')!;
+    const line = root.querySelector('[data-line]')!;
+    const wokeAt = Number(root.dataset.wokeAt);
+
+    input.addEventListener('input', () => {
+      const hours = Number(input.value);
+      value.textContent = String(hours);
+      clock.textContent = clockAfter(wokeAt, hours);
+      line.textContent = awakeLine(hours);
+    });
+  });
+</script>

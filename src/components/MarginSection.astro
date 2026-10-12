@@ -1,0 +1,27 @@
+---
+import Eyebrow from './Eyebrow.astro';
+// Reading layout: a short label in the left margin, content in a column to its right.
+// Stacks on small screens.
+interface Props {
+  label: string;
+  tone?: 'ground' | 'deep' | 'brand';
+  labelTone?: 'mint' | 'amber' | 'subtle';
+  size?: 'default' | 'sm';
+  class?: string;
+}
+const { label, tone = 'ground', labelTone = 'subtle', size = 'default', class: extra } = Astro.props;
+const tones = { ground: '', deep: 'bg-deep', brand: 'bg-brand text-white' };
+const sizes = { default: 'py-section', sm: 'py-section-sm' };
+---
+
+<section
+  class:list={[
+    'grid gap-x-16 gap-y-6 px-gutter-reading md:grid-cols-[200px_minmax(0,760px)]',
+    tones[tone],
+    sizes[size],
+    extra,
+  ]}
+>
+  <Eyebrow tone={labelTone} class="pt-3">{label}</Eyebrow>
+  <div class="flex min-w-0 flex-col gap-6"><slot /></div>
+</section>

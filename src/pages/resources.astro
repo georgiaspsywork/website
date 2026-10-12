@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Resources · Georgia's PsyWork">
+{/* Resources hero */}
+<section class="flex flex-col gap-7 pb-section-sm pt-section-sm px-gutter-reading">
+<p class="text-sm text-mint tracking-label uppercase">Resources · the shift kit</p>
+<h1 class="max-w-[13em] font-normal text-display text-balance leading-display tracking-display">Tools you can use <em>before</em> the next night shift starts.</h1>
+<p class="max-w-[32em] text-lead text-muted text-pretty leading-body">Checklists, templates, short videos and calculators for operations leaders. Free to use with your teams. Articles live on the blog; these are the things you put to work.</p>
+</section>
+{/* Featured */}
+<section class="pb-section-sm pt-0 px-gutter">
+<a class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] items-center gap-x-16 gap-y-8 p-[clamp(28px,4vw,48px)] text-white bg-brand rounded-sm hover:text-white hover:bg-brand-lift" href="/resource">
+<div class="flex flex-col gap-4.5">
+<div class="flex flex-wrap gap-x-5 gap-y-2.5 text-xs text-amber tracking-label uppercase"><span>Featured</span><span class="text-on-brand-muted">Tool · 10 minutes</span></div>
+<h2 class="text-quote leading-title tracking-heading">Rota red flags: a 10-minute fatigue check</h2>
+<p class="max-w-[30em] text-lg text-on-brand text-pretty leading-body">Run your current rota against twelve questions and see where fatigue risk is likely to build. Print it, or work through it with your shift managers.</p>
+<span class="self-start px-6 py-3.5 font-semibold text-md text-ground bg-amber rounded-xs">Open the resource</span>
+</div>
+<div class="flex aspect-[16/10] items-end p-4 text-2xs text-on-brand-muted tracking-label bg-brand-deep rounded-sm">PREVIEW — CHECKLIST PAGE</div>
+</a>
+</section>
+{/* Library */}
+<section class="flex flex-col gap-9 pb-section pt-0 px-gutter" data-filter-group data-noun="resource">
+<div class="flex flex-wrap items-center justify-between gap-x-10 gap-y-5 pt-8 border-line border-t">
+<div class="flex flex-wrap gap-2.5">
+<button aria-pressed="true" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-filter="All" type="button">All</button>
+<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-filter="Tool" type="button">Tool</button>
+<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-filter="Video" type="button">Video</button>
+<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-filter="Template" type="button">Template</button>
+<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-filter="Guide" type="button">Guide</button>
+<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-filter="Pack" type="button">Pack</button>
+</div>
+<span class="text-base text-subtle tabular-nums" data-filter-count>9 resources</span>
+</div>
+<div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,320px),1fr))] gap-x-10 gap-y-12">
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-0 ml-0 mr-0 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-none hover:text-ink hover:border-mint" data-category="Tool" data-filter-item href="/resource-rota-builder">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Tool</span><span class="text-subtle">5 min</span></div>
+<h3 class="text-3xl text-pretty leading-heading">Build a week: the rota fatigue builder</h3>
+<p class="text-md text-muted text-pretty leading-body">Click through a week of shifts and see where quick returns, night runs and backward rotation appear.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For rota planners</span><span class="text-amber">Use the tool →</span></div>
+</a>
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-0 ml-0 mr-0 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-none hover:text-ink hover:border-mint" data-category="Tool" data-filter-item href="/resource">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Tool</span><span class="text-subtle">10 min</span></div>
+<h3 class="text-3xl text-pretty leading-heading">Rota red flags: a 10-minute fatigue check</h3>
+<p class="text-md text-muted text-pretty leading-body">Twelve questions to run against your current rota, with notes on what each answer means.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For site managers</span><span class="text-amber">Use the tool →</span></div>
+</a>
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-0 ml-0 mr-0 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-none hover:text-ink hover:border-mint" data-category="Video" data-filter-item href="/resource">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Video</span><span class="text-subtle">12 min</span></div>
+<h3 class="text-3xl text-pretty leading-heading">What 04:00 does to decision-making</h3>
+<p class="text-md text-muted text-pretty leading-body">Georgia explains the circadian low and why it matters for checks, driving and handovers.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For operations leaders</span><span class="text-amber">Watch →</span></div>
+</a>
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-0 ml-0 mr-0 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-none hover:text-ink hover:border-mint" data-category="Template" data-filter-item href="/resource">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Template</span><span class="text-subtle">Word · Excel</span></div>
+<h3 class="text-3xl text-pretty leading-heading">Shift handover template</h3>
+<p class="text-md text-muted text-pretty leading-body">A one-page handover that captures what tired people tend to leave out.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For shift supervisors</span><span class="text-amber">Download →</span></div>
+</a>
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-0 ml-0 mr-0 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-none hover:text-ink hover:border-mint" data-category="Tool" data-filter-item href="/resource">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Tool</span><span class="text-subtle">Spreadsheet</span></div>
+<h3 class="text-3xl text-pretty leading-heading">The cost of turnover in shift roles</h3>
+<p class="text-md text-muted text-pretty leading-body">Put a figure on leavers, agency cover and lost hours, ready for a board paper.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For COOs and HR</span><span class="text-amber">Use the tool →</span></div>
+</a>
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-6 ml-0 mr-6 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-[8px_8px_0_-1px_#1d2a26,8px_8px_0_0_rgba(230,236,233,.08),16px_16px_0_-1px_#0f3a34,16px_16px_0_0_rgba(230,236,233,.08),24px_24px_0_-1px_#0f3a34,24px_24px_0_0_rgba(230,236,233,.08)] hover:text-ink hover:border-mint" data-category="Pack" data-filter-item href="/resource">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Pack</span><span class="text-subtle">5 parts</span></div>
+<h3 class="text-3xl text-pretty leading-heading">Fatigue for the board: a briefing pack</h3>
+<p class="text-md text-muted text-pretty leading-body">Slides, speaker notes and a one-page summary for explaining fatigue risk upwards.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For operations directors</span><span class="text-amber">Download →</span></div>
+</a>
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-4 ml-0 mr-4 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-[8px_8px_0_-1px_#1d2a26,8px_8px_0_0_rgba(230,236,233,.08),16px_16px_0_-1px_#0f3a34,16px_16px_0_0_rgba(230,236,233,.08)] hover:text-ink hover:border-mint" data-category="Video" data-filter-item href="/resource">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Video</span><span class="text-subtle">3 episodes</span></div>
+<h3 class="text-3xl text-pretty leading-heading">Talking to night shift about fatigue</h3>
+<p class="text-md text-muted text-pretty leading-body">Short films on running honest conversations with teams who are used to coping.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For line managers</span><span class="text-amber">Watch →</span></div>
+</a>
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-0 ml-0 mr-0 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-none hover:text-ink hover:border-mint" data-category="Guide" data-filter-item href="/resource">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Guide</span><span class="text-subtle">PDF · 8 pages</span></div>
+<h3 class="text-3xl text-pretty leading-heading">AI and workload: questions to ask before rollout</h3>
+<p class="text-md text-muted text-pretty leading-body">What to check before new systems or automation land on a tired shift.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For transformation leads</span><span class="text-amber">Download →</span></div>
+</a>
+<a class="flex flex-col min-h-75 gap-4 p-7 mb-0 ml-0 mr-0 mt-0 text-ink bg-surface border border-line-soft rounded-sm shadow-none hover:text-ink hover:border-mint" data-category="Template" data-filter-item href="/resource">
+<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Template</span><span class="text-subtle">Excel</span></div>
+<h3 class="text-3xl text-pretty leading-heading">Break and rest log</h3>
+<p class="text-md text-muted text-pretty leading-body">A simple log for tracking breaks against hours on shift across a crew.</p>
+<div class="flex items-center justify-between gap-4 pt-4 mt-auto text-sm border-line-soft border-t"><span class="text-subtle">For shift supervisors</span><span class="text-amber">Download →</span></div>
+</a>
+</div>
+</section>
+{/* Ask */}
+<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,200px),max-content)_minmax(0,720px))] gap-x-12 gap-y-6 px-gutter-reading py-section-sm bg-deep">
+<span class="min-w-50 pt-2.5 text-sm text-subtle tracking-label uppercase">Missing something?</span>
+<div class="flex flex-col gap-5.5">
+<p class="text-lead-xl text-pretty leading-lead">If there's a tool you wish you had for your shift teams, tell us. Most of these started as a question from a client.</p>
+<a class="self-start text-lg text-mint border-b border-mint" href="#">Suggest a resource</a>
+</div>
+</section>
+</BaseLayout>

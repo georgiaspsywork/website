@@ -1,0 +1,17 @@
+---
+import Eyebrow from './Eyebrow.astro';
+// Eyebrow + h2 (+ optional intro). Used at the top of most sections.
+interface Props {
+  eyebrow?: string;
+  title: string;
+  tone?: 'mint' | 'amber';
+  class?: string;
+}
+const { eyebrow, title, tone = 'mint', class: extra } = Astro.props;
+---
+
+<div class:list={['flex max-w-[820px] flex-col gap-4.5', extra]}>
+  {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
+  <h2 class="text-title-lg leading-title tracking-heading"><Fragment set:html={title} /></h2>
+  <slot />
+</div>

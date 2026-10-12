@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Checklist from '../components/Checklist.astro';
+import HoursAwake from '../components/HoursAwake.astro';
+import AlertnessChart from '../components/AlertnessChart.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Button from '../components/Button.astro';
+
+const checklist = [
+  { title: 'Incidents cluster at the same points in the rota', body: 'Late in a night run, the third early in a row, the first shift after a changeover. Everyone has noticed. Nobody has joined it up.' },
+  { title: "Good people leave shift roles and exit interviews don't say why", body: "Pay is fair and the managers are decent. The turnover keeps coming anyway, and recruitment can't keep up." },
+  { title: "Sickness absence is rising and the wellbeing offer hasn't moved it", body: 'The EAP, the app, the awareness week. The number on the dashboard looks the same.' },
+  { title: 'Fatigue is managed through hours limits alone', body: 'The rota is compliant. That tells you nothing about how alert people are at 04:00.' },
+  { title: 'Rota changes are made for cover, not for recovery', body: "Gaps get filled by whoever will take the extra shift, and it's usually the same few people." },
+  { title: 'New systems or AI arrived and nobody checked the workload', body: "It was meant to make the job easier. On a tired night shift, it's one more thing to watch." },
+];
+const verdicts = [
+  'Tick whichever ones land. Nothing here is recorded.',
+  'One is common in any shift operation. Worth keeping an eye on.',
+  'Two usually share a cause in how the work is designed.',
+  'Three is a pattern, not bad luck. A conversation would help name it.',
+  "That's a fatigue risk worth looking at properly. It is fixable.",
+  "That's a fatigue risk worth looking at properly. It is fixable.",
+  'All six. None of it is unusual, and none of it is down to your people.',
+];
+---
+<BaseLayout title="Georgia's PsyWork">
+{/* Hero */}
+<section class="flex flex-col gap-10 pb-[clamp(96px,13vw,176px)] pt-[clamp(80px,12vw,160px)] px-gutter-reading">
+<div class="flex flex-col gap-6">
+<h1 class="max-w-[11em] font-normal text-display-xl text-balance leading-none tracking-display">Rested people make <em>safer</em> decisions.</h1>
+<p class="max-w-[24em] italic text-lead-xl text-mint text-pretty leading-quote">Fatigue doesn't show on the rota. It shows in the incident log.</p>
+</div>
+<div class="flex">
+<a class="px-7.5 py-[17px] font-semibold text-lg text-ink-bright whitespace-nowrap bg-brand rounded-xs hover:text-ink-bright hover:bg-brand-hover" href="/about">About Georgia</a>
+</div>
+</section>
+{/* Checklist */}
+<Checklist
+  eyebrow="02:00 · the circadian low"
+  title="Which of these sound like your operation?"
+  items={checklist}
+  verdicts={verdicts}
+  cta={{ label: 'Talk it through with Georgia', href: '#' }}
+/>
+{/* Hours awake */}
+<HoursAwake />
+{/* Three pressures */}
+<section class="flex flex-col gap-14 pb-section pt-section-sm px-gutter bg-ground">
+<div class="flex flex-col max-w-[820px] gap-4.5">
+<p class="text-sm text-mint tracking-label uppercase">04:00 · what sits underneath</p>
+<h2 class="text-title-lg leading-title tracking-heading">Three pressures, one cost</h2>
+<p class="text-ink-soft text-xl text-pretty leading-body">Fatigue Management, Change Management and AI Transformation are three interconnected pressures reshaping how people experience work and why they leave.</p>
+</div>
+<div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-x-14 gap-y-12">
+<div class="flex flex-col gap-3.5"><span class="text-sm text-mint tracking-label">01</span><h3 class="text-5xl">Fatigue</h3><p class="text-ink-dim text-lg leading-body">Shift length, rotation and recovery time, and what they do to attention and judgement on the floor.</p></div>
+<div class="flex flex-col gap-3.5"><span class="text-sm text-mint tracking-label">02</span><h3 class="text-5xl">Change</h3><p class="text-ink-dim text-lg leading-body">New systems, new rotas and restructures land on people who are already tired. How it's done decides who stays.</p></div>
+<div class="flex flex-col gap-3.5"><span class="text-sm text-mint tracking-label">03</span><h3 class="text-5xl">AI</h3><p class="text-ink-dim text-lg leading-body">Automation shifts workload and decision-making. We look at where it helps tired teams, and where it quietly adds risk.</p></div>
+</div>
+</section>
+{/* Georgia */}
+<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] items-center gap-x-18 gap-y-12 pb-section pt-0 px-gutter bg-ground">
+<div class="flex aspect-[4/5] w-full max-w-[380px] items-end p-4.5 text-2xs text-on-brand-muted tracking-label bg-brand rounded-sm">GEORGIA — PORTRAIT</div>
+<div class="flex flex-col gap-5.5">
+<p class="text-sm text-mint tracking-label uppercase">06:00 · handover</p>
+<h2 class="text-title leading-title tracking-heading">Georgia Hodkinson GMBPsS</h2>
+<p class="max-w-[36em] text-ink-soft text-xl text-pretty leading-prose">By combining occupational psychology and systems thinking, we uncover the conditions affecting performance, retention, sickness absence, and risk, then help redesign work so people and organisations can perform sustainably.</p>
+<div class="flex flex-wrap gap-x-6 gap-y-4 text-lg"><a class="text-mint border-b border-mint" href="#">Read client references</a><a class="border-b border-brand-edge" href="#">Ethics &amp; qualifications</a></div>
+</div>
+</section>
+{/* 24-hour alertness */}
+<AlertnessChart>
+  <Fragment slot="intro">
+    <Eyebrow tone="soft">For operations leaders running shift work</Eyebrow>
+    <h2 class="text-title-lg leading-display tracking-display text-balance">
+      Fewer fatigue incidents. Lower turnover. <em class="font-normal text-amber">Steadier shifts.</em>
+    </h2>
+  </Fragment>
+  <div slot="cta" class="flex flex-wrap items-center gap-4">
+    <Button href="#" variant="brand" class="flex-none text-warm hover:text-warm">Book a 30-minute chat</Button>
+    <span class="text-md text-soft">We help logistics and utility firms reduce fatigue-related incidents and staff turnover.</span>
+  </div>
+</AlertnessChart>
+{/* Note from Georgia */}
+<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,200px),max-content)_minmax(0,720px))] gap-x-12 gap-y-6 px-gutter-reading py-section text-prose bg-ground">
+<span class="min-w-50 pt-2.5 text-sm text-subtle tracking-label uppercase">A note from Georgia</span>
+<div class="flex flex-col gap-5.5 text-ink-soft text-2xl leading-loose">
+<p>Placeholder: a short letter to the operations director, in Georgia's own voice. Why fatigue keeps being treated as a personal failing on the night shift, and why it's really about how the work is designed.</p>
+<p>We help organisations reduce staff turnover and sickness absence by fixing the work conditions that drive burnout, fatigue, and misuse of AI.</p>
+<p class="italic text-prose text-4xl">Georgia Hodkinson GMBPsS</p>
+</div>
+</section>
+</BaseLayout>

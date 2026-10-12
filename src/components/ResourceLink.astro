@@ -1,0 +1,22 @@
+---
+import Arrow from './Arrow.astro';
+
+// Card inside an article that points to a resource.
+interface Props {
+  href: string;
+  title: string;
+  action?: string;
+}
+const { href, title, action = 'Use the tool' } = Astro.props;
+---
+
+<a
+  href={href}
+  class="mt-3 flex flex-wrap items-center justify-between gap-4 rounded-sm border border-ink/18 px-7 py-6 text-ink hover:border-mint hover:text-ink"
+>
+  <span class="flex flex-col gap-1">
+    <span class="text-xs tracking-label text-mint uppercase">Try the resource</span>
+    <span class="text-xl font-semibold">{title}</span>
+  </span>
+  <span class="text-md text-amber">{action} <Arrow /></span>
+</a>

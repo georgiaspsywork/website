@@ -1,0 +1,18 @@
+---
+// Labelled stand-in for a photo that has not been supplied yet. Replace with <Picture> once there is an image.
+interface Props {
+  label: string;
+  ratio?: string; // e.g. '4/5', '3/2', '16/10'
+  class?: string;
+}
+const { label, ratio = '4/3', class: extra } = Astro.props;
+---
+
+<div
+  class:list={['flex w-full items-end rounded-sm bg-brand p-4.5 text-2xs tracking-label text-on-brand-muted uppercase', extra]}
+  style={`aspect-ratio: ${ratio}`}
+  role="img"
+  aria-label={label}
+>
+  {label}
+</div>

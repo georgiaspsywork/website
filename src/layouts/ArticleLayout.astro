@@ -1,0 +1,91 @@
+---
+import type { MarkdownHeading } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import { longDate, plain, withEm } from '../lib/format';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  headings: MarkdownHeading[];
+  related: CollectionEntry<'articles'>[];
+}
+const { article, headings, related } = Astro.props;
+const { title, dek, date, topic, readMinutes, author, placeholder } = article.data;
+const toc = headings.filter((h) => h.depth === 2);
+---
+
+<BaseLayout title={`${plain(title)} · Georgia's PsyWork`} description={dek}>
+  {/* Article header */}
+  <section class="flex max-w-[1000px] flex-col gap-6.5 px-gutter-reading py-section-sm">
+    <div class="flex flex-wrap gap-2.5 text-sm text-subtle">
+      <a class="text-mint" href="/articles">Articles</a><span>/</span><span>{topic}</span>
+    </div>
+    <h1 class="text-display leading-display font-normal tracking-display text-balance" set:html={withEm(title)} />
+    <p class="max-w-[34em] text-lead leading-snug text-muted text-pretty">{dek}</p>
+    <div class="flex flex-wrap items-center gap-x-7 gap-y-3 text-base text-soft">
+      <span class="flex items-center gap-3">
+        <span class="size-10 flex-none rounded-full bg-brand"></span><span class="text-ink">{author}</span>
+      </span>
+      <span>{longDate(date)}</span><span>{readMinutes} min read</span>
+    </div>
+  </section>
+
+  {/* Lead image */}
+  <section class="flex flex-col gap-3 px-gutter pb-section-sm">
+    <ImagePlaceholder label="Lead image" ratio="21/9" />
+    <span class="text-xs text-faint">Caption or credit sits here.</span>
+  </section>
+
+  {/* Article body */}
+  <article class="grid gap-x-16 gap-y-6 px-gutter-reading pb-section md:grid-cols-[200px_minmax(0,700px)]">
+    {
+      toc.length > 0 && (
+        <aside class="sticky top-6 flex min-w-50 flex-col gap-3.5 self-start text-sm text-subtle">
+          <Eyebrow as="span" size="sm">In this article</Eyebrow>
+          {toc.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}
+        </aside>
+      )
+    }
+    <div class="prose-article md:col-start-2">
+      {placeholder && <p class="italic">Placeholder: the full text of this article has not been written yet.</p>}
+      <slot />
+    </div>
+  </article>
+
+  {/* Author */}
+  <section class="grid gap-x-16 gap-y-6 px-gutter-reading pb-section md:grid-cols-[200px_minmax(0,700px)]">
+    <Eyebrow as="span" tone="subtle" class="pt-1.5">Written by</Eyebrow>
+    <div class="flex items-start gap-6 border-t border-line pt-7">
+      <div class="size-22 flex-none rounded-full bg-brand"></div>
+      <div class="flex flex-col gap-2.5">
+        <b class="text-2xl font-semibold">{author}</b>
+        <p class="text-lg leading-prose text-muted">
+          Organisational psychologist working with logistics, utility and energy operators on fatigue, turnover and the design of shift work.
+        </p>
+        <a class="self-start border-b border-mint text-md text-mint" href="/about">About Georgia</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Related articles */}
+  {
+    related.length > 0 && (
+      <section class="flex flex-col gap-7 bg-deep px-gutter-reading py-section">
+        <div class="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
+          <h2 class="text-quote tracking-heading">Read next</h2>
+          <a class="border-b border-mint text-lg text-mint" href="/articles">All articles</a>
+        </div>
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-x-12 gap-y-8">
+          {related.map((a) => (
+            <a class="flex flex-col gap-2.5 border-t border-line pt-5.5 text-ink hover:text-mint" href={`/articles/${a.id}`}>
+              <span class="text-xs tracking-label text-mint uppercase">{a.data.topic} · {a.data.readMinutes} min</span>
+              <h3 class="text-3xl leading-heading">{plain(a.data.title)}</h3>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+// One item in a StepGrid: a time or number stamp, a heading and a sentence or two.
+interface Props {
+  stamp: string;
+  title: string;
+  /** "time" = big amber clock stamp (00:02); "number" = small mint index (01). */
+  variant?: 'time' | 'number';
+  /** "dark" for the default page ground, "brand" on a green band. */
+  tone?: 'dark' | 'brand';
+}
+const { stamp, title, variant = 'time', tone = 'dark' } = Astro.props;
+---
+
+<div class="flex flex-col gap-3.5">
+  {
+    variant === 'time' ? (
+      <span class="text-7xl leading-none text-amber tabular-nums">{stamp}</span>
+    ) : (
+      <span class="text-sm tracking-label text-mint">{stamp}</span>
+    )
+  }
+  <h3 class:list={[variant === 'time' ? 'text-3xl' : 'text-5xl']}>{title}</h3>
+  <p class:list={['text-lg leading-body', tone === 'brand' ? 'text-on-brand' : 'text-ink-dim']}><slot /></p>
+</div>

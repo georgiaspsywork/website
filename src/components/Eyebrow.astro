@@ -1,0 +1,14 @@
+---
+// Small uppercase label that sits above headings and in cards.
+interface Props {
+  tone?: 'mint' | 'amber' | 'subtle' | 'soft';
+  size?: 'sm' | 'xs' | '2xs';
+  as?: 'p' | 'span';
+  class?: string;
+}
+const { tone = 'mint', size = 'sm', as: Tag = 'p', class: extra } = Astro.props;
+const tones = { mint: 'text-mint', amber: 'text-amber', subtle: 'text-subtle', soft: 'text-soft' };
+const sizes = { sm: 'text-sm', xs: 'text-xs', '2xs': 'text-2xs' };
+---
+
+<Tag class:list={['tracking-label uppercase', tones[tone], sizes[size], extra]}><slot /></Tag>

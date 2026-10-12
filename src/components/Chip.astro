@@ -1,0 +1,21 @@
+---
+// Pill button used for filters and multi-select topics. State lives in aria-pressed.
+interface Props {
+  pressed?: boolean;
+  class?: string;
+  [attr: string]: unknown;
+}
+const { pressed = false, class: extra, ...attrs } = Astro.props;
+---
+
+<button
+  type="button"
+  aria-pressed={pressed ? 'true' : 'false'}
+  class:list={[
+    'cursor-pointer rounded-xs border border-outline px-4 py-[9px] text-base hover:border-mint aria-pressed:border-mint aria-pressed:bg-mint aria-pressed:text-ground',
+    extra,
+  ]}
+  {...attrs}
+>
+  <slot />
+</button>
