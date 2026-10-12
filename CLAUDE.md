@@ -10,6 +10,12 @@ Georgia, the client, is **non-technical**. She will ask for changes in plain Eng
 - Keep her wording verbatim (UK English). Only fix an obvious typo if you tell her you did.
 - Anything that goes to the live site needs her explicit yes (see Publishing).
 
+## Start of every session
+Georgia works on the **preview** branch. Before anything else: run `git fetch origin`, then `git checkout preview` and `git pull origin preview` (if the working tree has uncommitted changes, tell her and ask before switching). If the session was started on another branch, say so briefly and move to preview. Never work on `main` directly.
+
+## Finding the page she means
+She often won't say which page. Search the source for the words she quotes (`grep` the text in `src/`); if she describes it ("the bit about tired night workers"), search likely keywords. If more than one place matches, or none, ask one short question in her terms: "Is that the heading on the Home page or the one on About?" Offer the candidates by page name and what they currently say. Never guess between two matches.
+
 ## The routine for any change
 1. Understand the request. If she gives a URL, map it to the source (below); if a screenshot, find the text in the source with a search.
 2. Make the smallest change that does what she asked. Reuse the component kit; follow the design rules.
