@@ -1,0 +1,178 @@
+---
+import Section from './Section.astro';
+import Eyebrow from './Eyebrow.astro';
+import {
+  CREW,
+  ROTA0,
+  analyseRota,
+  flagCountLabel,
+  shiftHours,
+  shiftName,
+  summariseFindings,
+} from '../lib/rota';
+
+// Interactive rota builder. Click a day to cycle Off > E > L > N. Flags, load bars and the
+// findings list are worked out in src/lib/rota.ts, both here (initial HTML) and in the script.
+// Slot: the right-hand column (copy and buttons).
+
+const analysed = analyseRota(ROTA0);
+const { total, shown } = summariseFindings(ROTA0, analysed);
+
+const cell =
+  'flex h-14 cursor-pointer flex-col items-center justify-center gap-0.5 rounded-xs border border-transparent bg-transparent text-base text-ink ' +
+  'data-[shift=-]:border-dashed data-[shift=-]:border-outline data-[shift=-]:text-shift-off ' +
+  'data-[shift=E]:bg-shift-early data-[shift=E]:text-ink-dark data-[shift=L]:bg-shift-late data-[shift=N]:bg-shift-night ' +
+  'data-flagged:border-2 data-flagged:border-amber';
+const row = 'group grid grid-cols-[130px_repeat(7,minmax(0,1fr))_160px] items-center gap-2';
+const finding = 'border-t border-line pt-3 text-lg leading-snug';
+---
+
+<Section id="rota" size="none" class="pb-section">
+<div class="flex flex-col gap-10" data-rota>
+  <div class="overflow-x-auto rounded-sm bg-brand p-[clamp(20px,3vw,32px)]">
+    <div class="min-w-215">
+      <div class="grid grid-cols-[130px_repeat(7,minmax(0,1fr))_160px] gap-2 pb-3 text-xs tracking-label text-on-brand-muted uppercase">
+        <span>Crew</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+        <span class="text-right">Fatigue load</span>
+      </div>
+      <div class="flex flex-col gap-2">
+        {
+          ROTA0.map((shifts, ri) => (
+            <div class={row} data-level={analysed[ri].level} data-rota-row>
+              <span class="text-lg">{CREW[ri]}</span>
+              {shifts.map((shift, d) => (
+                <button
+                  type="button"
+                  class={cell}
+                  data-cell
+                  data-shift={shift}
+                  data-flagged={analysed[ri].flags[d] ? true : undefined}
+                  title={analysed[ri].flags[d]}
+                >
+                  <b class="font-semibold">{shiftName(shift)}</b>
+                  <span class="text-3xs tabular-nums opacity-75">{shiftHours(shift)}</span>
+                </button>
+              ))}
+              <div class="flex items-center justify-end gap-2.5">
+                <div class="h-1.5 w-17.5 overflow-hidden rounded-xs bg-line">
+                  <div
+                    class="h-full bg-mint group-data-[level=High]:bg-amber group-data-[level=Watch]:bg-amber-soft"
+                    style={`width:${analysed[ri].pct}%`}
+                    data-fill
+                  />
+                </div>
+                <span class="min-w-14 text-right text-base text-mint group-data-[level=High]:text-amber group-data-[level=Watch]:text-amber-soft" data-level-text>
+                  {analysed[ri].level}
+                </span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="mt-5.5 flex flex-wrap items-center gap-7 text-sm text-on-brand-muted">
+        <span>E 06–14</span>
+        <span>L 14–22</span>
+        <span>N 22–06</span>
+        <span class="text-amber">◆ amber outline = flagged</span>
+        <button type="button" class="ml-auto cursor-pointer rounded-xs border border-brand-line px-3 py-1.5 text-xs text-ink" data-rota-reset>Reset example</button>
+      </div>
+    </div>
+  </div>
+  <div class="grid gap-10 md:grid-cols-2 md:gap-x-18">
+    <div class="flex flex-col gap-3.5">
+      <Eyebrow>What we found · <span data-flag-count>{flagCountLabel(total)}</span></Eyebrow>
+      <div class="flex flex-col gap-3.5" data-findings>
+        {
+          shown.map((f) => (
+            <p class={finding}>
+              <span class="text-amber">{f.who}</span> · {f.what}
+            </p>
+          ))
+        }
+      </div>
+      <template data-finding-template>
+        <p class={finding}>
+          <span class="text-amber" data-who></span> · <span data-what></span>
+        </p>
+      </template>
+      <p class="text-lg text-muted italic" data-rota-clean hidden={total > 0}>
+        Nothing flagged. A well-designed week, on paper. The next question is what happens when someone calls in sick.
+      </p>
+    </div>
+    <div class="flex flex-col gap-5">
+      <slot />
+    </div>
+  </div>
+</div>
+</Section>
+
+<script>
+  import {
+    ROTA0,
+    analyseRota,
+    cloneRota,
+    flagCountLabel,
+    nextShift,
+    shiftHours,
+    shiftName,
+    summariseFindings,
+    type Row,
+  } from '../lib/rota';
+
+  const root = document.querySelector<HTMLElement>('[data-rota]');
+  if (root) {
+    const rowEls = Array.from(root.querySelectorAll<HTMLElement>('[data-rota-row]'));
+    const findingsEl = root.querySelector<HTMLElement>('[data-findings]')!;
+    const template = root.querySelector<HTMLTemplateElement>('[data-finding-template]')!;
+    const flagCountEl = root.querySelector<HTMLElement>('[data-flag-count]')!;
+    const cleanEl = root.querySelector<HTMLElement>('[data-rota-clean]')!;
+    let rota: Row[] = cloneRota(ROTA0);
+
+    const render = () => {
+      const analysed = analyseRota(rota);
+      const { total, shown } = summariseFindings(rota, analysed);
+
+      rowEls.forEach((rowEl, ri) => {
+        const state = analysed[ri];
+        rowEl.dataset.level = state.level;
+        rowEl.querySelector<HTMLElement>('[data-fill]')!.style.width = `${state.pct}%`;
+        rowEl.querySelector('[data-level-text]')!.textContent = state.level;
+
+        rowEl.querySelectorAll<HTMLButtonElement>('[data-cell]').forEach((cellEl, d) => {
+          const shift = rota[ri][d];
+          const flag = state.flags[d];
+          cellEl.dataset.shift = shift;
+          cellEl.toggleAttribute('data-flagged', flag !== '');
+          cellEl.title = flag;
+          cellEl.querySelector('b')!.textContent = shiftName(shift);
+          cellEl.querySelector('span')!.textContent = shiftHours(shift);
+        });
+      });
+
+      findingsEl.replaceChildren(
+        ...shown.map((f) => {
+          const node = template.content.firstElementChild!.cloneNode(true) as HTMLElement;
+          node.querySelector('[data-who]')!.textContent = f.who;
+          node.querySelector('[data-what]')!.textContent = f.what;
+          return node;
+        }),
+      );
+      flagCountEl.textContent = flagCountLabel(total);
+      cleanEl.hidden = total !== 0;
+    };
+
+    rowEls.forEach((rowEl, ri) => {
+      rowEl.querySelectorAll<HTMLButtonElement>('[data-cell]').forEach((cellEl, d) => {
+        cellEl.addEventListener('click', () => {
+          rota[ri][d] = nextShift(rota[ri][d]);
+          render();
+        });
+      });
+    });
+
+    root.querySelector<HTMLButtonElement>('[data-rota-reset]')!.addEventListener('click', () => {
+      rota = cloneRota(ROTA0);
+      render();
+    });
+  }
+</script>
