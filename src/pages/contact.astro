@@ -1,89 +1,99 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Step from '../components/Step.astro';
+import StepGrid from '../components/StepGrid.astro';
+
+const calendly = 'https://calendly.com/georgiaspsywork/30min';
+
+const bookings = [
+  {
+    featured: true,
+    tag: 'Most popular',
+    meta: '30 min · video call',
+    title: 'Introductory chat',
+    body: "A first conversation about your operation, what's prompting the question, and whether a fatigue review is the right next step.",
+    href: calendly,
+  },
+  {
+    featured: false,
+    tag: 'Bring your rota',
+    meta: '60 min · video call',
+    title: 'Rota walk-through',
+    body: "Share one real shift pattern and we'll go through it together, flagging where fatigue risk is likely to build.",
+    href: 'https://calendly.com/georgiaspsywork/rota-review',
+  },
+  {
+    featured: false,
+    tag: 'For leadership teams',
+    meta: '45 min · video call',
+    title: 'Leadership briefing',
+    body: "A short session for your ops or exec team on fatigue, turnover and what they're costing the business.",
+    href: 'https://calendly.com/georgiaspsywork/board-briefing',
+  },
+];
+
+const steps = [
+  { stamp: 'Day 1', title: 'The conversation', body: "Thirty minutes on what you're seeing and what you've already tried." },
+  { stamp: 'Day 3', title: 'A short proposal', body: 'A one-page outline of scope, time and cost. No surprises later.' },
+  { stamp: 'Week 2', title: 'On shift', body: 'Time on site, across shifts, alongside your incident and absence data.' },
+  { stamp: 'Week 6', title: 'First findings', body: "What's driving fatigue and turnover, what it costs, and where to start." },
+];
 ---
 
-<BaseLayout title="Contact · Georgia's PsyWork">
-{/* Contact hero */}
-<section class="flex flex-col gap-6.5 pb-section-sm pt-section-sm px-gutter-reading">
-<p class="text-sm text-mint tracking-label uppercase">Contact · any hour that suits your rota</p>
-<h1 class="max-w-[13em] font-normal text-display text-balance leading-display tracking-display">Start with a <em>30-minute</em> conversation.</h1>
-<p class="max-w-[32em] text-lead text-muted text-pretty leading-body">No pitch and no obligation. Tell us what you're seeing across your shifts, and we'll tell you honestly whether we can help.</p>
-</section>
-{/* Booking options */}
-<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] gap-8 pb-section pt-0 px-gutter">
-<a class="flex flex-col gap-4.5 p-[clamp(28px,3.5vw,40px)] text-white bg-brand rounded-sm hover:text-white hover:bg-brand-lift" href="https://calendly.com/georgiaspsywork/30min" rel="noopener" target="_blank">
-<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-amber">Most popular</span><span class="text-on-brand-muted">30 min · video call</span></div>
-<h2 class="text-lead-xl leading-title tracking-heading">Introductory chat</h2>
-<p class="text-lg text-on-brand text-pretty leading-body">A first conversation about your operation, what's prompting the question, and whether a fatigue review is the right next step.</p>
-<span class="self-start px-6 py-3.5 mt-auto font-semibold text-md text-ground bg-amber rounded-xs">Book on Calendly ↗</span>
-</a>
-<a class="flex flex-col gap-4.5 p-[clamp(28px,3.5vw,40px)] text-ink bg-surface border border-line-soft rounded-sm hover:text-ink hover:border-mint" href="https://calendly.com/georgiaspsywork/rota-review" rel="noopener" target="_blank">
-<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">Bring your rota</span><span class="text-subtle">60 min · video call</span></div>
-<h2 class="text-lead-xl leading-title tracking-heading">Rota walk-through</h2>
-<p class="text-lg text-muted text-pretty leading-body">Share one real shift pattern and we'll go through it together, flagging where fatigue risk is likely to build.</p>
-<span class="self-start px-6 py-3.5 mt-auto font-semibold text-md text-mint border border-mint rounded-xs">Book on Calendly ↗</span>
-</a>
-<a class="flex flex-col gap-4.5 p-[clamp(28px,3.5vw,40px)] text-ink bg-surface border border-line-soft rounded-sm hover:text-ink hover:border-mint" href="https://calendly.com/georgiaspsywork/board-briefing" rel="noopener" target="_blank">
-<div class="flex justify-between gap-4 text-xs tracking-label uppercase"><span class="text-mint">For leadership teams</span><span class="text-subtle">45 min · video call</span></div>
-<h2 class="text-lead-xl leading-title tracking-heading">Leadership briefing</h2>
-<p class="text-lg text-muted text-pretty leading-body">A short session for your ops or exec team on fatigue, turnover and what they're costing the business.</p>
-<span class="self-start px-6 py-3.5 mt-auto font-semibold text-md text-mint border border-mint rounded-xs">Book on Calendly ↗</span>
-</a>
-</section>
-{/* Message form */}
-<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] gap-x-24 gap-y-14 px-gutter-reading py-section bg-deep">
-<div class="flex flex-col gap-5.5">
-<p class="text-sm text-mint tracking-label uppercase">Prefer to write?</p>
-<h2 class="text-title-lg leading-title tracking-heading">Send a message</h2>
-<p class="max-w-[28em] text-lg text-muted text-pretty leading-prose">We reply to every message within two working days. If it's easier, call or email directly.</p>
-<div class="flex flex-col mt-3">
-<div class="flex flex-wrap justify-between gap-5 px-0 py-4.5 text-lg border-line border-t"><span class="text-subtle">Email</span><a class="text-mint" href="mailto:Georgia@georgiaspsywork.com">Georgia@georgiaspsywork.com</a></div>
-<div class="flex flex-wrap justify-between gap-5 px-0 py-4.5 text-lg border-line border-t"><span class="text-subtle">Phone</span><a href="tel:+447507627754">+44 7507 627754</a></div>
-<div class="flex flex-wrap justify-between gap-5 px-0 py-4.5 text-lg border-line border-t"><span class="text-subtle">Based in</span><span>Leicestershire, United Kingdom</span></div>
-<div class="flex flex-wrap justify-between gap-5 px-0 py-4.5 text-lg border-b border-line border-t"><span class="text-subtle">Working with</span><span>Sites across the UK</span></div>
-</div>
-</div>
-<form class="flex flex-col gap-5.5" data-contact-form>
-<div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,220px),1fr))] gap-5.5">
-<label class="flex flex-col gap-2 text-base text-soft">Name<input class="px-4 py-3.5 text-lg text-ink bg-surface border border-field-edge rounded-xs" required type="text"></label>
-<label class="flex flex-col gap-2 text-base text-soft">Work email<input class="px-4 py-3.5 text-lg text-ink bg-surface border border-field-edge rounded-xs" required type="email"></label>
-<label class="flex flex-col gap-2 text-base text-soft">Organisation<input class="px-4 py-3.5 text-lg text-ink bg-surface border border-field-edge rounded-xs" type="text"></label>
-<label class="flex flex-col gap-2 text-base text-soft">Your role<input class="px-4 py-3.5 text-lg text-ink bg-surface border border-field-edge rounded-xs" type="text"></label>
-</div>
-<label class="flex flex-col gap-2 text-base text-soft">How many people work shifts?<select class="px-4 py-3.5 text-lg text-ink bg-surface border border-field-edge rounded-xs"><option>Under 50</option><option>50–250</option><option>250–1,000</option><option>Over 1,000</option></select></label>
-<div class="flex flex-col gap-2.5">
-<span class="text-base text-soft">What's on your mind? Pick any.</span>
-<div class="flex flex-wrap gap-2.5">
-<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-toggle-chip type="button">Fatigue incidents</button>
-<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-toggle-chip type="button">Staff turnover</button>
-<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-toggle-chip type="button">Sickness absence</button>
-<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-toggle-chip type="button">Rota design</button>
-<button aria-pressed="false" class="px-4 py-[9px] text-base text-ink bg-transparent border border-outline rounded-xs cursor-pointer aria-pressed:text-ground aria-pressed:bg-mint aria-pressed:border-mint hover:border-mint" data-toggle-chip type="button">Change or AI rollout</button>
-</div>
-</div>
-<label class="flex flex-col gap-2 text-base text-soft">Message<textarea class="px-4 py-3.5 text-lg text-ink bg-surface border border-field-edge rounded-xs resize-y" placeholder="What are you seeing across your shifts?" rows="5"></textarea></label>
-<div class="flex flex-wrap items-center gap-x-6 gap-y-4">
-<button class="px-7 py-4 font-semibold text-lg text-ground bg-mint border-0 rounded-xs cursor-pointer hover:bg-mint-hover" type="submit">Send message</button>
-<span class="text-sm text-faint">We'll only use your details to reply.</span>
-</div>
-</form>
-<div class="flex flex-col self-start gap-4 p-10 text-white bg-brand rounded-sm" data-contact-sent hidden>
-<span class="text-xs text-amber tracking-label uppercase">Message sent</span>
-<p class="text-4xl leading-quote">Thank you. Georgia will reply within two working days.</p>
-<p class="text-lg text-on-brand">Rather not wait? <a class="border-b border-white" href="https://calendly.com/georgiaspsywork/30min" rel="noopener" target="_blank">Book a time on Calendly</a>.</p>
-</div>
-</section>
-{/* What happens next */}
-<section class="flex flex-col gap-12 px-gutter py-section">
-<div class="flex flex-col max-w-[820px] gap-4.5">
-<p class="text-sm text-amber tracking-label uppercase">What happens next</p>
-<h2 class="text-title-lg leading-title tracking-heading">From first call to first finding</h2>
-</div>
-<div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-x-14 gap-y-10">
-<div class="flex flex-col gap-3"><span class="text-7xl text-amber leading-none tabular-nums">Day 1</span><h3 class="text-3xl">The conversation</h3><p class="text-lg text-muted leading-body">Thirty minutes on what you're seeing and what you've already tried.</p></div>
-<div class="flex flex-col gap-3"><span class="text-7xl text-amber leading-none tabular-nums">Day 3</span><h3 class="text-3xl">A short proposal</h3><p class="text-lg text-muted leading-body">A one-page outline of scope, time and cost. No surprises later.</p></div>
-<div class="flex flex-col gap-3"><span class="text-7xl text-amber leading-none tabular-nums">Week 2</span><h3 class="text-3xl">On shift</h3><p class="text-lg text-muted leading-body">Time on site, across shifts, alongside your incident and absence data.</p></div>
-<div class="flex flex-col gap-3"><span class="text-7xl text-amber leading-none tabular-nums">Week 6</span><h3 class="text-3xl">First findings</h3><p class="text-lg text-muted leading-body">What's driving fatigue and turnover, what it costs, and where to start.</p></div>
-</div>
-</section>
+<BaseLayout title="Contact · Georgia's PsyWork" footer={{ ctaHref: calendly }}>
+  {/* Contact hero */}
+  <PageHero
+    eyebrow="Contact · any hour that suits your rota"
+    title="Start with a <em>30-minute</em> conversation."
+    intro="No pitch and no obligation. Tell us what you're seeing across your shifts, and we'll tell you honestly whether we can help."
+  />
+
+  {/* Booking options */}
+  <Section size="none" class="pb-section">
+    <div class="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
+      {
+        bookings.map((b) => (
+          <a
+            href={b.href}
+            rel="noopener"
+            target="_blank"
+            class:list={[
+              'flex flex-col gap-4.5 rounded-sm p-[clamp(28px,3.5vw,40px)]',
+              b.featured
+                ? 'bg-brand text-white hover:bg-brand-lift hover:text-white'
+                : 'border border-line-soft bg-surface text-ink hover:border-mint hover:text-ink',
+            ]}
+          >
+            <div class="flex justify-between gap-4 text-xs tracking-label uppercase">
+              <span class={b.featured ? 'text-amber' : 'text-mint'}>{b.tag}</span>
+              <span class={b.featured ? 'text-on-brand-muted' : 'text-subtle'}>{b.meta}</span>
+            </div>
+            <h2 class="text-lead-xl leading-title tracking-heading">{b.title}</h2>
+            <p class:list={['text-lg leading-body text-pretty', b.featured ? 'text-on-brand' : 'text-muted']}>{b.body}</p>
+            <span
+              class:list={[
+                'mt-auto self-start rounded-xs px-6 py-3.5 text-md font-semibold',
+                b.featured ? 'bg-amber text-ground' : 'border border-mint text-mint',
+              ]}>Book on Calendly ↗</span
+            >
+          </a>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* Message form */}
+  <ContactForm />
+
+  {/* What happens next */}
+  <Section class="flex flex-col gap-12">
+    <SectionHeader eyebrow="What happens next" tone="amber" title="From first call to first finding" />
+    <StepGrid>
+      {steps.map((s) => <Step stamp={s.stamp} title={s.title}>{s.body}</Step>)}
+    </StepGrid>
+  </Section>
 </BaseLayout>
