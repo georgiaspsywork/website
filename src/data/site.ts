@@ -13,8 +13,10 @@ export const site = {
   ],
 };
 
-// Header navigation. `cta` renders the underlined call-to-action style.
+// Header navigation, left to right. The page you are on gets an underline automatically.
+// `cta` keeps an item in the brighter text colour (used for Contact).
 export const nav = [
+  { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Resources', href: '/resources' },
   { label: 'Articles', href: '/articles' },

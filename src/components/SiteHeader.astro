@@ -1,7 +1,7 @@
 ---
 import { nav, site } from '../data/site';
 
-const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
 const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
 ---
 
@@ -14,8 +14,9 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
           href={item.href}
           aria-current={isCurrent(item.href) ? 'page' : undefined}
           class:list={[
-            (isCurrent(item.href) || item.cta) && 'text-ink',
-            item.cta && 'border-b border-mint',
+            'border-b',
+            isCurrent(item.href) ? 'border-mint text-ink' : 'border-transparent',
+            item.cta && 'text-ink',
           ]}
         >
           {item.label}
