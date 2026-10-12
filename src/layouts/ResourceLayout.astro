@@ -120,7 +120,7 @@ const hasTool = Astro.slots.has('tool');
           <a class="border-b border-mint text-lg text-mint" href="/resources">All resources</a>
         </div>
         <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,300px),1fr))] gap-8">
-          {related.map((r) => <ResourceCard resource={r} />)}
+          {related.map((r) => <ResourceCard resource={r} compact />)}
         </div>
       </Section>
     )

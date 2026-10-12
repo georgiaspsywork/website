@@ -7,8 +7,10 @@ interface Props {
   resource: CollectionEntry<'resources'>;
   /** Library cards take part in the type filter. */
   filterable?: boolean;
+  /** Smaller card for "use it alongside" lists: type, title and action only. */
+  compact?: boolean;
 }
-const { resource, filterable = false } = Astro.props;
+const { resource, filterable = false, compact = false } = Astro.props;
 const { title, type, meta, summary, audience, action, parts, href } = resource.data;
 const stacks = ['', 'mr-2 mb-2 shadow-stack-1', 'mr-4 mb-4 shadow-stack-2', 'mr-6 mb-6 shadow-stack-3'];
 ---
@@ -18,17 +20,26 @@ const stacks = ['', 'mr-2 mb-2 shadow-stack-1', 'mr-4 mb-4 shadow-stack-2', 'mr-
   data-filter-item={filterable ? '' : undefined}
   data-category={filterable ? type : undefined}
   class:list={[
-    'flex min-h-75 flex-col gap-4 rounded-sm border border-line-soft bg-surface p-7 text-ink hover:border-mint hover:text-ink',
-    stacks[parts],
+    'flex flex-col rounded-sm border border-line-soft bg-surface text-ink hover:border-mint hover:text-ink',
+    compact ? 'gap-3.5 p-6.5' : 'min-h-75 gap-4 p-7',
+    !compact && stacks[parts],
   ]}
 >
   <div class="flex justify-between gap-4 text-xs tracking-label uppercase">
     <span class="text-mint">{type}</span><span class="text-subtle">{meta}</span>
   </div>
   <h3 class="text-3xl leading-heading text-pretty">{title}</h3>
-  <p class="text-md leading-body text-muted text-pretty">{summary}</p>
-  <div class="mt-auto flex items-center justify-between gap-4 border-t border-line-soft pt-4 text-sm">
-    <span class="text-subtle">For {audience}</span>
-    <span class="text-amber">{action} <Arrow /></span>
-  </div>
+  {
+    compact ? (
+      <span class="text-sm text-amber">{action} <Arrow /></span>
+    ) : (
+      <>
+        <p class="text-md leading-body text-muted text-pretty">{summary}</p>
+        <div class="mt-auto flex items-center justify-between gap-4 border-t border-line-soft pt-4 text-sm">
+          <span class="text-subtle">For {audience}</span>
+          <span class="text-amber">{action} <Arrow /></span>
+        </div>
+      </>
+    )
+  }
 </a>

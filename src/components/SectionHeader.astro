@@ -5,13 +5,15 @@ interface Props {
   eyebrow?: string;
   title: string;
   tone?: 'mint' | 'amber';
+  /** Heading size: lg for main sections, md for secondary ones. */
+  size?: 'lg' | 'md';
   class?: string;
 }
-const { eyebrow, title, tone = 'mint', class: extra } = Astro.props;
+const { eyebrow, title, tone = 'mint', size = 'lg', class: extra } = Astro.props;
 ---
 
 <div class:list={['flex max-w-[820px] flex-col gap-4.5', extra]}>
   {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
-  <h2 class="text-title-lg leading-title tracking-heading"><Fragment set:html={title} /></h2>
+  <h2 class:list={[size === 'lg' ? 'text-title-lg' : 'text-title', 'leading-title tracking-heading']}><Fragment set:html={title} /></h2>
   <slot />
 </div>
