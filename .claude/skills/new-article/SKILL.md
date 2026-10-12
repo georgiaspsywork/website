@@ -9,7 +9,7 @@ Articles are one MDX file each: `src/content/articles/<slug>.mdx` (front matter,
 
 ## 1. Get the text
 - **Pasted text**: use as given.
-- **Word file (.docx)** attached or in the session: `pandoc "<file>.docx" -t gfm --wrap=none --extract-media=/tmp/article-media -o /tmp/article.md`, then read `/tmp/article.md`. Embedded pictures are extracted to `/tmp/article-media`; handle them with `/add-image` if she wants them in.
+- **Word file (.docx)** attached or in the session: `pandoc "<file>.docx" -s -t gfm --wrap=none --shift-heading-level-by=1 --extract-media=/tmp/article-media -o /tmp/article.md`, then read `/tmp/article.md`. The `--shift-heading-level-by=1` matters: the page already has its own top-level heading, so Word's "Heading 1" sections must become `##`. If the document uses Word's Title style, the title appears in a `title:` block at the top; otherwise the title is usually just the first (often bold) line, so work out the title, standfirst and body yourself from reading the text. Embedded pictures are extracted to `/tmp/article-media`; handle them with `/add-image` if she wants them in.
 - **Google Doc link**: if a Google Drive/Docs connector is available in this session, read it (or export it as .docx) the same way. If not, tell her: "I can't open Google Docs from here. Could you use File > Download > Microsoft Word and attach that?"
 - Never alter her meaning. Keep her wording.
 
@@ -36,4 +36,4 @@ lead: false                 # true only if she wants it as the featured article 
 - Pictures: don't leave huge images inline; use `/add-image` and `Photo`.
 
 ## 4. Check and show
-`npm run check` (a broken build usually means an unescaped `{` or `<`). `/screenshots /articles/<slug> /articles`, look at them. Then offer `/preview`.
+`npm run check` (a broken build usually means an unescaped `{` or `<`; a "two h1" error means a heading is still at the top level (`#`): make it `##`). `/screenshots /articles/<slug> /articles`, look at them. Then offer `/preview`.

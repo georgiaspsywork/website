@@ -1,7 +1,6 @@
 ---
 name: publish
-description: Publish the site live by merging `preview` into `main`, which Cloudflare Pages deploys as the production site. Use only when Georgia explicitly says "publish", "go live" or "make it live".
-disable-model-invocation: true
+description: Publish the site live by merging `preview` into `main`, which Cloudflare Pages deploys as the production site. Use only when Georgia explicitly says "publish", "go live" or "make it live" (never on your own initiative; the confirmation step below always applies).
 ---
 
 # Publish
