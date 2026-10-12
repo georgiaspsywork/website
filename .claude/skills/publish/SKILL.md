@@ -8,6 +8,8 @@ disable-model-invocation: true
 
 Takes what is on `preview` live. This changes the public website, so confirm before the final step.
 
+Context: until a custom domain is attached in Cloudflare, `main` is only a baseline on its `pages.dev` address. Once a custom domain is connected, merging to `main` automatically overwrites and deploys the real site, so the confirmation in step 4 is a genuine go-live check. Cloudflare only builds when files under `public/` change (build watch path), so a merge that touches nothing in `public/` will not redeploy.
+
 1. Run `git status`. Commit everything outstanding, then push `preview` (`git push -u origin preview`, retry up to 4 times with 2s/4s/8s/16s backoff on network errors).
 2. Fetch `main` (`git fetch origin main`) and work out what will go live: `git log --oneline origin/main..preview` and `git diff --stat origin/main..preview`.
 3. Show the user a short plain-English summary of that: pages and files changed, and anything that looks unfinished (placeholder copy, `href="#"` links, "placeholder" text, console errors).

@@ -11,6 +11,8 @@ Static website for Georgia's PsyWork Ltd. Plain HTML, CSS and JavaScript: no fra
 ## Deployment (Cloudflare Pages, via Git)
 - Pushing the `preview` branch gives a preview deployment at https://preview.website-4ph.pages.dev/. Pushing `main` deploys the live site.
 - There is no build command. The output directory is `public`.
+- Build watch paths are set to include `public`: a push only triggers a build if it changes files under `public/`. Changes to `README.md`, `CLAUDE.md`, `.claude/` or `_templates/` do not redeploy. (If a `public/` change ever fails to build, the watch path may need to be `public/*`.)
+- **Go-live check:** as of the first publish, no custom domain is attached, so `main` is only the baseline site on its `pages.dev` address. Once a custom domain is connected, merging to `main` automatically overwrites and deploys the live site. From then on, always list what will go live and get a clear yes before merging, including unfinished content (placeholder copy, `href="#"` links, forms that don't send).
 
 ## Workflow words
 - "preview" means run the `/preview` skill (`.claude/skills/preview/SKILL.md`).
