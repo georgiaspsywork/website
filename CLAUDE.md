@@ -9,7 +9,7 @@ Static website for Georgia's PsyWork Ltd. Plain HTML, CSS and JavaScript: no fra
 - `README.md` has the page list, design rules and editing notes. Read it before changing design or copy.
 
 ## Deployment (Cloudflare Pages, via Git)
-- Pushing the `preview` branch gives a preview deployment. Pushing `main` deploys the live site.
+- Pushing the `preview` branch gives a preview deployment at https://preview.website-4ph.pages.dev/. Pushing `main` deploys the live site.
 - There is no build command. The output directory is `public`.
 
 ## Workflow words
