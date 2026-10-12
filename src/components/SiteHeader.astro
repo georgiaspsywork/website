@@ -1,12 +1,13 @@
 ---
-import { nav, site } from '../data/site';
+import { nav } from '../data/site';
+import Logo from './Logo.astro';
 
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
 const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
 ---
 
 <header class="flex flex-wrap items-center gap-x-10 gap-y-6 px-gutter py-6.5">
-  <a class="text-2xl font-semibold" href="/">{site.name}</a>
+  <Logo />
   <nav class="ml-auto flex flex-wrap items-center gap-x-8 gap-y-4 text-md text-soft" aria-label="Main">
     {
       nav.map((item) => (
