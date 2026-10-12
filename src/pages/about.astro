@@ -1,74 +1,115 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import MarginSection from '../components/MarginSection.astro';
+import RuledList from '../components/RuledList.astro';
+import RuledRow from '../components/RuledRow.astro';
+import StepGrid from '../components/StepGrid.astro';
+import Step from '../components/Step.astro';
+import Button from '../components/Button.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+
+const timeline = [
+  { year: '2014', title: 'BSc Psychology', detail: 'A dissertation on sleep loss and decision-making that started the whole thing.' },
+  { year: '2017', title: 'Human factors in logistics', detail: 'In-house work across distribution centres and transport, focused on incident review and shift design.' },
+  { year: '2020', title: 'MSc Occupational Psychology', detail: 'Research into turnover in 24/7 operations and what exit interviews miss.' },
+  { year: '2023', title: "Georgia's PsyWork founded", detail: 'Independent practice working with logistics, utilities and energy operators across the UK.' },
+  { year: 'Now', title: 'Fatigue, change and AI', detail: 'Helping operations leaders see how the three pressures connect, and what they are costing.' },
+];
+
+const principles = [
+  { stamp: '22:00', title: 'We go on shift', detail: 'We speak to people on nights, not just at head office in daylight hours.' },
+  { stamp: '02:00', title: 'We look at the system', detail: 'Rotas, handovers, workload and tools first. Individual resilience last.' },
+  { stamp: '04:00', title: 'We put a number on it', detail: 'Turnover, absence and risk, costed in terms your board already uses.' },
+  { stamp: '06:00', title: 'We hand over properly', detail: 'Changes your team can run without us, and a clear way to tell if they worked.' },
+];
+
+const credentials = [
+  { label: 'Graduate Member, British Psychological Society', value: 'GMBPsS' },
+  { label: 'MSc Occupational Psychology', value: '2020' },
+  { label: 'Fatigue risk management training', value: '2022' },
+  { label: 'Sectors', value: 'Logistics · Utilities · Energy' },
+];
 ---
 
 <BaseLayout title="About · Georgia's PsyWork">
-{/* About hero */}
-<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-end gap-x-24 gap-y-14 pb-[clamp(80px,11vw,150px)] pt-[clamp(72px,10vw,140px)] px-gutter-reading">
-<div class="flex flex-col gap-7">
-<p class="text-sm text-mint tracking-label uppercase">About · 06:00 handover</p>
-<h1 class="font-normal text-display text-balance leading-display tracking-display">Most fatigue is designed into the work. So it can be <em>designed out.</em></h1>
-<p class="max-w-[30em] text-lead text-muted text-pretty leading-body">Georgia's PsyWork is an organisational psychology practice for operations that never switch off. We work with the people who build rotas, run sites and answer for the incident log.</p>
-</div>
-<div class="flex aspect-[4/5] w-full max-w-[440px] justify-self-end items-end p-4.5 text-2xs text-on-brand-muted tracking-label bg-brand rounded-sm">GEORGIA — ON SITE, EARLY MORNING</div>
-</section>
-{/* Story */}
-<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,200px),max-content)_minmax(0,760px))] gap-x-16 gap-y-6 px-gutter-reading py-section text-white bg-brand">
-<span class="min-w-50 pt-3 text-sm text-amber tracking-label uppercase">Why this work</span>
-<div class="flex flex-col gap-6 text-2xl text-on-brand leading-loose">
-<p class="text-lead-xl text-pretty text-white leading-quote">I kept meeting capable people who were being blamed for mistakes their shift pattern made almost inevitable.</p>
-<p class="text-pretty">Early in my career I spent a lot of time on night shifts, in depots and control rooms, listening to people describe the hours between two and five in the morning. The same story came up again and again. Good people, tired in predictable ways, at predictable points in the rota.</p>
-<p class="text-pretty">The fixes that organisations reached for were usually about the individual: a wellbeing app, a sleep leaflet, a reminder to take care. The causes were almost always in the design of the work. That gap is where this practice sits.</p>
-<p class="italic text-3xl text-white">Georgia Hodkinson GMBPsS</p>
-</div>
-</section>
-{/* Timeline */}
-<section class="flex flex-col gap-12 px-gutter-reading py-section">
-<div class="flex flex-col max-w-[820px] gap-4.5">
-<p class="text-sm text-mint tracking-label uppercase">Shift log</p>
-<h2 class="text-title-lg leading-title tracking-heading">How we got here</h2>
-</div>
-<div class="flex flex-col">
-<div class="grid grid-cols-[120px_minmax(0,1fr)] gap-6 px-0 py-6.5 border-line border-t"><span class="text-lg text-mint tabular-nums">2014</span><div class="flex flex-col gap-1.5"><b class="font-semibold text-3xl">BSc Psychology</b><span class="text-ink-dim text-lg leading-body">A dissertation on sleep loss and decision-making that started the whole thing.</span></div></div>
-<div class="grid grid-cols-[120px_minmax(0,1fr)] gap-6 px-0 py-6.5 border-line border-t"><span class="text-lg text-mint tabular-nums">2017</span><div class="flex flex-col gap-1.5"><b class="font-semibold text-3xl">Human factors in logistics</b><span class="text-ink-dim text-lg leading-body">In-house work across distribution centres and transport, focused on incident review and shift design.</span></div></div>
-<div class="grid grid-cols-[120px_minmax(0,1fr)] gap-6 px-0 py-6.5 border-line border-t"><span class="text-lg text-mint tabular-nums">2020</span><div class="flex flex-col gap-1.5"><b class="font-semibold text-3xl">MSc Occupational Psychology</b><span class="text-ink-dim text-lg leading-body">Research into turnover in 24/7 operations and what exit interviews miss.</span></div></div>
-<div class="grid grid-cols-[120px_minmax(0,1fr)] gap-6 px-0 py-6.5 border-line border-t"><span class="text-lg text-mint tabular-nums">2023</span><div class="flex flex-col gap-1.5"><b class="font-semibold text-3xl">Georgia's PsyWork founded</b><span class="text-ink-dim text-lg leading-body">Independent practice working with logistics, utilities and energy operators across the UK.</span></div></div>
-<div class="grid grid-cols-[120px_minmax(0,1fr)] gap-6 px-0 py-6.5 border-b border-line border-t"><span class="text-lg text-amber tabular-nums">Now</span><div class="flex flex-col gap-1.5"><b class="font-semibold text-3xl">Fatigue, change and AI</b><span class="text-ink-dim text-lg leading-body">Helping operations leaders see how the three pressures connect, and what they are costing.</span></div></div>
-</div>
-</section>
-{/* Principles */}
-<section class="flex flex-col gap-14 px-gutter py-section bg-deep">
-<div class="flex flex-col max-w-[820px] gap-4.5">
-<p class="text-sm text-amber tracking-label uppercase">How we work</p>
-<h2 class="text-title-lg leading-title tracking-heading">Four things we hold to</h2>
-</div>
-<div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-x-14 gap-y-12">
-<div class="flex flex-col gap-3.5"><span class="text-7xl text-amber leading-none tabular-nums">22:00</span><h3 class="text-4xl">We go on shift</h3><p class="text-lg text-muted leading-body">We speak to people on nights, not just at head office in daylight hours.</p></div>
-<div class="flex flex-col gap-3.5"><span class="text-7xl text-amber leading-none tabular-nums">02:00</span><h3 class="text-4xl">We look at the system</h3><p class="text-lg text-muted leading-body">Rotas, handovers, workload and tools first. Individual resilience last.</p></div>
-<div class="flex flex-col gap-3.5"><span class="text-7xl text-amber leading-none tabular-nums">04:00</span><h3 class="text-4xl">We put a number on it</h3><p class="text-lg text-muted leading-body">Turnover, absence and risk, costed in terms your board already uses.</p></div>
-<div class="flex flex-col gap-3.5"><span class="text-7xl text-amber leading-none tabular-nums">06:00</span><h3 class="text-4xl">We hand over properly</h3><p class="text-lg text-muted leading-body">Changes your team can run without us, and a clear way to tell if they worked.</p></div>
-</div>
-</section>
-{/* Credentials */}
-<section class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,360px),1fr))] gap-x-24 gap-y-14 px-gutter-reading py-section">
-<div class="flex flex-col gap-4.5">
-<p class="text-sm text-mint tracking-label uppercase">Qualifications &amp; ethics</p>
-<h2 class="text-title leading-title tracking-heading">Evidence-based, and accountable for it</h2>
-<p class="text-xl text-muted text-pretty leading-prose">All work follows the British Psychological Society Code of Ethics and Conduct. Findings are shared with the people who took part, not just the people who paid for them.</p>
-<a class="self-start text-lg text-mint border-b border-mint" href="#">Read our ethics statement</a>
-</div>
-<div class="flex flex-col">
-<div class="flex flex-wrap justify-between gap-6 px-0 py-5 text-lg border-line border-t"><span>Graduate Member, British Psychological Society</span><span class="text-mint">GMBPsS</span></div>
-<div class="flex flex-wrap justify-between gap-6 px-0 py-5 text-lg border-line border-t"><span>MSc Occupational Psychology</span><span class="text-mint">2020</span></div>
-<div class="flex flex-wrap justify-between gap-6 px-0 py-5 text-lg border-line border-t"><span>Fatigue risk management training</span><span class="text-mint">2022</span></div>
-<div class="flex flex-wrap justify-between gap-6 px-0 py-5 text-lg border-b border-line border-t"><span>Sectors</span><span class="text-mint">Logistics · Utilities · Energy</span></div>
-</div>
-</section>
-{/* Client quote */}
-<section class="flex flex-col gap-7 px-gutter-reading py-section text-white bg-brand">
-<p class="text-sm text-amber tracking-label uppercase">From a client</p>
-<p class="max-w-[24em] italic text-quote text-pretty leading-quote">"We thought we had a recruitment problem. Georgia showed us it was a rota problem, and what it was costing us each quarter."</p>
-<p class="text-lg text-on-brand">Head of Operations · UK distribution network (placeholder)</p>
-<a class="self-start text-lg border-b border-white" href="#">More client references</a>
-</section>
+  {/* Hero */}
+  <Section gutter="reading" class="grid items-end gap-x-24 gap-y-14 md:grid-cols-2">
+    <div class="flex flex-col gap-7">
+      <Eyebrow>About · 06:00 handover</Eyebrow>
+      <h1 class="text-display leading-display font-normal tracking-display text-balance">
+        Most fatigue is designed into the work. So it can be <em>designed out.</em>
+      </h1>
+      <p class="max-w-[30em] text-lead leading-body text-muted text-pretty">
+        Georgia's PsyWork is an organisational psychology practice for operations that never switch off. We work with the people who build rotas, run sites and answer for the incident log.
+      </p>
+    </div>
+    <ImagePlaceholder label="GEORGIA — ON SITE, EARLY MORNING" ratio="4/5" class="max-w-[440px] justify-self-end" />
+  </Section>
+
+  {/* Story */}
+  <MarginSection tone="brand" label="Why this work" labelTone="amber">
+    <p class="text-lead-xl leading-quote text-pretty text-white">I kept meeting capable people who were being blamed for mistakes their shift pattern made almost inevitable.</p>
+    <p class="text-2xl leading-loose text-pretty text-on-brand">Early in my career I spent a lot of time on night shifts, in depots and control rooms, listening to people describe the hours between two and five in the morning. The same story came up again and again. Good people, tired in predictable ways, at predictable points in the rota.</p>
+    <p class="text-2xl leading-loose text-pretty text-on-brand">The fixes that organisations reached for were usually about the individual: a wellbeing app, a sleep leaflet, a reminder to take care. The causes were almost always in the design of the work. That gap is where this practice sits.</p>
+    <p class="text-3xl italic text-white">Georgia Hodkinson GMBPsS</p>
+  </MarginSection>
+
+  {/* Timeline */}
+  <Section gutter="reading" class="flex flex-col gap-12">
+    <SectionHeader eyebrow="Shift log" title="How we got here" />
+    <RuledList>
+      {
+        timeline.map((item) => (
+          <RuledRow lead={item.year} title={item.title} leadTone={item.year === 'Now' ? 'amber' : 'mint'}>
+            {item.detail}
+          </RuledRow>
+        ))
+      }
+    </RuledList>
+  </Section>
+
+  {/* Principles */}
+  <Section tone="deep" class="flex flex-col gap-14">
+    <SectionHeader eyebrow="How we work" title="Four things we hold to" tone="amber" />
+    <StepGrid>
+      {
+        principles.map((item) => (
+          <Step stamp={item.stamp} title={item.title} variant="time">
+            {item.detail}
+          </Step>
+        ))
+      }
+    </StepGrid>
+  </Section>
+
+  {/* Credentials */}
+  <Section gutter="reading" class="grid gap-x-24 gap-y-14 md:grid-cols-2">
+    <div class="flex flex-col gap-4.5">
+      <Eyebrow>Qualifications &amp; ethics</Eyebrow>
+      <h2 class="text-title leading-title tracking-heading">Evidence-based, and accountable for it</h2>
+      <p class="text-xl leading-prose text-pretty text-muted">All work follows the British Psychological Society Code of Ethics and Conduct. Findings are shared with the people who took part, not just the people who paid for them.</p>
+      <Button href="#" variant="underline" class="self-start">Read our ethics statement</Button>
+    </div>
+    <RuledList>
+      {
+        credentials.map((item) => (
+          <div class="flex flex-wrap justify-between gap-6 py-5 text-lg">
+            <span>{item.label}</span>
+            <span class="text-mint">{item.value}</span>
+          </div>
+        ))
+      }
+    </RuledList>
+  </Section>
+
+  {/* Client quote */}
+  <Section tone="brand" gutter="reading" class="flex flex-col gap-7">
+    <Eyebrow tone="amber">From a client</Eyebrow>
+    <p class="max-w-[24em] text-quote leading-quote text-pretty italic">"We thought we had a recruitment problem. Georgia showed us it was a rota problem, and what it was costing us each quarter."</p>
+    <p class="text-lg text-on-brand">Head of Operations · UK distribution network (placeholder)</p>
+    <a href="#" class="self-start border-b border-white text-lg text-white">More client references</a>
+  </Section>
 </BaseLayout>
