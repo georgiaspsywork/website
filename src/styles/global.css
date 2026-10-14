@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Design tokens. Pages and components use these names (bg-brand, text-mint,
+   px-gutter ...) rather than raw colours and sizes, so a change here changes
+   the whole site. Colour roles are described in README.md.
+   ========================================================================== */
+@theme {
+  --color-*: initial;
+
+  --color-ground: #101614;
+  --color-deep: #0b0f0e;
+  --color-footer: #07110f;
+  --color-surface: #161f1c;
+  --color-brand: #0f3a34;
+  --color-brand-hover: #185048;
+  --color-brand-lift: #134540;
+  --color-brand-deep: #0b2a26;
+  --color-brand-edge: #4d6b63;
+  --color-brand-line: #4d8a7d;
+  --color-mint: #9cd3c2;
+  --color-mint-hover: #b6e0d3;
+  --color-amber: #d9a55b;
+  --color-amber-hover: #e4b977;
+  --color-amber-soft: #e6d3a8;
+  --color-ink: #e6ece9;
+  --color-ink-bright: #eef3f0;
+  --color-ink-dark: #0a1714;
+  --color-white: #ffffff;
+  --color-warm: #ece6da;
+  --color-muted: #b4b7ae;
+  --color-soft: #a8aca3;
+  --color-subtle: #8d9792;
+  --color-faint: #7f857c;
+  --color-on-brand: #e2ebe8;
+  --color-on-brand-muted: #a9c7bd;
+  --color-prose: #d2d8d4;
+  --color-ink-soft: #c3d0cb;
+  --color-ink-dim: #b9cbc5;
+  --color-shift-early: #cfe0d9;
+  --color-shift-late: #2e5a51;
+  --color-shift-night: #0a2622;
+  --color-shift-off: #7fa79c;
+  --color-night-bar: #26302d;
+  --color-line: rgba(230,236,233,.14);
+  --color-line-soft: rgba(230,236,233,.1);
+  --color-line-faint: rgba(230,236,233,.08);
+  --color-outline: rgba(230,236,233,.25);
+  --color-field-edge: rgba(230,236,233,.2);
+
+  /* Type scale: sizes only (line-height is set separately with leading-*). */
+  --text-*: initial;
+  --text-3xs: 12px;
+  --text-2xs: 13px;
+  --text-xs: 14px;
+  --text-sm: 15px;
+  --text-base: 16px;
+  --text-md: 17px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 22px;
+  --text-3xl: 24px;
+  --text-4xl: 26px;
+  --text-5xl: 28px;
+  --text-6xl: 34px;
+  --text-7xl: 44px;
+  --text-gauge: 150px;
+  --text-lead: clamp(20px, 2vw, 24px);
+  --text-subtitle: clamp(24px, 2.4vw, 30px);
+  --text-lead-xl: clamp(26px, 2.8vw, 34px);
+  --text-quote: clamp(28px, 3.4vw, 42px);
+  --text-title: clamp(32px, 3.6vw, 44px);
+  --text-title-lg: clamp(36px, 4.2vw, 52px);
+  --text-display: clamp(46px, 6vw, 80px);
+  --text-display-xl: clamp(52px, 7.5vw, 96px);
+  --text-numeral: clamp(96px, 13vw, 176px);
+
+  --leading-*: initial;
+  --leading-none: 1;
+  --leading-display: 1.02;
+  --leading-title: 1.08;
+  --leading-heading: 1.2;
+  --leading-quote: 1.3;
+  --leading-lead: 1.45;
+  --leading-body: 1.55;
+  --leading-snug: 1.5;
+  --leading-prose: 1.6;
+  --leading-loose: 1.7;
+
+  --tracking-*: initial;
+  --tracking-label: 0.16em;
+  --tracking-heading: -0.015em;
+  --tracking-display: -0.025em;
+  --tracking-numeral: -0.04em;
+
+  /* Stacked-card look for multi-part resources (1-3 extra layers). */
+  --shadow-stack-1: 8px 8px 0 -1px #1d2a26, 8px 8px 0 0 rgba(230, 236, 233, 0.08);
+  --shadow-stack-2: 8px 8px 0 -1px #1d2a26, 8px 8px 0 0 rgba(230, 236, 233, 0.08), 16px 16px 0 -1px #0f3a34,
+    16px 16px 0 0 rgba(230, 236, 233, 0.08);
+  --shadow-stack-3: 8px 8px 0 -1px #1d2a26, 8px 8px 0 0 rgba(230, 236, 233, 0.08), 16px 16px 0 -1px #0f3a34,
+    16px 16px 0 0 rgba(230, 236, 233, 0.08), 24px 24px 0 -1px #0f3a34, 24px 24px 0 0 rgba(230, 236, 233, 0.08);
+
+  --spacing-gutter: clamp(24px,6vw,80px);
+  --spacing-gutter-reading: clamp(24px,6vw,96px);
+  --spacing-section: clamp(80px,10vw,120px);
+  --spacing-section-sm: clamp(56px,7vw,88px);
+}
+
+/* The design is Source Serif 4 only. Astro loads the font (see astro.config.mjs). */
+@theme inline {
+  --font-sans: var(--font-source-serif);
+  --font-serif: var(--font-source-serif);
+}
+
+@layer base {
+  body {
+    @apply min-h-screen bg-ground font-serif text-sm leading-body font-normal text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold leading-title tracking-heading;
+  }
+
+  /* Any text colour utility (text-ink, text-mint ...) wins over this, as it should. */
+  @media (hover: hover) {
+    a:hover {
+      color: var(--color-mint);
+    }
+  }
+
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-mint);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-brand-line) 45%, transparent);
+  }
+}
+
+@utility font-system {
+  font-family: system-ui, sans-serif;
+}
+
+/* Long-form article text (markdown/MDX body). Components inside (Callout, PullQuote, ResourceLink) style themselves. */
+@layer components {
+  .prose-article {
+    @apply flex flex-col gap-6.5 text-xl leading-loose text-prose;
+
+    h2 {
+      @apply mt-6 text-6xl leading-heading text-ink;
+    }
+
+    p {
+      @apply text-pretty;
+    }
+
+    a:not([class]) {
+      @apply border-b border-mint text-mint;
+    }
+
+    ol {
+      @apply flex list-none flex-col gap-4.5;
+      counter-reset: step;
+    }
+
+    ol > li {
+      @apply grid grid-cols-[44px_1fr] gap-3;
+      counter-increment: step;
+    }
+
+    ol > li::before {
+      @apply tabular-nums text-amber;
+      content: counter(step, decimal-leading-zero);
+    }
+
+    ul {
+      @apply flex list-disc flex-col gap-3 pl-6;
+    }
+  }
+}

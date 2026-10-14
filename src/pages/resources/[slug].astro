@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import ResourceLayout from '../../layouts/ResourceLayout.astro';
+
+// One page per resource, except those with their own bespoke page (they set `href` in their file).
+export async function getStaticPaths() {
+  const all = await getCollection('resources', ({ data }) => !data.draft && !data.href);
+  return all.map((resource) => ({ params: { slug: resource.id }, props: { resource } }));
+}
+
+const { resource } = Astro.props;
+---
+
+<ResourceLayout resource={resource} />

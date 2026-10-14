@@ -1,0 +1,9 @@
+---
+// Arrow glyphs come from the system font, so they match what visitors' devices draw best.
+interface Props {
+  dir?: 'right' | 'up-right';
+}
+const { dir = 'right' } = Astro.props;
+---
+
+<span class="font-system" aria-hidden="true">{dir === 'right' ? '→' : '↗'}</span>

@@ -1,0 +1,25 @@
+---
+// Links styled as buttons. `variant` picks the look; use `primary` for the main action on dark ground.
+interface Props {
+  href: string;
+  variant?: 'primary' | 'amber' | 'brand' | 'outline' | 'underline' | 'underline-white';
+  class?: string;
+  target?: string;
+}
+const { href, variant = 'primary', class: extra, target } = Astro.props;
+const variants = {
+  primary: 'rounded-xs bg-mint px-6 py-3.5 text-md font-semibold text-ink-dark hover:bg-mint-hover hover:text-ink-dark',
+  amber: 'rounded-xs bg-amber px-7 py-4 text-lg font-semibold text-ground hover:bg-amber-hover hover:text-ground',
+  brand: 'rounded-xs bg-brand px-7 py-4 text-lg font-semibold whitespace-nowrap text-ink-bright hover:bg-brand-hover hover:text-ink-bright',
+  outline: 'rounded-xs border border-brand-edge px-6.5 py-4 text-lg',
+  underline: 'border-b border-mint text-lg text-mint',
+  'underline-white': 'border-b border-white text-lg text-white hover:text-white',
+};
+---
+
+<a
+  href={href}
+  target={target}
+  rel={target === '_blank' ? 'noopener' : undefined}
+  class:list={[variants[variant], extra]}><slot /></a
+>

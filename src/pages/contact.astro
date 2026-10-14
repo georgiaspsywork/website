@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Step from '../components/Step.astro';
+import StepGrid from '../components/StepGrid.astro';
+
+const calendly = 'https://calendly.com/georgiaspsywork/30min';
+
+const bookings = [
+  {
+    featured: true,
+    tag: 'Most popular',
+    meta: '30 min · video call',
+    title: 'Introductory chat',
+    body: "A first conversation about your operation, what's prompting the question, and whether a fatigue review is the right next step.",
+    href: calendly,
+  },
+  {
+    featured: false,
+    tag: 'Bring your rota',
+    meta: '60 min · video call',
+    title: 'Rota walk-through',
+    body: "Share one real shift pattern and we'll go through it together, flagging where fatigue risk is likely to build.",
+    href: 'https://calendly.com/georgiaspsywork/rota-review',
+  },
+  {
+    featured: false,
+    tag: 'For leadership teams',
+    meta: '45 min · video call',
+    title: 'Leadership briefing',
+    body: "A short session for your ops or exec team on fatigue, turnover and what they're costing the business.",
+    href: 'https://calendly.com/georgiaspsywork/board-briefing',
+  },
+];
+
+const steps = [
+  { stamp: 'Day 1', title: 'The conversation', body: "Thirty minutes on what you're seeing and what you've already tried." },
+  { stamp: 'Day 3', title: 'A short proposal', body: 'A one-page outline of scope, time and cost. No surprises later.' },
+  { stamp: 'Week 2', title: 'On shift', body: 'Time on site, across shifts, alongside your incident and absence data.' },
+  { stamp: 'Week 6', title: 'First findings', body: "What's driving fatigue and turnover, what it costs, and where to start." },
+];
+---
+
+<BaseLayout title="Contact · Georgia's PsyWork" footer={{ ctaHref: calendly }}>
+  {/* Contact hero */}
+  <PageHero
+    eyebrow="Contact · any hour that suits your rota"
+    title="Start with a <em>30-minute</em> conversation."
+    intro="No pitch and no obligation. Tell us what you're seeing across your shifts, and we'll tell you honestly whether we can help."
+  />
+
+  {/* Booking options */}
+  <Section size="none" class="pb-section">
+    <div class="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
+      {
+        bookings.map((b) => (
+          <a
+            href={b.href}
+            rel="noopener"
+            target="_blank"
+            class:list={[
+              'flex flex-col gap-4.5 rounded-sm p-[clamp(28px,3.5vw,40px)]',
+              b.featured
+                ? 'bg-brand text-white hover:bg-brand-lift hover:text-white'
+                : 'border border-line-soft bg-surface text-ink hover:border-mint hover:text-ink',
+            ]}
+          >
+            <div class="flex justify-between gap-4 text-xs tracking-label uppercase">
+              <span class={b.featured ? 'text-amber' : 'text-mint'}>{b.tag}</span>
+              <span class={b.featured ? 'text-on-brand-muted' : 'text-subtle'}>{b.meta}</span>
+            </div>
+            <h2 class="text-lead-xl leading-title tracking-heading">{b.title}</h2>
+            <p class:list={['text-lg leading-body text-pretty', b.featured ? 'text-on-brand' : 'text-muted']}>{b.body}</p>
+            <span
+              class:list={[
+                'mt-auto self-start rounded-xs px-6 py-3.5 text-md font-semibold',
+                b.featured ? 'bg-amber text-ground' : 'border border-mint text-mint',
+              ]}>Book on Calendly ↗</span
+            >
+          </a>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* Message form */}
+  <ContactForm />
+
+  {/* What happens next */}
+  <Section class="flex flex-col gap-12">
+    <SectionHeader eyebrow="What happens next" tone="amber" size="md" title="From first call to first finding" />
+    <StepGrid>
+      {steps.map((s) => <Step stamp={s.stamp} title={s.title}>{s.body}</Step>)}
+    </StepGrid>
+  </Section>
+</BaseLayout>

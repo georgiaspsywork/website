@@ -1,0 +1,104 @@
+---
+import Chip from './Chip.astro';
+import Eyebrow from './Eyebrow.astro';
+import RuledList from './RuledList.astro';
+import Section from './Section.astro';
+import SectionHeader from './SectionHeader.astro';
+
+// "Prefer to write?" band: contact details beside a message form.
+// Not connected to a backend yet: submitting sends nothing, it only swaps the form for the confirmation panel.
+const calendly = 'https://calendly.com/georgiaspsywork/30min';
+const topics = ['Fatigue incidents', 'Staff turnover', 'Sickness absence', 'Rota design', 'Change or AI rollout'];
+const fieldClass = 'rounded-xs border border-field-edge bg-surface px-4 py-3.5 text-lg text-ink';
+const labelClass = 'flex flex-col gap-2 text-base text-soft';
+---
+
+<Section tone="deep" gutter="reading">
+  {/* data-contact scopes the script below to this band */}
+  <div data-contact class="grid gap-x-24 gap-y-14 lg:grid-cols-2">
+    <div class="flex flex-col gap-5.5">
+      <SectionHeader eyebrow="Prefer to write?" size="md" title="Send a message">
+        <p class="max-w-[28em] text-lg leading-prose text-muted text-pretty">
+          We reply to every message within two working days. If it's easier, call or email directly.
+        </p>
+      </SectionHeader>
+      <RuledList class="mt-3">
+        <div class="flex flex-wrap justify-between gap-5 py-4.5 text-lg">
+          <span class="text-subtle">Email</span>
+          <a class="text-mint" href="mailto:Georgia@georgiaspsywork.com">Georgia@georgiaspsywork.com</a>
+        </div>
+        <div class="flex flex-wrap justify-between gap-5 py-4.5 text-lg">
+          <span class="text-subtle">Phone</span>
+          <a href="tel:+447507627754">+44 7507 627754</a>
+        </div>
+        <div class="flex flex-wrap justify-between gap-5 py-4.5 text-lg">
+          <span class="text-subtle">Based in</span>
+          <span>Leicestershire, United Kingdom</span>
+        </div>
+        <div class="flex flex-wrap justify-between gap-5 py-4.5 text-lg">
+          <span class="text-subtle">Working with</span>
+          <span>Sites across the UK</span>
+        </div>
+      </RuledList>
+    </div>
+
+    <form class="flex flex-col gap-5.5" data-contact-form>
+      <div class="grid gap-5.5 sm:grid-cols-2">
+        <label class={labelClass}>Name<input class={fieldClass} required type="text" /></label>
+        <label class={labelClass}>Work email<input class={fieldClass} required type="email" /></label>
+        <label class={labelClass}>Organisation<input class={fieldClass} type="text" /></label>
+        <label class={labelClass}>Your role<input class={fieldClass} type="text" /></label>
+      </div>
+      <label class={labelClass}>
+        How many people work shifts?
+        <select class={fieldClass}>
+          <option>Under 50</option>
+          <option>50–250</option>
+          <option>250–1,000</option>
+          <option>Over 1,000</option>
+        </select>
+      </label>
+      <div class="flex flex-col gap-2.5">
+        <span class="text-base text-soft">What's on your mind? Pick any.</span>
+        <div class="flex flex-wrap gap-2.5">
+          {topics.map((topic) => <Chip data-contact-chip>{topic}</Chip>)}
+        </div>
+      </div>
+      <label class={labelClass}>
+        Message
+        <textarea class={`${fieldClass} resize-y`} placeholder="What are you seeing across your shifts?" rows="5"></textarea>
+      </label>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+        <button class="cursor-pointer rounded-xs bg-mint px-7 py-4 text-lg font-semibold text-ground hover:bg-mint-hover" type="submit">Send message</button>
+        <span class="text-sm text-faint">We'll only use your details to reply.</span>
+      </div>
+    </form>
+
+    <div class="flex flex-col gap-4 self-start rounded-sm bg-brand p-10 text-white" data-contact-sent hidden>
+      <Eyebrow tone="amber" size="xs" as="span">Message sent</Eyebrow>
+      <p class="text-4xl leading-quote">Thank you. Georgia will reply within two working days.</p>
+      <p class="text-lg text-on-brand">
+        Rather not wait? <a class="border-b border-white" href={calendly} rel="noopener" target="_blank">Book a time on Calendly</a>.
+      </p>
+    </div>
+  </div>
+</Section>
+
+<script>
+  // Topic chips toggle aria-pressed. Submitting hides the form and shows the confirmation panel. Nothing is sent.
+  document.querySelectorAll<HTMLElement>('[data-contact]').forEach((root) => {
+    root.querySelectorAll<HTMLButtonElement>('[data-contact-chip]').forEach((chip) =>
+      chip.addEventListener('click', () => {
+        chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
+      }),
+    );
+
+    const form = root.querySelector<HTMLFormElement>('[data-contact-form]');
+    const sent = root.querySelector<HTMLElement>('[data-contact-sent]');
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (form) form.hidden = true;
+      if (sent) sent.hidden = false;
+    });
+  });
+</script>

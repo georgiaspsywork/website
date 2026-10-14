@@ -1,0 +1,12 @@
+---
+// Highlighted box inside an article, e.g. <Callout label="In short">...</Callout>
+interface Props {
+  label?: string;
+}
+const { label = 'In short' } = Astro.props;
+---
+
+<div class="my-4 flex flex-col gap-3.5 rounded-sm bg-brand px-9 py-8">
+  <span class="text-xs tracking-label text-amber uppercase">{label}</span>
+  <div class="text-xl leading-prose text-white [&>p]:m-0"><slot /></div>
+</div>

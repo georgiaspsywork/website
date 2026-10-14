@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import FilterGroup from '../components/FilterGroup.astro';
+import ArticleRow from '../components/ArticleRow.astro';
+import NewsletterBand from '../components/NewsletterBand.astro';
+import Arrow from '../components/Arrow.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import { longDate, plain } from '../lib/format';
+import { orderedTopics } from '../lib/topics';
+import { site } from '../data/site';
+
+const all = (await getCollection('articles', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const lead = all.find((a) => a.data.lead) ?? all[0];
+const rest = all.filter((a) => a !== lead);
+---
+
+<BaseLayout title="Articles · Georgia's PsyWork">
+  <PageHero
+    eyebrow="Articles · notes from the night shift"
+    title="Writing on fatigue, change and the <em>design of work.</em>"
+    intro="Short, practical pieces for operations leaders. What the research says, what we see on site, and what to do about it on Monday."
+  />
+
+  {/* Lead article */}
+  {
+    lead && (
+      <section class="px-gutter pb-section-sm">
+        <a
+          href={`/articles/${lead.id}`}
+          class="grid items-center gap-x-16 gap-y-8 text-ink hover:text-ink md:grid-cols-2"
+        >
+          <ImagePlaceholder label={`Lead image${lead.data.imageNote ? ` — ${lead.data.imageNote}` : ''}`} ratio="3/2" />
+          <div class="flex flex-col gap-4.5">
+            <div class="flex flex-wrap gap-x-5 gap-y-2.5 text-xs tracking-label uppercase">
+              <span class="text-amber">Latest</span>
+              <span class="text-mint">{lead.data.topic}</span>
+              <span class="text-subtle">{lead.data.readMinutes} min read</span>
+            </div>
+            <h2 class="text-title-lg leading-title font-semibold tracking-heading text-balance">{plain(lead.data.title)}</h2>
+            <p class="max-w-[32em] text-xl leading-prose text-muted text-pretty">{lead.data.dek}</p>
+            <span class="text-base text-subtle">{site.authorShort} · {longDate(lead.data.date)}</span>
+          </div>
+        </a>
+      </section>
+    )
+  }
+
+  {/* Article list */}
+  <FilterGroup
+    options={orderedTopics(rest.map((a) => a.data.topic))}
+    noun="article"
+    total={rest.length}
+    class="gap-7 px-gutter-reading pb-section"
+  >
+    <div class="flex flex-col border-b border-line">
+      {rest.map((article) => <ArticleRow article={article} />)}
+    </div>
+  </FilterGroup>
+
+  <NewsletterBand />
+</BaseLayout>

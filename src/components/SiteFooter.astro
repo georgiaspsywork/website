@@ -1,0 +1,36 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  heading?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+const {
+  heading = 'Start with a 30-minute conversation.',
+  ctaLabel = 'Book a chat',
+  ctaHref = '/contact',
+} = Astro.props;
+---
+
+<footer
+  class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-x-14 gap-y-12 bg-footer px-gutter pt-18 pb-12 text-ink"
+>
+  <div class="flex flex-col gap-4.5">
+    <h2 class="text-6xl leading-heading">{heading}</h2>
+    <a
+      class="self-start rounded-xs bg-mint px-6 py-3.5 text-md font-semibold text-ink-dark hover:bg-mint-hover hover:text-ink-dark"
+      href={ctaHref}>{ctaLabel}</a
+    >
+  </div>
+  <div class="flex flex-col gap-2.5 text-md text-on-brand-muted">
+    <span class="mb-1.5 text-xs tracking-label text-mint uppercase">Contact</span>
+    <span>{site.email}</span>
+    <span>{site.phone}</span>
+    <span>{site.location}</span>
+  </div>
+  <div class="flex flex-col gap-2.5 text-md text-on-brand-muted">
+    <span class="mb-1.5 text-xs tracking-label text-mint uppercase">Elsewhere</span>
+    {site.elsewhere.map((link) => <a href={link.href}>{link.label}</a>)}
+  </div>
+</footer>

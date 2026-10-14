@@ -1,0 +1,20 @@
+---
+import Eyebrow from './Eyebrow.astro';
+// Opening block of a page: eyebrow, big headline (wrap a word in <em> for the italic emphasis), intro paragraph.
+interface Props {
+  eyebrow: string;
+  title: string; // may contain <em>
+  intro?: string;
+  class?: string;
+}
+const { eyebrow, title, intro, class: extra } = Astro.props;
+---
+
+<section class:list={['flex flex-col gap-6.5 px-gutter-reading pt-section-sm pb-section-sm', extra]}>
+  <Eyebrow>{eyebrow}</Eyebrow>
+  <h1 class="max-w-[13em] text-display leading-display font-normal tracking-display text-balance">
+    <Fragment set:html={title} />
+  </h1>
+  {intro && <p class="max-w-[32em] text-lead leading-snug text-muted text-pretty">{intro}</p>}
+  <slot />
+</section>
