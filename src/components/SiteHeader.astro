@@ -1,13 +1,16 @@
 ---
-import { nav, site } from '../data/site';
+import { nav } from '../data/site';
+import Logo from './Logo.astro';
 
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
 const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
 ---
 
-<header class="flex flex-wrap items-center gap-x-10 gap-y-6 px-gutter py-6.5">
-  <a class="text-2xl font-semibold" href="/">{site.name}</a>
-  <nav class="ml-auto flex flex-wrap items-center gap-x-8 gap-y-4 text-md text-soft" aria-label="Main">
+<header class="group relative z-20 flex items-center gap-x-10 px-gutter py-6.5" data-site-header>
+  <Logo />
+
+  <!-- Wide screens: links in a row -->
+  <nav class="ml-auto hidden flex-wrap items-center gap-x-8 gap-y-4 text-md text-soft md:flex" aria-label="Main">
     {
       nav.map((item) => (
         <a
@@ -24,4 +27,70 @@ const isCurrent = (href: string) => path === href || path.startsWith(href + '/')
       ))
     }
   </nav>
+
+  <!-- Small screens: two-line button that turns into a cross -->
+  <button
+    type="button"
+    class="group/btn relative ml-auto size-11 cursor-pointer rounded-sm md:hidden"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    aria-label="Open menu"
+    data-menu-button
+  >
+    <span class="absolute top-1/2 left-1/2 -mt-0.5 -ml-3 h-0.5 w-6 -translate-y-1.5 rounded-full bg-ink transition-transform duration-300 ease-out group-aria-expanded/btn:translate-y-0 group-aria-expanded/btn:rotate-45 motion-reduce:transition-none"></span>
+    <span class="absolute top-1/2 left-1/2 -mt-0.5 -ml-3 h-0.5 w-6 translate-y-1.5 rounded-full bg-ink transition-transform duration-300 ease-out group-aria-expanded/btn:translate-y-0 group-aria-expanded/btn:-rotate-45 motion-reduce:transition-none"></span>
+  </button>
+
+  <!-- Small screens: drop-down panel -->
+  <nav
+    id="mobile-menu"
+    class="invisible absolute inset-x-0 top-full -translate-y-2 border-t border-b border-line bg-deep px-gutter pt-2 pb-6 opacity-0 shadow-2xl transition duration-300 ease-out group-data-open:visible group-data-open:translate-y-0 group-data-open:opacity-100 motion-reduce:transition-none md:hidden"
+    aria-label="Main"
+  >
+    <ul>
+      {
+        nav.map((item) => (
+          <li class="border-b border-line-faint last:border-b-0">
+            <a
+              href={item.href}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
+              class:list={[
+                'flex items-center justify-between py-4 text-xl',
+                isCurrent(item.href) ? 'text-mint' : 'text-ink',
+              ]}
+            >
+              {item.label}
+              <span class:list={['size-2 rounded-full', isCurrent(item.href) ? 'bg-mint' : 'bg-transparent']} aria-hidden="true" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const button = header?.querySelector<HTMLButtonElement>('[data-menu-button]');
+
+  if (header && button) {
+    const setOpen = (open: boolean) => {
+      header.toggleAttribute('data-open', open);
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+    header.querySelectorAll('#mobile-menu a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && header.hasAttribute('data-open')) {
+        setOpen(false);
+        button.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (header.hasAttribute('data-open') && !header.contains(e.target as Node)) setOpen(false);
+    });
+    window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => e.matches && setOpen(false));
+  }
+</script>

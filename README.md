@@ -9,6 +9,7 @@ Astro (static output) + Tailwind CSS v4, no UI framework. Pages are assembled fr
 src/pages/          one file per page (about, contact, index, articles, resources ...) + [slug] routes for content
 src/content/        articles/*.mdx and resources/*.md  (the words; front matter describes each entry)
 src/components/     the component kit (see docs/components.md)
+docs/guide-for-georgia.md   plain-English guide for the site owner
 src/layouts/        BaseLayout, ArticleLayout, ResourceLayout
 src/lib/            shared logic (rota rules, alertness text, date formatting)
 src/data/site.ts    nav links, contact details, social links
