@@ -51,7 +51,7 @@ const { eyebrow, title, items, verdicts, cta } = Astro.props;
   </div>
   <div class="mt-12 flex flex-wrap items-center justify-between gap-x-10 gap-y-6">
     <p class="max-w-[30em] text-3xl italic" data-verdict>{verdicts[0]}</p>
-    <Button href={cta.href} variant="amber" class="whitespace-nowrap">{cta.label}</Button>
+    <Button href={cta.href} target={cta.href.startsWith('http') ? '_blank' : undefined} variant="amber" class="whitespace-nowrap">{cta.label}</Button>
   </div>
 </section>
 
