@@ -14,7 +14,7 @@ export const barHeight = (v: number) => Math.round(30 + v * 180);
 
 export function phaseFor(hour: number): [title: string, line: string] {
   if (hour >= 2 && hour <= 5) return ['The circadian low', 'Shift workers rated themselves least alert and responded slowest at 03:00 (Galy et al., 2008). Injury risk is about 36% higher on night shifts than on mornings (Fischer et al., 2017).'];
-  if (hour === 6 || hour === 7) return ['Handover', 'In shift workers, recall was better at 07:00 and 11:00 for information they had processed in depth as they took it in (Galy et al., 2008).'];
+  if (hour === 6 || hour === 7) return ['Handover', 'In critical care nurses, acute and chronic fatigue predicted poorer handover quality, and nurses named standardised handover tools as a help (Abou Hashish et al., 2023). Recall at 07:00 and 11:00 was better for information processed in depth (Galy et al., 2008).'];
   if (hour >= 8 && hour <= 15) return ['The working day, steady', 'The body clock and time awake pull in opposite directions, so alertness and performance stay fairly level through the waking day. Sleepiness can rise after lunch, but there is little consistent evidence of a dip in performance (Van Dongen & Dinges, 2000).'];
   if (hour >= 16 && hour <= 21) return ['The evening peak', 'Self-rated alertness in shift workers peaked at 19:00 (Galy et al., 2008).'];
   return ['Nights begin', 'The body clock and time awake combine: the longer someone has been awake, the lower their predicted alertness (Åkerstedt et al., 2004).'];
@@ -23,7 +23,7 @@ export function phaseFor(hour: number): [title: string, line: string] {
 /** Hours-awake slider: what that many hours without sleep is comparable to (Dawson & Reid, Nature, 1997). */
 export function awakeLine(hours: number): string {
   if (hours >= 24) return 'Performance comparable to a blood alcohol level of about 0.10%, above the drink-drive limit in England and Wales.';
-  if (hours >= 17) return 'Performance comparable to a blood alcohol level of about 0.05%, the drink-drive limit in Scotland.';
+  if (hours >= 17) return 'Performance at or beyond the level of a 0.05% blood alcohol concentration, the drink-drive limit in Scotland, and heading towards 0.10% at 24 hours.';
   return 'Impairment builds the longer someone is awake. In this research it reached the level of the drink-drive limit in Scotland (0.05%) at about 17 hours.';
 }
 
