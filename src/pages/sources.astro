@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+
+// APA 7 reference list, alphabetical. <em> marks the italics APA asks for (journal title and volume).
+const references = [
+  'Dawson, D., &amp; Reid, K. (1997). Fatigue, alcohol and performance impairment. <em>Nature, 388</em>(6639), 235. https://doi.org/10.1038/40775',
+  'Fischer, D., Lombardi, D. A., Folkard, S., Willetts, J., &amp; Christiani, D. C. (2017). Updating the &ldquo;Risk Index&rdquo;: A systematic review and meta-analysis of occupational injuries and work schedule characteristics. <em>Chronobiology International, 34</em>(10), 1423&ndash;1438. https://doi.org/10.1080/07420528.2017.1367305',
+  'Health and Safety Executive. (n.d.). <em>Fatigue</em>. Retrieved October 17, 2026, from https://www.hse.gov.uk/humanfactors/topics/fatigue.htm',
+  'Matre, D., Skogstad, M., Sterud, T., Nordby, K. C., Knardahl, S., Christensen, J. O., &amp; Lie, J. A. S. (2021). Safety incidents associated with extended working hours. A systematic review and meta-analysis. <em>Scandinavian Journal of Work, Environment &amp; Health, 47</em>(6), 415&ndash;424. https://doi.org/10.5271/sjweh.3958',
+  'Patterson, P. D., Runyon, M. S., Higgins, J. S., Weaver, M. D., Teasley, E. M., Kroemer, A. J., &hellip; Martin-Gill, C. (2018). Shorter versus longer shift durations to mitigate fatigue and fatigue-related risks in emergency medical services personnel and related shift workers: A systematic review. <em>Prehospital Emergency Care, 22</em>(sup1), 28&ndash;36. https://doi.org/10.1080/10903127.2017.1376135',
+  'Pega, F., N&aacute;fr&aacute;di, B., Momen, N. C., Ujita, Y., Streicher, K. N., Pr&uuml;ss-&Uuml;st&uuml;n, A. M., Technical Advisory Group, Descatha, A., Driscoll, T., Fischer, F. M., Godderis, L., Kiiver, H. M., Li, J., Magnusson Hanson, L. L., Rugulies, R., S&oslash;rensen, K., &amp; Woodruff, T. J. (2021). Global, regional, and national burdens of ischemic heart disease and stroke attributable to exposure to long working hours for 194 countries, 2000&ndash;2016: A systematic analysis from the WHO/ILO Joint Estimates of the Work-related Burden of Disease and Injury. <em>Environment International, 154</em>, Article 106595. https://doi.org/10.1016/j.envint.2021.106595',
+];
+---
+
+<BaseLayout title="Sources · Georgia's PsyWork">
+  <PageHero
+    eyebrow="Sources · the evidence behind this site"
+    title="The research this site <em>draws on.</em>"
+    intro="Where a figure or finding appears on the site, it comes from one of these. References are in APA format."
+  />
+  <Section gutter="reading" size="sm" class="pt-0">
+    <ol class="flex max-w-[44em] list-none flex-col gap-6">
+      {references.map((ref) => <li class="pl-8 -indent-8 text-lg leading-prose text-pretty text-muted" set:html={ref} />)}
+    </ol>
+  </Section>
+</BaseLayout>
