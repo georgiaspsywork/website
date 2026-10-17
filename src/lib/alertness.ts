@@ -9,7 +9,7 @@ export const pad = (n: number) => String(n).padStart(2, '0');
 export const barHeight = (v: number) => Math.round(30 + v * 180);
 
 export function phaseFor(hour: number): [title: string, line: string] {
-  if (hour >= 2 && hour <= 5) return ['The circadian low', 'Alertness is at its lowest. This is when night shifts are asked to run checks, drive, and handle the unexpected.'];
+  if (hour >= 2 && hour <= 5) return ['The circadian low', 'Injury risk is about 36% higher on night shifts than on mornings, and about 36% higher by the fourth night in a block than on the first (Fischer et al., 2017).'];
   if (hour === 6 || hour === 7) return ['Handover', 'Tired people briefing people who have just woken up, often after a short changeover.'];
   if (hour >= 8 && hour <= 12) return ['Day shift, sharpest', 'Most decisions about rotas, overtime and cover get made in these hours, by people who are wide awake.'];
   if (hour >= 13 && hour <= 15) return ['The afternoon dip', 'A smaller drop, landing on earlies finishing and lates starting.'];
@@ -21,7 +21,7 @@ export function phaseFor(hour: number): [title: string, line: string] {
 export function awakeLine(hours: number): string {
   if (hours >= 24) return 'Performance comparable to a blood alcohol level of about 0.10%, above the drink-drive limit in England and Wales.';
   if (hours >= 17) return 'Performance comparable to a blood alcohol level of about 0.05%, the drink-drive limit in Scotland.';
-  return 'Within the normal range for most people. Keep going.';
+  return 'Impairment builds the longer someone is awake. In this research it reached the level of the drink-drive limit in Scotland (0.05%) at about 17 hours.';
 }
 
 /** Clock time after waking at `wokeAt` and being awake for `hours`. */
