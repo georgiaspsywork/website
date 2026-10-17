@@ -9,7 +9,8 @@ import RuledRow from '../components/RuledRow.astro';
 import StepGrid from '../components/StepGrid.astro';
 import Step from '../components/Step.astro';
 import Button from '../components/Button.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import Photo from '../components/Photo.astro';
+import speaking from '../assets/images/georgia-speaking.webp';
 
 const timeline = [
   { year: '2014', title: 'BSc Psychology', detail: 'A dissertation on sleep loss and decision-making that started the whole thing.' },
@@ -46,7 +47,7 @@ const credentials = [
         Georgia's PsyWork is an organisational psychology practice for operations that never switch off. We work with the people who build rotas, run sites and answer for the incident log.
       </p>
     </div>
-    <ImagePlaceholder label="GEORGIA — ON SITE, EARLY MORNING" ratio="4/5" class="max-w-[440px] justify-self-end" />
+    <Photo src={speaking} alt="Georgia presenting at a lectern to a workshop audience, mid-sentence with a clipboard in one hand" ratio="4/5" loading="eager" class="max-w-[440px] justify-self-end object-[61%_50%]" />
   </Section>
 
   {/* Story */}

@@ -12,7 +12,8 @@ import SectionHeader from '../components/SectionHeader.astro';
 import StepGrid from '../components/StepGrid.astro';
 import Step from '../components/Step.astro';
 import MarginSection from '../components/MarginSection.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import Photo from '../components/Photo.astro';
+import portrait from '../assets/images/georgia-workshop-portrait.webp';
 
 const checklist = [
   { title: 'Incidents cluster at the same points in the rota', body: 'Late in a night run, the third early in a row, the first shift after a changeover. Everyone has noticed. Nobody has joined it up.' },
@@ -66,7 +67,7 @@ const verdicts = [
 {/* Georgia */}
 {/* Georgia */}
 <Section size="none" class="grid items-center gap-x-18 gap-y-12 pb-section md:grid-cols-2">
-  <ImagePlaceholder label="GEORGIA — PORTRAIT" ratio="4/5" class="max-w-[380px]" />
+  <Photo src={portrait} alt="Georgia standing on a stage in front of a projected 'Workshop activity' slide, holding a clipboard and smiling as she talks to the room" ratio="4/5" class="max-w-[380px]" />
   <div class="flex flex-col gap-5.5">
     <Eyebrow>06:00 · handover</Eyebrow>
     <h2 class="text-title leading-title tracking-heading">Georgia Hodkinson GMBPsS</h2>
