@@ -23,7 +23,13 @@ const { start = 23, wokeAt = 7 } = Astro.props;
       </span>
     </div>
     <div class="flex min-w-0 flex-[1_1_320px] flex-col gap-5.5">
-      <input type="range" min="8" max="24" step="1" value={start} aria-label="Hours awake" class="h-7 w-full accent-mint" data-input />
+      <div class="flex flex-col gap-1">
+        <input type="range" min="8" max="24" step="1" value={start} aria-label="Hours awake" class="h-7 w-full accent-mint" data-input />
+        <div class="relative h-9 text-2xs tracking-label text-on-brand-muted uppercase tabular-nums" aria-hidden="true">
+          <span class="absolute left-[56%] flex -translate-x-1/2 flex-col text-center"><span>17 h</span><span>0.05%</span></span>
+          <span class="absolute right-0 flex flex-col text-right"><span>24 h</span><span>0.10%</span></span>
+        </div>
+      </div>
       <p class="text-4xl leading-lead text-ink-bright text-pretty" data-line>{awakeLine(start)}</p>
       <p class="text-sm text-on-brand-muted">Dawson &amp; Reid (1997): 40 adults, hand&ndash;eye coordination task. Drag to a typical night-shift finish. <a class="border-b border-on-brand-muted" href="/sources">Sources</a></p>
     </div>
