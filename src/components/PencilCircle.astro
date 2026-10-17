@@ -1,0 +1,25 @@
+---
+// Wraps a word in a hand-drawn amber circle: a pencil draws it once on page load, and again (a second loop) on hover or keyboard focus.
+// Pure CSS (see .pencil-circle in global.css); with reduced motion the circle is simply there.
+const loops = [
+  { cls: 'pencil-loop-1', d: 'M 70 44 C 140 8, 340 4, 410 34 C 470 60, 462 120, 380 140 C 290 160, 110 154, 52 116 C 14 90, 40 40, 120 22 C 150 15, 180 12, 210 11' },
+  { cls: 'pencil-loop-2', d: 'M 60 100 C 40 60, 130 14, 250 10 C 360 8, 450 36, 456 84 C 460 128, 360 150, 250 152 C 150 154, 70 138, 56 100' },
+];
+---
+
+<span class="pencil-circle" tabindex="0">
+  <slot />
+  <svg viewBox="0 0 480 160" preserveAspectRatio="none" aria-hidden="true">
+    {loops.map(({ cls, d }) => <path class={cls} pathLength="1" d={d} />)}
+    {loops.map(({ cls, d }) => (
+      <g class:list={['pencil', cls]} style={`offset-path:path('${d}')`}>
+        <g transform="rotate(38)">
+          <path d="M0 0L-5 -13L5 -13Z" class="fill-amber-soft" />
+          <path d="M0 0L-1.6 -4.2L1.6 -4.2Z" class="fill-ground" />
+          <rect x="-5" y="-40" width="10" height="27" class="fill-amber" />
+          <rect x="-5" y="-45" width="10" height="5" class="fill-muted" />
+        </g>
+      </g>
+    ))}
+  </svg>
+</span>

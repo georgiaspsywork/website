@@ -188,3 +188,91 @@
     }
   }
 }
+
+/* Pencil-drawn circle round a word (PencilCircle). The ring draws on load; a second, looser loop draws on hover/focus. */
+@layer components {
+  .pencil-circle {
+    @apply relative inline-block cursor-pointer whitespace-nowrap;
+
+    svg {
+      @apply pointer-events-none absolute -top-[0.18em] -left-[0.3em] h-[1.4em] w-[calc(100%+0.6em)] overflow-visible;
+    }
+
+    path[pathLength] {
+      @apply fill-none stroke-amber;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .pencil-loop-1 {
+      stroke-width: 3.5px;
+      animation: pencil-draw 1.1s 0.9s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+    }
+
+    .pencil-loop-2 {
+      stroke-width: 2.5px;
+      opacity: 0.85;
+    }
+
+    .pencil {
+      opacity: 0;
+      offset-rotate: 0deg;
+    }
+
+    g.pencil.pencil-loop-1 {
+      animation: pencil-move 1.1s 0.9s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+    }
+
+    &:hover,
+    &:focus-visible {
+      path.pencil-loop-2 {
+        animation: pencil-draw 0.8s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+      }
+
+      g.pencil.pencil-loop-2 {
+        animation: pencil-move 0.8s cubic-bezier(0.5, 0, 0.3, 1) forwards;
+      }
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pencil-loop-1 {
+        animation: none;
+        stroke-dashoffset: 0;
+      }
+
+      .pencil {
+        display: none;
+      }
+    }
+  }
+}
+
+@keyframes pencil-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pencil-move {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}

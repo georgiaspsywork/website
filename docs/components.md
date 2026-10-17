@@ -26,6 +26,7 @@ spacing come from the theme tokens at the top of `src/styles/global.css` (`bg-br
 | `StepGrid` + `Step` | Columns of time-stamped or numbered steps. | `Step`: `stamp`, `title`, `variant: time\|number`, `tone: dark\|brand` |
 | `ImagePlaceholder` | Labelled stand-in for a photo not yet supplied. | `label`, `ratio` |
 | `Photo` | A real photo (resized, served as WebP). See "Images" below. | `src`, `alt`, `ratio?` |
+| `PencilCircle` | Wraps a word in an amber circle that a pencil draws on page load and again on hover. Use sparingly (the home headline). | word in the slot |
 | `Arrow` | Arrow glyph that matches the system font. | `dir: right\|up-right` |
 
 ## Interactive pieces (script included, no setup needed)

@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Checklist from '../components/Checklist.astro';
 import HoursAwake from '../components/HoursAwake.astro';
 import AlertnessChart from '../components/AlertnessChart.astro';
+import PencilCircle from '../components/PencilCircle.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import Button from '../components/Button.astro';
 import Section from '../components/Section.astro';
@@ -34,7 +35,7 @@ const verdicts = [
 {/* Hero */}
 <Section size="none" gutter="reading" class="flex flex-col gap-10 pt-[clamp(80px,12vw,160px)] pb-[clamp(96px,13vw,176px)]">
   <div class="flex flex-col gap-6">
-    <h1 class="max-w-[11em] font-normal text-display-xl text-balance leading-none tracking-display">Rested people make <em>safer</em> <span class="underline underline-offset-8 decoration-2">decisions</span>.</h1>
+    <h1 class="max-w-[11em] font-normal text-display-xl text-balance leading-none tracking-display">Rested people make <em>safer</em> <PencilCircle>decisions</PencilCircle>.</h1>
     <p class="max-w-[24em] italic text-lead-xl text-mint text-pretty leading-quote">Fatigue doesn't show on the rota. It shows in the incident log.</p>
   </div>
   <Button href="/about" variant="brand" class="self-start">About Georgia</Button>
