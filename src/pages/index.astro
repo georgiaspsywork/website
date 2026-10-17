@@ -1,4 +1,5 @@
 ---
+import { site } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Checklist from '../components/Checklist.astro';
 import HoursAwake from '../components/HoursAwake.astro';
@@ -85,7 +86,7 @@ const verdicts = [
     </h2>
   </Fragment>
   <div slot="cta" class="flex flex-wrap items-center gap-4">
-    <Button href="#" variant="brand" class="flex-none text-warm hover:text-warm">Book a 30-minute chat</Button>
+    <Button href={site.calendly} target="_blank" variant="brand" class="flex-none text-warm hover:text-warm">Book a 30-minute chat</Button>
     <span class="text-md text-soft">We help logistics and utility firms reduce fatigue-related incidents and staff turnover.</span>
   </div>
 </AlertnessChart>

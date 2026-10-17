@@ -9,7 +9,7 @@ interface Props {
 const {
   heading = 'Start with a 30-minute conversation.',
   ctaLabel = 'Book a chat',
-  ctaHref = '/contact',
+  ctaHref = site.calendly,
 } = Astro.props;
 ---
 
@@ -20,7 +20,9 @@ const {
     <h2 class="text-6xl leading-heading">{heading}</h2>
     <a
       class="self-start rounded-xs bg-mint px-6 py-3.5 text-md font-semibold text-ink-dark hover:bg-mint-hover hover:text-ink-dark"
-      href={ctaHref}>{ctaLabel}</a
+      href={ctaHref}
+      target={ctaHref.startsWith('http') ? '_blank' : undefined}
+      rel={ctaHref.startsWith('http') ? 'noopener' : undefined}>{ctaLabel}</a
     >
   </div>
   <div class="flex flex-col gap-2.5 text-md text-on-brand-muted">

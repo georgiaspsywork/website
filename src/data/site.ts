@@ -6,6 +6,7 @@ export const site = {
   email: 'Georgia@georgiaspsywork.com',
   phone: '+44 7507 627754',
   location: 'Leicestershire, United Kingdom',
+  calendly: 'https://calendly.com/georgiaspsywork/30min',
   elsewhere: [
     { label: 'LinkedIn', href: '#' },
     { label: 'Instagram', href: '#' },

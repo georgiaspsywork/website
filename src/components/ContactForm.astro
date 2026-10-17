@@ -1,4 +1,5 @@
 ---
+import { site } from '../data/site';
 import Chip from './Chip.astro';
 import Eyebrow from './Eyebrow.astro';
 import RuledList from './RuledList.astro';
@@ -7,7 +8,7 @@ import SectionHeader from './SectionHeader.astro';
 
 // "Prefer to write?" band: contact details beside a message form.
 // Not connected to a backend yet: submitting sends nothing, it only swaps the form for the confirmation panel.
-const calendly = 'https://calendly.com/georgiaspsywork/30min';
+const calendly = site.calendly;
 const topics = ['Fatigue incidents', 'Staff turnover', 'Sickness absence', 'Rota design', 'Change or AI rollout'];
 const fieldClass = 'rounded-xs border border-field-edge bg-surface px-4 py-3.5 text-lg text-ink';
 const labelClass = 'flex flex-col gap-2 text-base text-soft';
