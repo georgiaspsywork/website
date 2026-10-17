@@ -1,7 +1,7 @@
 ---
 import Eyebrow from './Eyebrow.astro';
 // Reading layout: a short label in the left margin, content in a column to its right.
-// Stacks on small screens.
+// Optional `aside` slot sits under the label (e.g. a Photo). Stacks on small screens.
 interface Props {
   label: string;
   tone?: 'ground' | 'deep' | 'brand';
@@ -22,6 +22,9 @@ const sizes = { default: 'py-section', sm: 'py-section-sm' };
     extra,
   ]}
 >
-  <Eyebrow tone={labelTone} class="pt-3">{label}</Eyebrow>
+  <div class="flex flex-col gap-6">
+    <Eyebrow tone={labelTone} class="pt-3">{label}</Eyebrow>
+    <slot name="aside" />
+  </div>
   <div class="flex min-w-0 flex-col gap-6"><slot /></div>
 </section>
