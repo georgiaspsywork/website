@@ -1,0 +1,54 @@
+---
+import Chip from './Chip.astro';
+import Eyebrow from './Eyebrow.astro';
+import { DRIVERS } from '../lib/drivers';
+
+// "What drives fatigue": pick a factor, see what the research says about it. Every panel is in the page HTML;
+// the script only shows one at a time. Data lives in src/lib/drivers.ts.
+---
+
+<section class="flex flex-col gap-10 px-gutter pt-section-sm pb-section" data-drivers>
+  <div class="flex max-w-[820px] flex-col gap-4.5">
+    <Eyebrow>03:00 · what drives fatigue</Eyebrow>
+    <h2 class="text-title-lg leading-title tracking-heading">Fatigue has more than one cause</h2>
+    <p class="text-xl leading-body text-ink-soft text-pretty">
+      Shift patterns are one. Choose a factor to see what the research says, and how strong the evidence is.
+    </p>
+  </div>
+  <div class="flex flex-wrap gap-2.5" role="group" aria-label="Factors that drive fatigue">
+    {DRIVERS.map((d, i) => <Chip pressed={i === 0} data-driver={d.id}>{d.label}</Chip>)}
+  </div>
+  <div>
+    {
+      DRIVERS.map((d, i) => (
+        <div hidden={i !== 0} data-panel={d.id} class="flex max-w-[820px] flex-col gap-7 border-t border-line pt-8">
+          <h3 class="text-5xl leading-heading font-normal text-ink-bright">{d.title}</h3>
+          <ul class="flex list-none flex-col gap-6">
+            {d.findings.map((f) => (
+              <li class="flex flex-col gap-1.5">
+                <p class="text-xl leading-body text-ink-soft text-pretty">{f.text}</p>
+                <span class="text-2xs tracking-label text-mint uppercase">{f.kind}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+  <p class="text-sm text-subtle">
+    Full references on the <a class="border-b border-subtle" href="/sources">Sources page</a>.
+  </p>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-drivers]').forEach((root) => {
+    const chips = root.querySelectorAll<HTMLButtonElement>('[data-driver]');
+    const panels = root.querySelectorAll<HTMLElement>('[data-panel]');
+    chips.forEach((chip) =>
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+        panels.forEach((p) => (p.hidden = p.dataset.panel !== chip.dataset.driver));
+      }),
+    );
+  });
+</script>
