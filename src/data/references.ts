@@ -84,6 +84,10 @@ export const references: Reference[] = [
     html: 'Frone, M. R., &amp; Tidwell, M.-C. O. (2015). The meaning and measurement of work fatigue: Development and evaluation of the Three-Dimensional Work Fatigue Inventory (3D-WFI). <em>Journal of Occupational Health Psychology, 20</em>(3), 273&ndash;288.',
   },
   {
+    id: 'furnham2011',
+    html: 'Furnham, A., &amp; Boo, H. C. (2011). A literature review of the anchoring effect. <em>The Journal of Socio-Economics, 40</em>(1), 35&ndash;42.',
+  },
+  {
     id: 'galy2008',
     html: 'Galy, E., M&eacute;lan, C., &amp; Cariou, M. (2008). Investigation of task performance variations according to task requirements and alertness across the 24-h day in shift workers. <em>Ergonomics, 51</em>(9), 1338&ndash;1351.',
   },
