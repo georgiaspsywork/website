@@ -156,6 +156,10 @@ export const references: Reference[] = [
     html: 'Matre, D., Skogstad, M., Sterud, T., Nordby, K. C., Knardahl, S., Christensen, J. O., &amp; Lie, J. A. S. (2021). Safety incidents associated with extended working hours. A systematic review and meta-analysis. <em>Scandinavian Journal of Work, Environment &amp; Health, 47</em>(6), 415&ndash;424. https://doi.org/10.5271/sjweh.3958',
   },
   {
+    id: 'nickerson1998',
+    html: 'Nickerson, R. S. (1998). Confirmation bias: A ubiquitous phenomenon in many guises. <em>Review of General Psychology, 2</em>(2), 175&ndash;220.',
+  },
+  {
     id: 'noakes2012',
     html: 'Noakes, T. D. (2012). Fatigue is a brain-derived emotion that regulates the exercise behavior to ensure the protection of whole body homeostasis. <em>Frontiers in Physiology, 3</em>, Article 82.',
   },
