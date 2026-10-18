@@ -101,7 +101,7 @@ const credentials = [
   </Section>
 
   {/* Credentials */}
-  <Section gutter="reading" class="grid gap-x-24 gap-y-14 md:grid-cols-2">
+  <Section id="qualifications" gutter="reading" class="grid gap-x-24 gap-y-14 md:grid-cols-2">
     <div class="flex flex-col gap-4.5">
       <Eyebrow>Qualifications &amp; ethics</Eyebrow>
       <h2 class="text-title leading-title tracking-heading">Evidence-based, and accountable for it</h2>
@@ -120,11 +120,26 @@ const credentials = [
     </RuledList>
   </Section>
 
-  {/* Client quote */}
-  <Section tone="brand" gutter="reading" class="flex flex-col gap-7">
-    <Eyebrow tone="amber">From a client</Eyebrow>
-    <p class="max-w-[24em] text-quote leading-quote text-pretty italic">"We thought we had a recruitment problem. Georgia showed us it was a rota problem, and what it was costing us each quarter."</p>
-    <p class="text-lg text-on-brand">Head of Operations · UK distribution network (placeholder)</p>
-    <Button href="#" variant="underline-white" class="self-start">More client references</Button>
+  {/* Client feedback */}
+  <Section id="client-feedback" tone="brand" gutter="reading" class="flex flex-col gap-12">
+    <SectionHeader eyebrow="Client feedback" title="What clients say" tone="amber" />
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-x-14 gap-y-12">
+      <figure class="flex flex-col gap-4">
+        <Eyebrow tone="amber">Logistics and HGV driver fatigue</Eyebrow>
+        <blockquote class="text-2xl leading-loose text-pretty text-white italic">&ldquo;Georgia brought a thoughtful, evidence-based approach to understanding fatigue and human factors in our operational environment. She helped us look beyond driver behaviour and consider the working conditions that can influence decision-making and safety.&rdquo;</blockquote>
+      </figure>
+      <figure class="flex flex-col gap-4">
+        <Eyebrow tone="amber">Energy sector and emergency call-out work</Eyebrow>
+        <blockquote class="text-2xl leading-loose text-pretty text-white italic">&ldquo;Georgia demonstrated a strong understanding of the challenges facing teams working under operational pressure. Her ability to connect psychological research with the practical realities of emergency response and fatigue risk was particularly valuable.&rdquo;</blockquote>
+      </figure>
+      <figure class="flex flex-col gap-4">
+        <Eyebrow tone="amber">Translating research into practical recommendations</Eyebrow>
+        <blockquote class="text-2xl leading-loose text-pretty text-white italic">&ldquo;What stood out about working with Georgia was her ability to make complex human factors concepts understandable and relevant. She approached the project with curiosity, professionalism and a clear focus on recommendations that could work in practice.&rdquo;</blockquote>
+      </figure>
+      <figure class="flex flex-col gap-4">
+        <Eyebrow tone="amber">A collaborative and insightful approach</Eyebrow>
+        <blockquote class="text-2xl leading-loose text-pretty text-white italic">&ldquo;Georgia was engaging, thorough and genuinely interested in understanding how our people experienced their work. She asked thoughtful questions, challenged assumptions constructively and brought a valuable perspective to the project.&rdquo;</blockquote>
+      </figure>
+    </div>
   </Section>
 </BaseLayout>
