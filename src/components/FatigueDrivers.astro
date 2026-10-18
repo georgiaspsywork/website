@@ -15,8 +15,8 @@ import { DRIVERS } from '../lib/drivers';
       Shift patterns are one. Choose a factor to see what the research says, and how strong the evidence is.
     </p>
   </div>
-  <div class="flex flex-wrap gap-2.5" role="group" aria-label="Factors that drive fatigue">
-    {DRIVERS.map((d, i) => <Chip pressed={i === 0} data-driver={d.id}>{d.label}</Chip>)}
+  <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-4" role="group" aria-label="Factors that drive fatigue">
+    {DRIVERS.map((d, i) => <Chip pressed={i === 0} data-driver={d.id} class="flex items-center justify-center text-center">{d.label}</Chip>)}
   </div>
   <div>
     {
