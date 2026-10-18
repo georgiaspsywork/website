@@ -15,7 +15,7 @@ const { start = 23, wokeAt = 7 } = Astro.props;
   data-woke-at={wokeAt}
 >
   <span class="pt-5 text-sm tracking-label text-subtle uppercase">Hours awake</span>
-  <div class="flex flex-wrap items-center gap-x-14 gap-y-8 rounded-sm bg-brand p-[clamp(28px,4vw,48px)]">
+  <div class="flex flex-wrap items-center gap-x-14 gap-y-8 rounded-sm bg-(--sky,var(--color-brand)) p-[clamp(28px,4vw,48px)] transition-colors duration-700" data-card>
     <div class="flex flex-none flex-col gap-3.5">
       <span class="text-gauge leading-none tracking-numeral text-ink-bright tabular-nums" data-value>{start}</span>
       <span class="text-base text-on-brand-muted">
@@ -44,13 +44,44 @@ const { start = 23, wokeAt = 7 } = Astro.props;
     const value = root.querySelector('[data-value]')!;
     const clock = root.querySelector('[data-clock]')!;
     const line = root.querySelector('[data-line]')!;
+    const card = root.querySelector<HTMLElement>('[data-card]')!;
     const wokeAt = Number(root.dataset.wokeAt);
 
+    // The card's background follows the clock: afternoon, dusk, night, then the first light of the next morning.
+    const theme = getComputedStyle(document.documentElement);
+    const rgb = (token: string) => {
+      const hex = theme.getPropertyValue(token).trim().replace('#', '');
+      return [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16));
+    };
+    const mix = (from: number[], to: number[], amount: number) => from.map((v, i) => v + (to[i] - v) * amount);
+    const brand = rgb('--color-brand');
+    const sky = [
+      { at: 15, colour: rgb('--color-brand-hover') },
+      { at: 19, colour: mix(brand, rgb('--color-amber'), 0.22) },
+      { at: 22, colour: brand },
+      { at: 27, colour: rgb('--color-brand-deep') },
+      { at: 31, colour: mix(brand, rgb('--color-mint'), 0.14) },
+    ];
+    const skyAt = (hour: number) => {
+      const t = Math.min(Math.max(hour, sky[0].at), sky[sky.length - 1].at);
+      const next = sky.findIndex((stop) => stop.at >= t);
+      if (next <= 0) return sky[0].colour;
+      const a = sky[next - 1];
+      const b = sky[next];
+      return mix(a.colour, b.colour, (t - a.at) / (b.at - a.at));
+    };
+    const paint = (hours: number) => {
+      const [r, g, b] = skyAt(wokeAt + hours).map(Math.round);
+      card.style.setProperty('--sky', `rgb(${r} ${g} ${b})`);
+    };
+
+    paint(Number(input.value));
     input.addEventListener('input', () => {
       const hours = Number(input.value);
       value.textContent = String(hours);
       clock.textContent = clockAfter(wokeAt, hours);
       line.textContent = awakeLine(hours);
+      paint(hours);
     });
   });
 </script>
