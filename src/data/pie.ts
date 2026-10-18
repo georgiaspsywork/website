@@ -16,7 +16,7 @@ export const pie = {
   eventbrite: 'https://www.eventbrite.co.uk/o/121704880076',
   website: { url: 'https://peopleinsightsexchange.com', live: false },
   /** The main booking button, used in the events section and at the bottom of the page. */
-  cta: { label: 'Find your next PIE event', href: 'https://www.eventbrite.co.uk/o/121704880076' },
+  cta: { label: 'Book your place on Eventbrite', href: 'https://www.eventbrite.co.uk/e/2002732305237?aff=oddtdtcreator' },
 };
 
 export interface PieEvent {
