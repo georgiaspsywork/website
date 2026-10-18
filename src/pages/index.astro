@@ -3,7 +3,6 @@ import { site } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Checklist from '../components/Checklist.astro';
 import HoursAwake from '../components/HoursAwake.astro';
-import FatigueDrivers from '../components/FatigueDrivers.astro';
 import PencilCircle from '../components/PencilCircle.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import Button from '../components/Button.astro';
@@ -53,8 +52,6 @@ const verdicts = [
 />
 {/* Hours awake */}
 <HoursAwake />
-{/* What drives fatigue */}
-<FatigueDrivers />
 {/* What the research says */}
 <Section tone="deep" class="flex flex-col gap-14">
   <SectionHeader eyebrow="05:00 · what the research says" title="What the evidence says about shift timing and length" tone="amber">

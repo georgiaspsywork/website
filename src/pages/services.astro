@@ -5,7 +5,6 @@ import Section from '../components/Section.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import Button from '../components/Button.astro';
-import FatigueDrivers from '../components/FatigueDrivers.astro';
 import Photo from '../components/Photo.astro';
 import headshot from '../assets/images/georgia-headshot.webp';
 
@@ -68,18 +67,12 @@ const services = [
     title="Fatigue &amp; human <em>factors.</em>"
     intro="Reduce the cost of fatigue. We help organisations with shift, on-call and high-demand workers identify where fatigue is increasing the risk of incidents, errors, absence and turnover, and redesign the conditions creating it."
   >
-    <div class="flex flex-wrap gap-4 pt-2">
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-4 pt-2">
       <Button href="/contact" variant="brand">Get in touch</Button>
       <Button href="#services" variant="outline">See the four services</Button>
+      <Button href="/fatigue-model" variant="underline">Our 8-factor fatigue model</Button>
     </div>
   </PageHero>
-
-  {/* The model */}
-  <FatigueDrivers
-    eyebrow="Our approach"
-    title="The 8-factor fatigue model"
-    intro="Fatigue at work rarely has a single cause. We assess eight factors, from sleep and recovery to culture and management. Choose a factor to see what it covers and what the research says."
-  />
 
   {/* Services */}
   <Section id="services" tone="deep" class="flex scroll-mt-12 flex-col gap-14">

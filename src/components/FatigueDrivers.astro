@@ -9,18 +9,21 @@ interface Props {
   eyebrow?: string;
   title?: string;
   intro?: string;
+  /** Use 'h1' when this is the main heading of its own page. */
+  heading?: 'h1' | 'h2';
 }
 const {
   eyebrow = '03:00 · what drives fatigue',
   title = 'Fatigue has more than one cause',
   intro = 'Working patterns are one of eight factors. Choose a factor to see what it covers, what the research says and how strong the evidence is.',
+  heading: Heading = 'h2',
 } = Astro.props;
 ---
 
 <section class="flex flex-col gap-10 px-gutter pt-section-sm pb-section" data-drivers>
   <div class="flex max-w-[820px] flex-col gap-4.5">
     <Eyebrow>{eyebrow}</Eyebrow>
-    <h2 class="text-title-lg leading-title tracking-heading">{title}</h2>
+    <Heading class="text-title-lg leading-title tracking-heading">{title}</Heading>
     <p class="text-xl leading-body text-ink-soft text-pretty">{intro}</p>
   </div>
   <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-4" role="group" aria-label="Factors that drive fatigue">
