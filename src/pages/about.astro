@@ -13,6 +13,20 @@ import Photo from '../components/Photo.astro';
 import listening from '../assets/images/georgia-listening.webp';
 import speaking from '../assets/images/georgia-speaking.webp';
 
+// Recommendations received on LinkedIn, quoted word for word (long ones trimmed to complete sentences).
+const recommendations = [
+  { quote: 'Georgia is the complete package and I have no hesitation whatsoever in recommending her. Her professional skills are excellent; as an Organisational psychologist, she has a really good breadth and depth of knowledge and expertise.', name: 'Ian B Pettigrew', role: 'Keynote speaker on Hope, bestselling author and leadership development consultant' },
+  { quote: 'Georgia rigorously evaluated BAT against leading organisational psychology frameworks, including psychological safety, organisational trust, self-determination theory, and the Job Demands-Resources model.', name: 'Debra Corey', role: 'Step It Up HR, on reviewing their Behaviour Awareness Tool (BAT)' },
+  { quote: 'Fully recommend working with Georgia; she has helped bring clarity into our world of chaos.', name: 'James Green', role: 'Founding Director, Football Studies Limited' },
+  { quote: 'Georgia is a passionate and highly knowledgeable psychologist with particular expertise in burnout, emotional wellbeing, and workplace mental health. She combines professional insight with empathy, creating a supportive environment in which people feel genuinely heard and understood.', name: 'Aland Yarden Escudero', role: 'Manufacturing Engineer and Higher Education Lecturer' },
+  { quote: 'Georgia’s ability to shape complex fatigue information into something practical and engaging made the session both seamless and energising. Her approach is grounded, evidence-based and fully collaborative, which is a rare combination that leaves a lasting impact.', name: 'Dr Jill McGarry', role: 'Sleep specialist, on a joint workshop on fatigue and sleep' },
+  { quote: 'Georgia delivered an expert speaker session for The Governance Hub, and I would highly recommend her. The session was insightful, thought-provoking and full of practical takeaways that members could immediately apply within their own organisations.', name: 'Danni Kisielewicz', role: 'Former CQC Inspector, The Governance Hub' },
+  { quote: 'Georgia presented the topic with clarity and expertise, making complex ideas both accessible and practical. She created an engaging and interactive environment that encouraged participation and reflection throughout the session.', name: 'Omonefe Davies', role: 'Academic, on Protecting Wellbeing for Early Career Researchers' },
+  { quote: 'As an organisational psychologist, she’s highly ethical and evidence-led, making sure she’s providing the right solution for the problem in hand.', name: 'Leanne Elliott', role: 'Chartered Psychologist' },
+  { quote: 'Georgia shows enthusiasm and dedication to everything she puts her mind to. She is a pleasure to work alongside and has upstanding values.', name: 'Karen Mills', role: 'Business Psychologist' },
+  { quote: 'Georgia has quickly become indispensable. Since she joined the Truth, Lies & Work Podcast team as Associate Producer, she’s been the glue that holds all the chaos together.', name: 'Al Elliott', role: 'Co-host, Truth, Lies & Work podcast' },
+];
+
 const timeline = [
   { year: '2020', title: 'BSc Psychology', detail: 'A dissertation on sleep loss and decision-making that started the whole thing.' },
   { year: '2023', title: 'MSc Occupational Psychology', detail: 'Research into turnover in 24/7 operations and what exit interviews miss.' },
@@ -161,6 +175,25 @@ const credentials = [
         <blockquote class="text-2xl leading-loose text-pretty text-white italic">&ldquo;Co-creating ThinkClick with Georgia has been one of the most important partnerships of my entrepreneurial journey. Georgia is talented and knowledgeable. She has this unique blend of creative intelligence, psychological understanding, and design thinking that turns complex ideas into experiences people feel, not just understand&hellip; I couldn&rsquo;t recommend her more highly.&rdquo;</blockquote>
         <figcaption class="text-base text-on-brand-muted">Tim Pattenden, Pattenden Peak Performance</figcaption>
       </figure>
+      <figure class="flex flex-col gap-4">
+        <Eyebrow tone="amber">Case-UK mental health coaching programme</Eyebrow>
+        <blockquote class="text-2xl leading-loose text-pretty text-white italic">&ldquo;At Case-UK we co-created the now CPD accredited mental health coaching programme. Georgia is collaborative and enjoyable to work with. She partners with organisations really well, meeting deadlines, supporting with knowledge gaps and ultimately ensuring a high quality and impactful product is produced. I highly recommend working with Georgia.&rdquo;</blockquote>
+        <figcaption class="text-base text-on-brand-muted">Tim Pattenden, Case-UK (part of The Busy Group)</figcaption>
+      </figure>
+    </div>
+    <div class="flex flex-col gap-10 border-t border-brand-edge pt-12">
+      <Eyebrow tone="amber">Recommendations from clients and collaborators</Eyebrow>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-x-12 gap-y-12">
+        {recommendations.map((r) => (
+          <figure class="flex flex-col gap-4">
+            <blockquote class="text-xl leading-body text-pretty text-white italic">&ldquo;{r.quote}&rdquo;</blockquote>
+            <figcaption class="flex flex-col gap-1">
+              <span class="text-base text-white">{r.name}</span>
+              <span class="text-sm text-on-brand-muted">{r.role}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
     </div>
   </Section>
 </BaseLayout>
