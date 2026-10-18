@@ -3,7 +3,6 @@ import { site } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Checklist from '../components/Checklist.astro';
 import HoursAwake from '../components/HoursAwake.astro';
-import AlertnessChart from '../components/AlertnessChart.astro';
 import FatigueDrivers from '../components/FatigueDrivers.astro';
 import PencilCircle from '../components/PencilCircle.astro';
 import Eyebrow from '../components/Eyebrow.astro';
@@ -96,19 +95,17 @@ const verdicts = [
     </div>
   </div>
 </Section>
-{/* 24-hour alertness */}
-<AlertnessChart>
-  <Fragment slot="intro">
-    <Eyebrow tone="soft">For operations leaders running shift work</Eyebrow>
-    <h2 class="text-title-lg leading-display tracking-display text-balance">
-      Work designed so people stay safe, stay well and <em class="font-normal text-amber">stay.</em>
-    </h2>
-  </Fragment>
-  <div slot="cta" class="flex flex-wrap items-center gap-4">
+{/* Closing statement */}
+<Section tone="deep" class="flex flex-col gap-8">
+  <Eyebrow tone="soft">For operations leaders running shift work</Eyebrow>
+  <h2 class="max-w-[14em] text-display leading-display tracking-display text-balance">
+    Work designed so people stay safe, stay well and <em class="font-normal text-amber">stay.</em>
+  </h2>
+  <div class="flex flex-wrap items-center gap-4">
     <Button href={site.calendly} target="_blank" variant="brand" class="flex-none text-warm hover:text-warm">Book a 30-minute chat</Button>
     <span class="text-md text-soft">We help organisations in logistics, utilities, energy, emergency services and healthcare reduce fatigue-related incidents and staff turnover.</span>
   </div>
-</AlertnessChart>
+</Section>
 {/* Note from Georgia */}
 {/* Note from Georgia */}
 <MarginSection label="A note from Georgia" class="text-prose">

@@ -36,7 +36,7 @@ _templates/         the original Claude Design exports, for reference only (not 
 ### Pages
 | URL | File | Purpose |
 | --- | --- | --- |
-| `/` | `src/pages/index.astro` | Home: hero, problem tick-list, hours-awake slider, three pressures, Georgia bio, 24-hour alertness chart, note from Georgia |
+| `/` | `src/pages/index.astro` | Home: hero, problem tick-list, hours-awake slider, what drives fatigue, evidence tiles, three pressures, Georgia bio, closing statement, note from Georgia |
 | `/about` | `src/pages/about.astro` | About Georgia: story, career timeline, principles, credentials, client quote |
 | `/resources` | `src/pages/resources.astro` | Resource library: featured resource, filterable cards |
 | `/resources/<slug>` | `src/content/resources/<slug>.md` | One page per resource (standard layout). Resources with a bespoke page set `href` |
@@ -54,7 +54,7 @@ _templates/         the original Claude Design exports, for reference only (not 
 - **Dark mode throughout.** The client liked the dark concepts. Night-shift theme: the site "lives" at night.
 - **Clock/hours motif** is the core idea. Section labels use times (`02:00 · the circadian low`, `06:00 · handover`), steps use timestamps (`00:00`, `00:05`), timelines use years/days in a left margin. Use this sparingly but consistently.
 - **Problem-focused headlines** (client preference, from concept 1c): e.g. "Work designed so people stay safe, stay well and stay."
-- **Interactive teaching moments**: problem tick-list with live count + verdict; hours-awake slider (Dawson & Reid, *Nature*, 1997: 17h ≈ 0.05% BAC, 24h ≈ 0.10%); clickable 24-hour alertness curve (illustrative); rota builder with simplified flag rules.
+- **Interactive teaching moments**: problem tick-list with live count + verdict; hours-awake slider (Dawson & Reid, *Nature*, 1997: 17h ≈ 0.05% BAC, 24h ≈ 0.10%); rota builder with simplified flag rules.
 - **Left-margin layout** for reading sections (label in a ~200px column, content max ~720px) — borrowed from the 2b "logbook" concept.
 - Resources = cards (things you use); Articles = editorial list (things you read). Kept deliberately different.
 
@@ -70,6 +70,6 @@ Colours, type sizes and spacing are theme tokens in `src/styles/global.css`; use
 ## Open items
 - All imagery is placeholder (portrait, lead images, previews).
 - Placeholder/invented copy needing Georgia's sign-off: About story, career timeline dates, MSc, client quote, all resource and article copy except the two sample pieces, "note from Georgia", tick-list items. The check script lists these.
-- Sign-off needed on: Dawson & Reid comparison, rota rule thresholds, alertness curve (labelled illustrative).
+- Sign-off needed on: Dawson & Reid comparison, rota rule thresholds.
 - Contact form backend, newsletter backend, real Calendly URLs, social links, the many `href="#"` links.
 - Fonts: only the Latin subset of Source Serif 4 is included (UK English); other alphabets would fall back to a system serif.

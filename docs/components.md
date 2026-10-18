@@ -34,7 +34,6 @@ spacing come from the theme tokens at the top of `src/styles/global.css` (`bg-br
 | --- | --- |
 | `Checklist` | "Which of these sound like your operation?" tick-list with count and verdict. Content passed as props. |
 | `HoursAwake` | Hours-awake slider with the blood-alcohol comparison. |
-| `AlertnessChart` | 24-hour alertness bars (slots: `intro`, `cta`). |
 | `FilterGroup` | Filter chips + count around a list of items (`ArticleRow`, `ResourceCard`). |
 | `ContactForm` | Contact form with topic chips. **Does not send anything yet.** |
 | `NewsletterBand` | Email sign-up band. **Does not send anything yet.** |
