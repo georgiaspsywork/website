@@ -16,8 +16,24 @@ export const references: Reference[] = [
     html: '&Aring;kerstedt, T., Folkard, S., &amp; Portin, C. (2004). Predictions from the three-process model of alertness. <em>Aviation, Space, and Environmental Medicine, 75</em>(3, Suppl.), A75&ndash;A83.',
   },
   {
+    id: 'bakker2007',
+    html: 'Bakker, A. B., &amp; Demerouti, E. (2007). The Job Demands-Resources model: State of the art. <em>Journal of Managerial Psychology, 22</em>(3), 309&ndash;328. https://doi.org/10.1108/02683940710733115',
+  },
+  {
+    id: 'booher2003',
+    html: 'Booher, H. R. (Ed.). (2003). <em>Handbook of human systems integration</em>. John Wiley &amp; Sons.',
+  },
+  {
     id: 'caldwell2008',
     html: 'Caldwell, J. A., Caldwell, J. L., &amp; Schmidt, R. M. (2008). Alertness management strategies for operational contexts. <em>Sleep Medicine Reviews, 12</em>(4), 257&ndash;273. https://doi.org/10.1016/j.smrv.2008.01.002',
+  },
+  {
+    id: 'carayon2006',
+    html: 'Carayon, P. (2006). Human factors of complex sociotechnical systems. <em>Applied Ergonomics, 37</em>(4), 525&ndash;535. https://doi.org/10.1016/j.apergo.2006.04.011',
+  },
+  {
+    id: 'carayon2006seips',
+    html: 'Carayon, P., Schoofs Hundt, A., Karsh, B. T., Gurses, A. P., Alvarado, C. J., Smith, M., &amp; Brennan, P. F. (2006). Work system design for patient safety: The SEIPS model. <em>Quality and Safety in Health Care, 15</em>(Suppl. 1), i50&ndash;i58. https://doi.org/10.1136/qshc.2005.015842',
   },
   {
     id: 'dawson1997',
@@ -56,12 +72,20 @@ export const references: Reference[] = [
     html: 'Hockey, G. R. J. (2011). A motivational control theory of cognitive fatigue. In P. L. Ackerman (Ed.), <em>Cognitive fatigue: Multidisciplinary perspectives on current research and future applications</em> (pp. 167&ndash;187). American Psychological Association.',
   },
   {
+    id: 'holden2013',
+    html: 'Holden, R. J., Carayon, P., Gurses, A. P., Hoonakker, P., Hundt, A. S., Ozok, A. A., &amp; Rivera-Rodriguez, A. J. (2013). SEIPS 2.0: A second generation model of the systems engineering initiative for patient safety. <em>Applied Ergonomics, 44</em>(1), 166&ndash;176. https://doi.org/10.1016/j.apergo.2012.06.006',
+  },
+  {
     id: 'hollnagel2014',
     html: 'Hollnagel, E. (2014). <em>Safety-I and Safety-II: The past and future of safety management</em>. Ashgate.',
   },
   {
     id: 'hull2003',
     html: 'Hull, J. T., Wright, K. P., Jr., &amp; Czeisler, C. A. (2003). The influence of subjective alertness and motivation on human performance independent of circadian and homeostatic regulation. <em>Journal of Biological Rhythms, 18</em>(4), 329&ndash;338. https://doi.org/10.1177/0748730403253584',
+  },
+  {
+    id: 'iea2000',
+    html: 'International Ergonomics Association. (2000). <em>What is ergonomics?</em> https://iea.cc/about/what-is-ergonomics/',
   },
   {
     id: 'koy2020',
@@ -94,6 +118,18 @@ export const references: Reference[] = [
   {
     id: 'redeker2019',
     html: 'Redeker, N. S., Caruso, C. C., Hashmi, S. D., Mullington, J. M., Grandner, M., &amp; Morgenthaler, T. I. (2019). Workplace interventions to promote sleep health and an alert, healthy workforce. <em>Journal of Clinical Sleep Medicine, 15</em>(4), 649&ndash;657. https://doi.org/10.5664/jcsm.7734',
+  },
+  {
+    id: 'schaufeli2014',
+    html: 'Schaufeli, W. B., &amp; Taris, T. W. (2014). A critical review of the Job Demands-Resources model: Implications for improving work and health. In G. F. Bauer &amp; O. H&auml;mmig (Eds.), <em>Bridging occupational, organizational and public health</em> (pp. 43&ndash;68). Springer.',
+  },
+  {
+    id: 'thatcher2026',
+    html: 'Thatcher, A., et al. (2026). Ergonomics/human factors and the future of work: A global perspective. <em>Applied Ergonomics</em>.',
+  },
+  {
+    id: 'trist1951',
+    html: 'Trist, E. L., &amp; Bamforth, K. W. (1951). Some relevant social and psychological consequences of the longwall method of coal-getting. <em>Human Relations, 4</em>(1), 3&ndash;38. https://doi.org/10.1177/001872675100400101',
   },
   {
     id: 'vandongen2000',
