@@ -16,6 +16,10 @@ export const references: Reference[] = [
     html: '&Aring;kerstedt, T., Folkard, S., &amp; Portin, C. (2004). Predictions from the three-process model of alertness. <em>Aviation, Space, and Environmental Medicine, 75</em>(3, Suppl.), A75&ndash;A83.',
   },
   {
+    id: 'arvan2023',
+    html: 'Arvan, M., Valizadeh, M., &amp; Haghighat, P. (2023). <em>Linguistic cognitive load analysis on dialogues with an intelligent virtual assistant</em>. https://escholarship.org/uc/item/84z3c8v7',
+  },
+  {
     id: 'bakker2007',
     html: 'Bakker, A. B., &amp; Demerouti, E. (2007). The Job Demands-Resources model: State of the art. <em>Journal of Managerial Psychology, 22</em>(3), 309&ndash;328. https://doi.org/10.1108/02683940710733115',
   },
@@ -34,6 +38,14 @@ export const references: Reference[] = [
   {
     id: 'carayon2006seips',
     html: 'Carayon, P., Schoofs Hundt, A., Karsh, B. T., Gurses, A. P., Alvarado, C. J., Smith, M., &amp; Brennan, P. F. (2006). Work system design for patient safety: The SEIPS model. <em>Quality and Safety in Health Care, 15</em>(Suppl. 1), i50&ndash;i58. https://doi.org/10.1136/qshc.2005.015842',
+  },
+  {
+    id: 'chen2013',
+    html: 'Chen, F. (2013). <em>Effects of cognitive load on trust</em>. https://apps.dtic.mil/sti/html/tr/ADA588084/',
+  },
+  {
+    id: 'christodoulides2016',
+    html: 'Christodoulides, G. (2016). <em>Effects of cognitive load on speech production and perception</em> [Doctoral thesis]. https://www.afcp-parole.org/doc/theses/these_GC16.pdf',
   },
   {
     id: 'dawson1997',
@@ -96,6 +108,10 @@ export const references: Reference[] = [
     html: 'Leroy, S. (2009). Why is it so hard to do my work? The challenge of attention residue when switching between work tasks. <em>Organizational Behavior and Human Decision Processes, 109</em>(2), 168&ndash;181.',
   },
   {
+    id: 'macpherson2017',
+    html: 'MacPherson, M. K., Abur, D., &amp; Stepp, C. E. (2017). <em>Acoustic measures of voice and physiologic measures of autonomic arousal during speech as a function of cognitive load</em>. https://pmc.ncbi.nlm.nih.gov/articles/PMC6081741/',
+  },
+  {
     id: 'matre2021',
     html: 'Matre, D., Skogstad, M., Sterud, T., Nordby, K. C., Knardahl, S., Christensen, J. O., &amp; Lie, J. A. S. (2021). Safety incidents associated with extended working hours. A systematic review and meta-analysis. <em>Scandinavian Journal of Work, Environment &amp; Health, 47</em>(6), 415&ndash;424. https://doi.org/10.5271/sjweh.3958',
   },
@@ -116,8 +132,16 @@ export const references: Reference[] = [
     html: 'Petruo, V. A., M&uuml;ckschel, M., &amp; Beste, C. (2018). On the role of the prefrontal cortex in fatigue effects on cognitive flexibility &ndash; a system neurophysiological approach. <em>Scientific Reports, 8</em>, Article 6395. https://doi.org/10.1038/s41598-018-24834-w',
   },
   {
+    id: 'pyfrom2023',
+    html: 'Pyfrom, M., Lister, J., &amp; Anand, S. (2023). <em>Influence of cognitive load on voice production: A scoping review</em>. https://www.sciencedirect.com/science/article/pii/S0892199723002710',
+  },
+  {
     id: 'redeker2019',
     html: 'Redeker, N. S., Caruso, C. C., Hashmi, S. D., Mullington, J. M., Grandner, M., &amp; Morgenthaler, T. I. (2019). Workplace interventions to promote sleep health and an alert, healthy workforce. <em>Journal of Clinical Sleep Medicine, 15</em>(4), 649&ndash;657. https://doi.org/10.5664/jcsm.7734',
+  },
+  {
+    id: 'reif2014',
+    html: 'Reif, A. (2014). <em>Self-regulatory depletion effects on speed within a complex speech processing task</em> [Doctoral dissertation]. https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=bgsu1400183863&amp;disposition=inline',
   },
   {
     id: 'schaufeli2014',
@@ -128,12 +152,20 @@ export const references: Reference[] = [
     html: 'Thatcher, A., et al. (2026). Ergonomics/human factors and the future of work: A global perspective. <em>Applied Ergonomics</em>.',
   },
   {
+    id: 'tomassi2025',
+    html: 'Tomassi, N. E., Turashvili, D. M., &amp; Williams, A. (2025). Investigating cognitive load and autonomic arousal during voice production and vocal auditory-motor adaptation. <em>Journal of Speech, Language, and Hearing Research</em>. https://sites.bu.edu/stepplab/files/2025/04/JSL6804_Tomassi.pdf',
+  },
+  {
     id: 'trist1951',
     html: 'Trist, E. L., &amp; Bamforth, K. W. (1951). Some relevant social and psychological consequences of the longwall method of coal-getting. <em>Human Relations, 4</em>(1), 3&ndash;38. https://doi.org/10.1177/001872675100400101',
   },
   {
     id: 'vandongen2000',
     html: 'Van Dongen, H. P. A., &amp; Dinges, D. F. (2000). Circadian rhythms in fatigue, alertness, and performance. In M. H. Kryger, T. Roth, &amp; W. C. Dement (Eds.), <em>Principles and practice of sleep medicine</em> (3rd ed., pp. 391&ndash;399). W. B. Saunders.',
+  },
+  {
+    id: 'vohs2005',
+    html: 'Vohs, K. D., &amp; Baumeister, R. F. (2005). <em>Self-regulation and self-presentation: Regulatory resource depletion impairs impression management and effortful self-presentation depletes regulatory resources</em>. http://www.communicationcache.com/uploads/1/0/8/8/10887248/self-regulation_and_self-presentation-_regulatory_resource_depletion_impairs_impression_management_and_effortful_self-presentation_depletes_regulatory_resources.pdf',
   },
   {
     id: 'vonderlin2023',
