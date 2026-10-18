@@ -24,6 +24,15 @@ export const DRIVERS: Driver[] = [
     ],
   },
   {
+    id: 'switching',
+    label: 'Task switching',
+    title: 'Switching between tasks has a cost, and time on task adds to it',
+    findings: [
+      { text: 'Switching from one task to another consistently slows reaction times and raises the chance of errors straight after the switch (Hinss et al., 2023, summarising earlier task-switching research).', kind: 'Background from a registered report protocol' },
+      { text: 'In 34 healthy adults, task switching got worse the longer they worked on the task, mostly when working memory was also needed (Petruo et al., 2018).', kind: 'Experiment, 34 adults' },
+    ],
+  },
+  {
     id: 'interruptions',
     label: 'Interruptions and time pressure',
     title: 'Distraction and time stress get in the way of safe handover',

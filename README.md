@@ -53,7 +53,7 @@ _templates/         the original Claude Design exports, for reference only (not 
 ## Key design decisions
 - **Dark mode throughout.** The client liked the dark concepts. Night-shift theme: the site "lives" at night.
 - **Clock/hours motif** is the core idea. Section labels use times (`02:00 · the circadian low`, `06:00 · handover`), steps use timestamps (`00:00`, `00:05`), timelines use years/days in a left margin. Use this sparingly but consistently.
-- **Problem-focused headlines** (client preference, from concept 1c): e.g. "Fewer fatigue incidents. Lower turnover. Steadier shifts."
+- **Problem-focused headlines** (client preference, from concept 1c): e.g. "Work designed so people stay safe, stay well and stay."
 - **Interactive teaching moments**: problem tick-list with live count + verdict; hours-awake slider (Dawson & Reid, *Nature*, 1997: 17h ≈ 0.05% BAC, 24h ≈ 0.10%); clickable 24-hour alertness curve (illustrative); rota builder with simplified flag rules.
 - **Left-margin layout** for reading sections (label in a ~200px column, content max ~720px) — borrowed from the 2b "logbook" concept.
 - Resources = cards (things you use); Articles = editorial list (things you read). Kept deliberately different.
