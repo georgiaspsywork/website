@@ -16,5 +16,5 @@ inside: [{"title": "Quick returns", "body": "Less than 11 hours between the end 
 stepsTitle: "Five minutes, three steps"
 steps: [{"stamp": "00:00", "title": "Start from the example", "body": "Four crews, one week. It already has three flags in it."}, {"stamp": "00:02", "title": "Copy in your own week", "body": "Click cells to match a real pattern from one of your sites."}, {"stamp": "00:05", "title": "Read your flags", "body": "Each flag names the crew and the day. Three or more is a pattern worth looking at."}]
 note: {"label": "Why we made this", "quote": "Most rotas I review are compliant. Very few have been checked for how tired people will actually be. This builder is the first five minutes of that check.", "by": "Georgia Hodkinson GMBPsS"}
-related: ["what-04-00-does-to-decision-making", "shift-handover-template", "rota-red-flags"]
+related: ["rota-red-flags"]
 ---
