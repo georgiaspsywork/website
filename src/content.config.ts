@@ -5,7 +5,7 @@ import { z } from 'astro/zod';
 // Articles: one .mdx file per article in src/content/articles.
 const articles = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/articles' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     /** Headline. Wrap a word in *asterisks* for the italic emphasis. */
     title: z.string(),
     /** One or two sentences shown in lists and under the headline. */
@@ -16,6 +16,10 @@ const articles = defineCollection({
     author: z.string().default('Georgia Hodkinson GMBPsS'), // see src/data/site.ts
     /** Describes the missing lead photo while it is a placeholder, e.g. "Depot at night". */
     imageNote: z.string().optional(),
+    /** Lead photo (from src/assets/images, shrunk with scripts/optimise-images.mjs), with its description and optional caption. */
+    image: image().optional(),
+    imageAlt: z.string().optional(),
+    imageCaption: z.string().optional(),
     /** The article featured at the top of the articles page. */
     lead: z.boolean().default(false),
     /** Draft articles are not built or listed. */

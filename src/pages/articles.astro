@@ -7,6 +7,7 @@ import ArticleRow from '../components/ArticleRow.astro';
 import NewsletterBand from '../components/NewsletterBand.astro';
 import Arrow from '../components/Arrow.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import Photo from '../components/Photo.astro';
 import { longDate, plain } from '../lib/format';
 import { orderedTopics } from '../lib/topics';
 import { site } from '../data/site';
@@ -33,7 +34,11 @@ const rest = all.filter((a) => a !== lead);
           href={`/articles/${lead.id}`}
           class="grid items-center gap-x-16 gap-y-8 text-ink hover:text-ink md:grid-cols-2"
         >
-          <ImagePlaceholder label={`Lead image${lead.data.imageNote ? ` — ${lead.data.imageNote}` : ''}`} ratio="3/2" />
+          {lead.data.image ? (
+            <Photo src={lead.data.image} alt={lead.data.imageAlt ?? ''} ratio="3/2" loading="eager" class="object-[60%_50%]" />
+          ) : (
+            <ImagePlaceholder label={`Lead image${lead.data.imageNote ? ` — ${lead.data.imageNote}` : ''}`} ratio="3/2" />
+          )}
           <div class="flex flex-col gap-4.5">
             <div class="flex flex-wrap gap-x-5 gap-y-2.5 text-xs tracking-label uppercase">
               <span class="text-amber">Latest</span>

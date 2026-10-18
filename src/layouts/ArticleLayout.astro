@@ -3,6 +3,7 @@ import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import Photo from '../components/Photo.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import { longDate, plain, withEm } from '../lib/format';
 
@@ -12,7 +13,7 @@ interface Props {
   related: CollectionEntry<'articles'>[];
 }
 const { article, headings, related } = Astro.props;
-const { title, dek, date, topic, readMinutes, author, placeholder, imageNote } = article.data;
+const { title, dek, date, topic, readMinutes, author, placeholder, imageNote, image, imageAlt, imageCaption } = article.data;
 const toc = headings.filter((h) => h.depth === 2);
 ---
 
@@ -34,8 +35,19 @@ const toc = headings.filter((h) => h.depth === 2);
 
   {/* Lead image */}
   <section class="flex flex-col gap-3 px-gutter pb-section-sm">
-    <ImagePlaceholder label={`Lead image${imageNote ? ` — ${imageNote}` : ''}`} ratio="21/9" />
-    <span class="text-xs text-faint">Caption or credit sits here.</span>
+    {
+      image ? (
+        <>
+          <Photo src={image} alt={imageAlt ?? ''} ratio="21/9" loading="eager" sizes="100vw" class="object-[50%_25%]" />
+          {imageCaption && <span class="text-xs text-faint">{imageCaption}</span>}
+        </>
+      ) : (
+        <>
+          <ImagePlaceholder label={`Lead image${imageNote ? ` — ${imageNote}` : ''}`} ratio="21/9" />
+          <span class="text-xs text-faint">Caption or credit sits here.</span>
+        </>
+      )
+    }
   </section>
 
   {/* Article body */}
