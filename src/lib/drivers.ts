@@ -82,6 +82,8 @@ export const DRIVERS: Driver[] = [
       { text: 'Working more than 12 hours a day was linked to a higher risk of safety incidents (relative risk 1.24), though the certainty of the evidence was low (Matre et al., 2021).', kind: 'Meta-analysis, low certainty' },
       { text: 'An estimated 488 million people, 8.9% of the world population, worked 55 hours or more a week in 2016. Long hours were linked to an estimated 745,194 deaths from heart disease and stroke (Pega et al., 2021).', kind: 'WHO/ILO modelling' },
       { text: 'Comparisons of 8-hour and 12-hour shifts showed no clear advantage either way, and the evidence quality was low (Patterson et al., 2018).', kind: 'Systematic review, low quality' },
+      { text: 'In interviews with 55 night-shift union members, recovery time after nights was often not built into rosters and ate into days off (Moore & Ballardie, 2024).', kind: 'Interviews, 55 workers' },
+      { text: 'Workers often drove home after night shifts, some for over two hours, and reported traffic accidents or near misses (Moore & Ballardie, 2024).', kind: 'Interviews, 55 workers' },
       { text: 'Intensive care nurses in Cambodia working 24-hour shifts described exhaustion and care left undone (Koy et al., 2020).', kind: 'Focus groups, 30 nurses' },
     ],
   },

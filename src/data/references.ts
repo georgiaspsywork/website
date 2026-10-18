@@ -200,6 +200,10 @@ export const references: Reference[] = [
     html: 'Moore-Ede, M. (2012). Evolution of fatigue risk management systems: The &ldquo;FRMS Evolution Pyramid&rdquo;. <em>Industrial Health, 50</em>(4), 303&ndash;306.',
   },
   {
+    id: 'moore2024',
+    html: 'Moore, S., &amp; Ballardie, R. (2024). <em>The health and safety impacts of night working</em> [Research report]. Anglia Ruskin University and University of Greenwich.',
+  },
+  {
     id: 'murre2015',
     html: 'Murre, J. M. J., &amp; Dros, J. (2015). Replication and analysis of Ebbinghaus&rsquo; forgetting curve. <em>PLOS ONE, 10</em>(7), Article e0120644.',
   },
