@@ -38,6 +38,8 @@ _templates/         the original Claude Design exports, for reference only (not 
 | --- | --- | --- |
 | `/` | `src/pages/index.astro` | Home: hero, problem tick-list, hours-awake slider, what drives fatigue, evidence tiles, three pressures, Georgia bio, closing statement, note from Georgia |
 | `/about` | `src/pages/about.astro` | About Georgia: story, career timeline, principles, credentials, client quote |
+| `/services` | `src/pages/services.astro` | Services: the 8-factor fatigue model (interactive) and four service cards. Pricing is "get in touch" for now |
+| `/pie` | `src/pages/pie.astro` | People Insights Exchange events page. Links, booking button and programme live in `src/data/pie.ts` |
 | `/resources` | `src/pages/resources.astro` | Resource library: featured resource, filterable cards |
 | `/resources/<slug>` | `src/content/resources/<slug>.md` | One page per resource (standard layout). Resources with a bespoke page set `href` |
 | `/resources/rota-builder` | `src/pages/resources/rota-builder.astro` | Interactive rota fatigue builder |

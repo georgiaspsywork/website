@@ -3,17 +3,25 @@ import Chip from './Chip.astro';
 import Eyebrow from './Eyebrow.astro';
 import { DRIVERS } from '../lib/drivers';
 
-// "What drives fatigue": pick a factor, see what the research says about it. Every panel is in the page HTML;
+// The 8-factor fatigue model: pick a factor, see what it covers and what the research says. Every panel is in the page HTML;
 // the script only shows one at a time. Data lives in src/lib/drivers.ts.
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+}
+const {
+  eyebrow = '03:00 · what drives fatigue',
+  title = 'Fatigue has more than one cause',
+  intro = 'Working patterns are one of eight factors. Choose a factor to see what it covers, what the research says and how strong the evidence is.',
+} = Astro.props;
 ---
 
 <section class="flex flex-col gap-10 px-gutter pt-section-sm pb-section" data-drivers>
   <div class="flex max-w-[820px] flex-col gap-4.5">
-    <Eyebrow>03:00 · what drives fatigue</Eyebrow>
-    <h2 class="text-title-lg leading-title tracking-heading">Fatigue has more than one cause</h2>
-    <p class="text-xl leading-body text-ink-soft text-pretty">
-      Shift patterns are one. Choose a factor to see what the research says, and how strong the evidence is.
-    </p>
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <h2 class="text-title-lg leading-title tracking-heading">{title}</h2>
+    <p class="text-xl leading-body text-ink-soft text-pretty">{intro}</p>
   </div>
   <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-4" role="group" aria-label="Factors that drive fatigue">
     {DRIVERS.map((d, i) => <Chip pressed={i === 0} data-driver={d.id} class="flex items-center justify-center text-center">{d.label}</Chip>)}
@@ -22,7 +30,10 @@ import { DRIVERS } from '../lib/drivers';
     {
       DRIVERS.map((d, i) => (
         <div hidden={i !== 0} data-panel={d.id} class="flex max-w-[820px] flex-col gap-7 border-t border-line pt-8">
-          <h3 class="text-5xl leading-heading font-normal text-ink-bright">{d.title}</h3>
+          <div class="flex flex-col gap-2.5">
+            <p class="text-sm tracking-label text-amber uppercase">{d.covers}</p>
+            <h3 class="text-5xl leading-heading font-normal text-ink-bright">{d.title}</h3>
+          </div>
           <ul class="flex list-none flex-col gap-6">
             {d.findings.map((f) => (
               <li class="flex flex-col gap-1.5">

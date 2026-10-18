@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Button from '../components/Button.astro';
+import FatigueDrivers from '../components/FatigueDrivers.astro';
+
+const services = [
+  {
+    id: 'diagnostic',
+    title: 'Fatigue Risk Diagnostic',
+    audience: "For organisations that suspect fatigue is a problem but don't know exactly where or why.",
+    what: 'A structured assessment of fatigue risk across your operation.',
+    listLabel: 'Includes',
+    list: [
+      'Workforce fatigue survey',
+      'Stakeholder interviews and focus groups',
+      'Working-pattern review',
+      'Incident, absence and overtime data review',
+      'Assessment against our 8-factor fatigue model',
+      'Risk hotspots and prioritised recommendations',
+    ],
+  },
+  {
+    id: 'audit',
+    title: 'Fatigue & Human Factors Audit',
+    audience: 'For organisations wanting a deeper assessment of how fatigue is being controlled.',
+    what: 'We review the system, looking at rota design, actual hours, overtime, on-call activity, recovery, workload, staffing, handovers, reporting, escalation, culture, incident investigation and management.',
+    listLabel: 'Output',
+    list: ['RAG-rated audit', 'Risk register', 'Control gaps', 'Improvement roadmap'],
+  },
+  {
+    id: 'review',
+    title: 'Shift, Rota & On-Call Review',
+    audience: 'What does the rota say, and what are people actually working?',
+    what: 'We review planned versus real working patterns, then provide practical options for redesign. Particularly valuable in service operations.',
+    listLabel: 'We look at',
+    list: [
+      'Scheduled hours and night work',
+      'Consecutive duties and overtime',
+      'Call-outs and sleep disruption',
+      'Short recovery periods and shift swaps',
+      'Travel and commuting considerations',
+      'Workload after disrupted nights',
+    ],
+  },
+  {
+    id: 'training',
+    title: 'Fatigue Capability & Manager Training',
+    audience: 'Managing Fatigue in Operational Teams',
+    what: 'Managers learn how to identify fatigue risk, have fatigue conversations, assess immediate operational risk, respond after disrupted on-call nights, escalate concerns, understand their responsibilities and distinguish individual tiredness from systemic fatigue risk.',
+    listLabel: 'Three levels',
+    list: ['Frontline awareness', 'Manager capability', 'Senior leader masterclass'],
+  },
+];
+---
+
+<BaseLayout
+  title="Fatigue and human factors services · Georgia's PsyWork"
+  description="Fatigue risk diagnostics, human factors audits, shift and on-call reviews and manager training for shift, on-call and high-demand operations."
+>
+  <PageHero
+    eyebrow="Services"
+    title="Fatigue &amp; human <em>factors.</em>"
+    intro="Reduce the cost of fatigue. We help organisations with shift, on-call and high-demand workers identify where fatigue is increasing the risk of incidents, errors, absence and turnover, and redesign the conditions creating it."
+  >
+    <div class="flex flex-wrap gap-4 pt-2">
+      <Button href="/contact" variant="brand">Get in touch</Button>
+      <Button href="#services" variant="outline">See the four services</Button>
+    </div>
+  </PageHero>
+
+  {/* The model */}
+  <FatigueDrivers
+    eyebrow="Our approach"
+    title="The 8-factor fatigue model"
+    intro="Fatigue at work rarely has a single cause. We assess eight factors, from sleep and recovery to culture and management. Choose a factor to see what it covers and what the research says."
+  />
+
+  {/* Services */}
+  <Section id="services" tone="deep" class="flex scroll-mt-12 flex-col gap-14">
+    <SectionHeader eyebrow="How we can help" title="Four ways to work together" tone="amber" />
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-8">
+      {
+        services.map((s, i) => (
+          <article id={s.id} class="flex flex-col gap-6 rounded-sm border border-line-soft bg-surface p-[clamp(24px,3.5vw,40px)]">
+            <div class="flex flex-col gap-3">
+              <Eyebrow tone="amber">{String(i + 1).padStart(2, '0')}</Eyebrow>
+              <h3 class="text-title leading-title tracking-heading text-ink-bright">{s.title}</h3>
+              <p class="text-xl leading-body text-mint italic text-pretty">{s.audience}</p>
+            </div>
+            <p class="text-lg leading-prose text-pretty text-muted">{s.what}</p>
+            <div class="flex flex-col gap-3">
+              <Eyebrow tone="soft" size="xs">{s.listLabel}</Eyebrow>
+              <ul class="flex list-none flex-col border-b border-line *:border-t *:border-line">
+                {s.list.map((item) => <li class="py-2.5 text-lg text-ink-soft">{item}</li>)}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* Closing call to action */}
+  <Section gutter="reading" class="flex flex-col items-start gap-7">
+    <h2 class="max-w-[14em] text-display leading-display tracking-display text-balance">Not sure where to start? <em>Let&rsquo;s talk it through.</em></h2>
+    <p class="max-w-[34em] text-xl leading-prose text-pretty text-muted">
+      Get in touch for a conversation about what you are seeing in your operation. We can recommend the right starting point.
+    </p>
+    <Button href="/contact" variant="brand">Get in touch</Button>
+  </Section>
+</BaseLayout>
