@@ -88,12 +88,20 @@ export const references: Reference[] = [
     html: 'Galy, E., M&eacute;lan, C., &amp; Cariou, M. (2008). Investigation of task performance variations according to task requirements and alertness across the 24-h day in shift workers. <em>Ergonomics, 51</em>(9), 1338&ndash;1351.',
   },
   {
+    id: 'gander2011',
+    html: 'Gander, P., Hartley, L., Powell, D., Cabon, P., Hitchcock, E., Mills, A., &amp; Popkin, S. (2011). Fatigue risk management: Organizational factors at the regulatory and industry/company level. <em>Accident Analysis &amp; Prevention, 43</em>(2), 573&ndash;590.',
+  },
+  {
     id: 'hse',
     html: 'Health and Safety Executive. (n.d.). <em>Fatigue</em>. Retrieved October 17, 2026, from https://www.hse.gov.uk/humanfactors/topics/fatigue.htm',
   },
   {
     id: 'hse2006',
     html: 'Health and Safety Executive. (2006). <em>Managing shift work: Health and safety guidance</em> (HSG256). HSE Books.',
+  },
+  {
+    id: 'hse2023',
+    html: 'Health and Safety Executive. (2023). <em>Managing fatigue in the workplace</em>.',
   },
   {
     id: 'hinss2023',
@@ -156,6 +164,10 @@ export const references: Reference[] = [
     html: 'Matre, D., Skogstad, M., Sterud, T., Nordby, K. C., Knardahl, S., Christensen, J. O., &amp; Lie, J. A. S. (2021). Safety incidents associated with extended working hours. A systematic review and meta-analysis. <em>Scandinavian Journal of Work, Environment &amp; Health, 47</em>(6), 415&ndash;424. https://doi.org/10.5271/sjweh.3958',
   },
   {
+    id: 'mooreede2012',
+    html: 'Moore-Ede, M. (2012). Evolution of fatigue risk management systems: The &ldquo;FRMS Evolution Pyramid&rdquo;. <em>Industrial Health, 50</em>(4), 303&ndash;306.',
+  },
+  {
     id: 'nickerson1998',
     html: 'Nickerson, R. S. (1998). Confirmation bias: A ubiquitous phenomenon in many guises. <em>Review of General Psychology, 2</em>(2), 175&ndash;220.',
   },
@@ -186,6 +198,10 @@ export const references: Reference[] = [
   {
     id: 'reason1990',
     html: 'Reason, J. (1990). <em>Human error</em>. Cambridge University Press.',
+  },
+  {
+    id: 'reason1997',
+    html: 'Reason, J. (1997). <em>Managing the risks of organizational accidents</em>. Ashgate.',
   },
   {
     id: 'reason2006',
@@ -220,6 +236,10 @@ export const references: Reference[] = [
     html: 'Trist, E. L., &amp; Bamforth, K. W. (1951). Some relevant social and psychological consequences of the longwall method of coal-getting. <em>Human Relations, 4</em>(1), 3&ndash;38. https://doi.org/10.1177/001872675100400101',
   },
   {
+    id: 'tversky1974',
+    html: 'Tversky, A., &amp; Kahneman, D. (1974). Judgment under uncertainty: Heuristics and biases. <em>Science, 185</em>(4157), 1124&ndash;1131.',
+  },
+  {
     id: 'vandongen2000',
     html: 'Van Dongen, H. P. A., &amp; Dinges, D. F. (2000). Circadian rhythms in fatigue, alertness, and performance. In M. H. Kryger, T. Roth, &amp; W. C. Dement (Eds.), <em>Principles and practice of sleep medicine</em> (3rd ed., pp. 391&ndash;399). W. B. Saunders.',
   },
@@ -238,5 +258,9 @@ export const references: Reference[] = [
   {
     id: 'whelehan2026',
     html: 'Whelehan, D. F., &amp; Ridgway, P. F. (2026). Designing the work week in healthcare: A systems agenda for safer, sustainable work. <em>BMJ Open Quality, 15</em>(3), Article e004272. https://doi.org/10.1136/bmjoq-2026-004272',
+  },
+  {
+    id: 'williamson2000',
+    html: 'Williamson, A., &amp; Feyer, A.-M. (2000). Moderate sleep deprivation produces impairments in cognitive and motor performance equivalent to legally prescribed levels of alcohol intoxication. <em>Occupational and Environmental Medicine, 57</em>(10), 649&ndash;655.',
   },
 ];
