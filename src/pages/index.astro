@@ -13,6 +13,7 @@ import StepGrid from '../components/StepGrid.astro';
 import Step from '../components/Step.astro';
 import MarginSection from '../components/MarginSection.astro';
 import Photo from '../components/Photo.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import portrait from '../assets/images/georgia-workshop-portrait.webp';
 
 const checklist = [
@@ -108,10 +109,14 @@ const verdicts = [
 {/* Note from Georgia */}
 {/* Note from Georgia */}
 <MarginSection label="A note from Georgia" class="text-prose">
+  <ImagePlaceholder slot="aside" label="GEORGIA — HEADSHOT" ratio="4/5" class="max-w-[200px]" />
   <div class="flex flex-col gap-5.5 text-ink-soft text-2xl leading-loose">
-    <p>Placeholder: a short letter to the operations director, in Georgia's own voice. Why fatigue keeps being treated as a personal failing on the night shift, and why it's really about how the work is designed.</p>
+    <p class="text-lead-xl leading-quote text-ink italic text-pretty">&ldquo;I kept meeting capable people who were being blamed for mistakes their shift pattern made almost inevitable.&rdquo;</p>
     <p>We help organisations reduce staff turnover and sickness absence by fixing the work conditions that drive burnout, fatigue, and misuse of AI.</p>
-    <p class="italic text-4xl text-prose">Georgia Hodkinson GMBPsS</p>
+    <div class="flex flex-col gap-1.5">
+      <p class="italic text-4xl text-prose">Georgia Hodkinson GMBPsS</p>
+      <p class="text-lg leading-body text-soft">Organisational psychologist, Leicestershire. MSc Occupational Psychology; working towards BPS Stage 2 chartership.</p>
+    </div>
   </div>
 </MarginSection>
 </BaseLayout>
