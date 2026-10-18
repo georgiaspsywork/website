@@ -6,6 +6,8 @@ import SectionHeader from '../components/SectionHeader.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import Button from '../components/Button.astro';
 import FatigueDrivers from '../components/FatigueDrivers.astro';
+import Photo from '../components/Photo.astro';
+import headshot from '../assets/images/georgia-headshot.webp';
 
 const services = [
   {
@@ -105,11 +107,14 @@ const services = [
   </Section>
 
   {/* Closing call to action */}
-  <Section gutter="reading" class="flex flex-col items-start gap-7">
-    <h2 class="max-w-[14em] text-display leading-display tracking-display text-balance">Not sure where to start? <em>Let&rsquo;s talk it through.</em></h2>
-    <p class="max-w-[34em] text-xl leading-prose text-pretty text-muted">
-      Get in touch for a conversation about what you are seeing in your operation. We can recommend the right starting point.
-    </p>
-    <Button href="/contact" variant="brand">Get in touch</Button>
+  <Section gutter="reading" class="grid items-center gap-x-16 gap-y-10 md:grid-cols-[minmax(0,1fr)_300px]">
+    <div class="flex flex-col items-start gap-7">
+      <h2 class="max-w-[14em] text-display leading-display tracking-display text-balance">Not sure where to start? <em>Let&rsquo;s talk it through.</em></h2>
+      <p class="max-w-[34em] text-xl leading-prose text-pretty text-muted">
+        Get in touch for a conversation about what you are seeing in your operation. We can recommend the right starting point.
+      </p>
+      <Button href="/contact" variant="brand">Get in touch</Button>
+    </div>
+    <Photo src={headshot} alt="Georgia Hodkinson, smiling, in a mustard polo-neck jumper" ratio="4/5" sizes="(min-width: 768px) 300px, 70vw" class="max-w-[300px]" />
   </Section>
 </BaseLayout>
