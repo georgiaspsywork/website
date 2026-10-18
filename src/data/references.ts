@@ -28,6 +28,14 @@ export const references: Reference[] = [
     html: 'Booher, H. R. (Ed.). (2003). <em>Handbook of human systems integration</em>. John Wiley &amp; Sons.',
   },
   {
+    id: 'boschetti2022',
+    html: 'Boschetti, G., Faccio, M., &amp; Granata, I. (2022). Human-centered design for productivity and safety in collaborative robots cells: A new methodological approach. <em>Electronics, 12</em>(1), 167.',
+  },
+  {
+    id: 'boy2017',
+    html: 'Boy, G. A. (2017). Human-centered design of complex systems: An experience-based approach. <em>Design Science, 3</em>, Article e8.',
+  },
+  {
     id: 'caldwell2008',
     html: 'Caldwell, J. A., Caldwell, J. L., &amp; Schmidt, R. M. (2008). Alertness management strategies for operational contexts. <em>Sleep Medicine Reviews, 12</em>(4), 257&ndash;273. https://doi.org/10.1016/j.smrv.2008.01.002',
   },
@@ -40,6 +48,10 @@ export const references: Reference[] = [
     html: 'Carayon, P., Schoofs Hundt, A., Karsh, B. T., Gurses, A. P., Alvarado, C. J., Smith, M., &amp; Brennan, P. F. (2006). Work system design for patient safety: The SEIPS model. <em>Quality and Safety in Health Care, 15</em>(Suppl. 1), i50&ndash;i58. https://doi.org/10.1136/qshc.2005.015842',
   },
   {
+    id: 'carayon2014',
+    html: 'Carayon, P., Wetterneck, T. B., Rivera-Rodriguez, A. J., Hundt, A. S., Hoonakker, P., Holden, R., &amp; Gurses, A. P. (2014). Human factors systems approach to healthcare quality and patient safety. <em>Applied Ergonomics, 45</em>(1), 14&ndash;25.',
+  },
+  {
     id: 'chen2013',
     html: 'Chen, F. (2013). <em>Effects of cognitive load on trust</em>. https://apps.dtic.mil/sti/html/tr/ADA588084/',
   },
@@ -50,6 +62,14 @@ export const references: Reference[] = [
   {
     id: 'dawson1997',
     html: 'Dawson, D., &amp; Reid, K. (1997). Fatigue, alcohol and performance impairment. <em>Nature, 388</em>(6639), 235. https://doi.org/10.1038/40775',
+  },
+  {
+    id: 'edmondson1999',
+    html: 'Edmondson, A. (1999). Psychological safety and learning behavior in work teams. <em>Administrative Science Quarterly, 44</em>(2), 350&ndash;383.',
+  },
+  {
+    id: 'endsley1995',
+    html: 'Endsley, M. R., &amp; Kiris, E. O. (1995). The out-of-the-loop performance problem and level of control in automation. <em>Human Factors, 37</em>(2), 381&ndash;394.',
   },
   {
     id: 'fischer2017',
@@ -108,8 +128,16 @@ export const references: Reference[] = [
     html: 'Leroy, S. (2009). Why is it so hard to do my work? The challenge of attention residue when switching between work tasks. <em>Organizational Behavior and Human Decision Processes, 109</em>(2), 168&ndash;181.',
   },
   {
+    id: 'lyon2020',
+    html: 'Lyon, A. R., Brewer, S. K., &amp; Are&aacute;n, P. A. (2020). Leveraging human-centered design to implement modern psychological science: Return on an early investment. <em>American Psychologist, 75</em>(8), 1067.',
+  },
+  {
     id: 'macpherson2017',
     html: 'MacPherson, M. K., Abur, D., &amp; Stepp, C. E. (2017). <em>Acoustic measures of voice and physiologic measures of autonomic arousal during speech as a function of cognitive load</em>. https://pmc.ncbi.nlm.nih.gov/articles/PMC6081741/',
+  },
+  {
+    id: 'margetis2021',
+    html: 'Margetis, G., Ntoa, S., Antona, M., &amp; Stephanidis, C. (2021). Human-centered design of artificial intelligence. In G. Salvendy &amp; W. Karwowski (Eds.), <em>Handbook of human factors and ergonomics</em> (5th ed., pp. 1085&ndash;1106). Wiley.',
   },
   {
     id: 'matre2021',
@@ -128,12 +156,24 @@ export const references: Reference[] = [
     html: 'Pega, F., N&aacute;fr&aacute;di, B., Momen, N. C., Ujita, Y., Streicher, K. N., Pr&uuml;ss-&Uuml;st&uuml;n, A. M., Technical Advisory Group, Descatha, A., Driscoll, T., Fischer, F. M., Godderis, L., Kiiver, H. M., Li, J., Magnusson Hanson, L. L., Rugulies, R., S&oslash;rensen, K., &amp; Woodruff, T. J. (2021). Global, regional, and national burdens of ischemic heart disease and stroke attributable to exposure to long working hours for 194 countries, 2000&ndash;2016: A systematic analysis from the WHO/ILO Joint Estimates of the Work-related Burden of Disease and Injury. <em>Environment International, 154</em>, Article 106595. https://doi.org/10.1016/j.envint.2021.106595',
   },
   {
+    id: 'perkins2010',
+    html: 'Perkins, L., Miller, J. E., Hashemi, A., &amp; Burns, G. (2010). Designing for human-centered systems: Situational risk as a factor of trust in automation. <em>Proceedings of the Human Factors and Ergonomics Society Annual Meeting, 54</em>(25), 2130&ndash;2134. SAGE Publications.',
+  },
+  {
     id: 'petruo2018',
     html: 'Petruo, V. A., M&uuml;ckschel, M., &amp; Beste, C. (2018). On the role of the prefrontal cortex in fatigue effects on cognitive flexibility &ndash; a system neurophysiological approach. <em>Scientific Reports, 8</em>, Article 6395. https://doi.org/10.1038/s41598-018-24834-w',
   },
   {
     id: 'pyfrom2023',
     html: 'Pyfrom, M., Lister, J., &amp; Anand, S. (2023). <em>Influence of cognitive load on voice production: A scoping review</em>. https://www.sciencedirect.com/science/article/pii/S0892199723002710',
+  },
+  {
+    id: 'reason1990',
+    html: 'Reason, J. (1990). <em>Human error</em>. Cambridge University Press.',
+  },
+  {
+    id: 'reason2006',
+    html: 'Reason, J., Hollnagel, E., &amp; Pari&egrave;s, J. (2006). Revisiting the Swiss cheese model of accidents. <em>Journal of Clinical Engineering, 27</em>(4), 110&ndash;115.',
   },
   {
     id: 'redeker2019',
@@ -146,6 +186,10 @@ export const references: Reference[] = [
   {
     id: 'schaufeli2014',
     html: 'Schaufeli, W. B., &amp; Taris, T. W. (2014). A critical review of the Job Demands-Resources model: Implications for improving work and health. In G. F. Bauer &amp; O. H&auml;mmig (Eds.), <em>Bridging occupational, organizational and public health</em> (pp. 43&ndash;68). Springer.',
+  },
+  {
+    id: 'shneiderman2020',
+    html: 'Shneiderman, B. (2020). Human-centered artificial intelligence: Reliable, safe &amp; trustworthy. <em>International Journal of Human&ndash;Computer Interaction, 36</em>(6), 495&ndash;504.',
   },
   {
     id: 'thatcher2026',
@@ -162,6 +206,10 @@ export const references: Reference[] = [
   {
     id: 'vandongen2000',
     html: 'Van Dongen, H. P. A., &amp; Dinges, D. F. (2000). Circadian rhythms in fatigue, alertness, and performance. In M. H. Kryger, T. Roth, &amp; W. C. Dement (Eds.), <em>Principles and practice of sleep medicine</em> (3rd ed., pp. 391&ndash;399). W. B. Saunders.',
+  },
+  {
+    id: 'visciola2025',
+    html: 'Visci&ograve;la, M. (2025). Rethinking human-centered design: From automation to sustainable innovation. <em>Interactions, 32</em>(4), 22&ndash;27.',
   },
   {
     id: 'vohs2005',
