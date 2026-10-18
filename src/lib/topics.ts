@@ -1,5 +1,5 @@
 /** Article topics in the order the filter chips appear. Topics not listed here follow, alphabetically. */
-const PREFERRED = ['Fatigue', 'Retention', 'Change', 'AI'];
+const PREFERRED = ['Fatigue', 'Cognitive Load', 'Communication', 'Human Factors', 'Performance', 'The Human Shortcut Series'];
 
 export function orderedTopics(used: string[]): string[] {
   const unique = [...new Set(used)];
