@@ -16,6 +16,10 @@ export const references: Reference[] = [
     html: '&Aring;kerstedt, T., Folkard, S., &amp; Portin, C. (2004). Predictions from the three-process model of alertness. <em>Aviation, Space, and Environmental Medicine, 75</em>(3, Suppl.), A75&ndash;A83.',
   },
   {
+    id: 'amabile2011',
+    html: 'Amabile, T., &amp; Kramer, S. (2011). <em>The progress principle: Using small wins to ignite joy, engagement, and creativity at work</em>. Harvard Business Review Press.',
+  },
+  {
     id: 'arvan2023',
     html: 'Arvan, M., Valizadeh, M., &amp; Haghighat, P. (2023). <em>Linguistic cognitive load analysis on dialogues with an intelligent virtual assistant</em>. https://escholarship.org/uc/item/84z3c8v7',
   },
@@ -152,6 +156,10 @@ export const references: Reference[] = [
     html: 'Leroy, S. (2009). Why is it so hard to do my work? The challenge of attention residue when switching between work tasks. <em>Organizational Behavior and Human Decision Processes, 109</em>(2), 168&ndash;181.',
   },
   {
+    id: 'locke2002',
+    html: 'Locke, E. A., &amp; Latham, G. P. (2002). Building a practically useful theory of goal setting and task motivation: A 35-year odyssey. <em>American Psychologist, 57</em>(9), 705&ndash;717.',
+  },
+  {
     id: 'ly2021',
     html: 'Ly, D. P. (2021). The influence of the availability heuristic on physicians in the emergency department. <em>Annals of Emergency Medicine, 78</em>(5), 650&ndash;657.',
   },
@@ -224,12 +232,20 @@ export const references: Reference[] = [
     html: 'Reif, A. (2014). <em>Self-regulatory depletion effects on speed within a complex speech processing task</em> [Doctoral dissertation]. https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=bgsu1400183863&amp;disposition=inline',
   },
   {
+    id: 'ryan2000',
+    html: 'Ryan, R. M., &amp; Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <em>American Psychologist, 55</em>(1), 68&ndash;78.',
+  },
+  {
     id: 'schaufeli2014',
     html: 'Schaufeli, W. B., &amp; Taris, T. W. (2014). A critical review of the Job Demands-Resources model: Implications for improving work and health. In G. F. Bauer &amp; O. H&auml;mmig (Eds.), <em>Bridging occupational, organizational and public health</em> (pp. 43&ndash;68). Springer.',
   },
   {
     id: 'shneiderman2020',
     html: 'Shneiderman, B. (2020). Human-centered artificial intelligence: Reliable, safe &amp; trustworthy. <em>International Journal of Human&ndash;Computer Interaction, 36</em>(6), 495&ndash;504.',
+  },
+  {
+    id: 'sisk2018',
+    html: 'Sisk, V. F., Burgoyne, A. P., Sun, J., Butler, J. L., &amp; Macnamara, B. N. (2018). To what extent and under which circumstances are growth mind-sets important to academic achievement? Two meta-analyses. <em>Psychological Science, 29</em>(4), 549&ndash;571.',
   },
   {
     id: 'thatcher2026',
