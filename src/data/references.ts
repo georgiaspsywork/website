@@ -116,6 +116,10 @@ export const references: Reference[] = [
     html: 'Gander, P., Hartley, L., Powell, D., Cabon, P., Hitchcock, E., Mills, A., &amp; Popkin, S. (2011). Fatigue risk management: Organizational factors at the regulatory and industry/company level. <em>Accident Analysis &amp; Prevention, 43</em>(2), 573&ndash;590.',
   },
   {
+    id: 'gilovich1998',
+    html: 'Gilovich, T., Savitsky, K., &amp; Medvec, V. H. (1998). The illusion of transparency: Biased assessments of others&rsquo; ability to read one&rsquo;s emotional states. <em>Journal of Personality and Social Psychology, 75</em>(2), 332&ndash;346.',
+  },
+  {
     id: 'hse',
     html: 'Health and Safety Executive. (n.d.). <em>Fatigue</em>. Retrieved October 17, 2026, from https://www.hse.gov.uk/humanfactors/topics/fatigue.htm',
   },
@@ -158,6 +162,10 @@ export const references: Reference[] = [
   {
     id: 'iea2000',
     html: 'International Ergonomics Association. (2000). <em>What is ergonomics?</em> https://iea.cc/about/what-is-ergonomics/',
+  },
+  {
+    id: 'keysar2002',
+    html: 'Keysar, B., &amp; Henly, A. S. (2002). Speakers&rsquo; overestimation of their effectiveness. <em>Psychological Science, 13</em>(3), 207&ndash;212.',
   },
   {
     id: 'koy2020',
@@ -246,6 +254,10 @@ export const references: Reference[] = [
   {
     id: 'reif2014',
     html: 'Reif, A. (2014). <em>Self-regulatory depletion effects on speed within a complex speech processing task</em> [Doctoral dissertation]. https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=bgsu1400183863&amp;disposition=inline',
+  },
+  {
+    id: 'rosenberg2003',
+    html: 'Rosenberg, M. B. (2003). <em>Nonviolent communication: A language of life</em> (2nd ed.). PuddleDancer Press.',
   },
   {
     id: 'ryan2000',
