@@ -1,6 +1,7 @@
 ---
 import Eyebrow from './Eyebrow.astro';
 // Opening block of a page: eyebrow, big headline (wrap a word in <em> for the italic emphasis), intro paragraph.
+// Optional slot="mark" puts a small logo or icon to the left of the headline.
 interface Props {
   eyebrow: string;
   title: string; // may contain <em>
@@ -12,9 +13,12 @@ const { eyebrow, title, intro, class: extra } = Astro.props;
 
 <section class:list={['flex flex-col gap-6.5 px-gutter-reading pt-section-sm pb-section-sm', extra]}>
   <Eyebrow>{eyebrow}</Eyebrow>
-  <h1 class="max-w-[13em] text-display leading-display font-normal tracking-display text-balance">
-    <Fragment set:html={title} />
-  </h1>
+  <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+    <slot name="mark" />
+    <h1 class="max-w-[13em] text-display leading-display font-normal tracking-display text-balance">
+      <Fragment set:html={title} />
+    </h1>
+  </div>
   {intro && <p class="max-w-[32em] text-lead leading-snug text-muted text-pretty">{intro}</p>}
   <slot />
 </section>
