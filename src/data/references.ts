@@ -24,6 +24,10 @@ export const references: Reference[] = [
     html: 'Bakker, A. B., &amp; Demerouti, E. (2007). The Job Demands-Resources model: State of the art. <em>Journal of Managerial Psychology, 22</em>(3), 309&ndash;328. https://doi.org/10.1108/02683940710733115',
   },
   {
+    id: 'bazazan2023',
+    html: 'Bazazan, A., Noman, Y., Norouzi, H., Maleki-Ghahfarokhi, A., Sarbakhsh, P., &amp; Dianat, I. (2023). Physical and psychological job demands and fatigue experience among offshore workers. <em>Heliyon, 9</em>(6), Article e16441. https://doi.org/10.1016/j.heliyon.2023.e16441',
+  },
+  {
     id: 'blume2010',
     html: 'Blume, B. D., Ford, J. K., Baldwin, T. T., &amp; Huang, J. L. (2010). Transfer of training: A meta-analytic review. <em>Journal of Management, 36</em>(4), 1065&ndash;1105.',
   },
@@ -94,6 +98,10 @@ export const references: Reference[] = [
   {
     id: 'endsley1995',
     html: 'Endsley, M. R., &amp; Kiris, E. O. (1995). The out-of-the-loop performance problem and level of control in automation. <em>Human Factors, 37</em>(2), 381&ndash;394.',
+  },
+  {
+    id: 'fernandez2017',
+    html: 'Fern&aacute;ndez-Castro, J., Mart&iacute;nez-Zaragoza, F., Rovira, T., Edo, S., Solanes-Puchol, &Aacute;., Mart&iacute;n-del-R&iacute;o, B., Garc&iacute;a-Sierra, R., Benavides-Gil, G., &amp; Doval, E. (2017). How does emotional exhaustion influence work stress? Relationships between stressor appraisals, hedonic tone, and fatigue in nurses&rsquo; daily tasks: A longitudinal cohort study. <em>International Journal of Nursing Studies, 75</em>, 43&ndash;50. https://doi.org/10.1016/j.ijnurstu.2017.07.002',
   },
   {
     id: 'fischer2017',
