@@ -100,6 +100,10 @@ export const references: Reference[] = [
     html: 'Edmondson, A. (1999). Psychological safety and learning behavior in work teams. <em>Administrative Science Quarterly, 44</em>(2), 350&ndash;383.',
   },
   {
+    id: 'emmons1991',
+    html: 'Emmons, H., &amp; Burns, R. N. (1991). Off-day scheduling with hierarchical worker categories. <em>Operations Research, 39</em>(3), 484&ndash;495.',
+  },
+  {
     id: 'endsley1995',
     html: 'Endsley, M. R., &amp; Kiris, E. O. (1995). The out-of-the-loop performance problem and level of control in automation. <em>Human Factors, 37</em>(2), 381&ndash;394.',
   },
@@ -304,8 +308,16 @@ export const references: Reference[] = [
     html: 'Sparto, P. J., Parnianpour, M., Reinsel, T. E., &amp; Simon, S. (1997). The effect of fatigue on multijoint kinematics, coordination, and postural stability during a repetitive lifting test. <em>Journal of Orthopaedic &amp; Sports Physical Therapy, 25</em>(1), 3&ndash;12.',
   },
   {
+    id: 'stevens2011',
+    html: 'Stevens, R. G., Hansen, J., Costa, G., Haus, E., Kauppinen, T., Aronson, K. J., Casta&ntilde;o-Vinyals, G., Davis, S., Frings-Dresen, M. H. W., Fritschi, L., Kogevinas, M., Kogi, K., Lie, J. A., Lowden, A., Peplonska, B., Pesch, B., Pukkala, E., Schernhammer, E., Travis, R. C., &hellip; Straif, K. (2011). Considerations of circadian impact for defining &lsquo;shift work&rsquo; in cancer studies: IARC Working Group report. <em>Occupational and Environmental Medicine, 68</em>(2), 154&ndash;162. https://doi.org/10.1136/oem.2009.053512',
+  },
+  {
     id: 'sweller1988',
     html: 'Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257&ndash;285. https://doi.org/10.1207/s15516709cog1202_4',
+  },
+  {
+    id: 'trinkoff2011',
+    html: 'Trinkoff, A. M., Johantgen, M., Storr, C. L., Gurses, A. P., Liang, Y., &amp; Han, K. (2011). Nurses&rsquo; work schedule characteristics, nurse staffing, and patient mortality. <em>Nursing Research, 60</em>(1), 1&ndash;8.',
   },
   {
     id: 'trist1951',
