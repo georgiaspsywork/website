@@ -20,10 +20,6 @@ export const references: Reference[] = [
     html: 'Amabile, T., &amp; Kramer, S. (2011). <em>The progress principle: Using small wins to ignite joy, engagement, and creativity at work</em>. Harvard Business Review Press.',
   },
   {
-    id: 'arvan2023',
-    html: 'Arvan, M., Valizadeh, M., &amp; Haghighat, P. (2023). <em>Linguistic cognitive load analysis on dialogues with an intelligent virtual assistant</em>. https://escholarship.org/uc/item/84z3c8v7',
-  },
-  {
     id: 'bakker2007',
     html: 'Bakker, A. B., &amp; Demerouti, E. (2007). The Job Demands-Resources model: State of the art. <em>Journal of Managerial Psychology, 22</em>(3), 309&ndash;328. https://doi.org/10.1108/02683940710733115',
   },
@@ -144,10 +140,6 @@ export const references: Reference[] = [
     html: 'Hinss, M. F., Brock, A. M., &amp; Roy, R. N. (2023). The double task-switching protocol: An investigation into the effects of similarity and conflict on cognitive flexibility in the context of mental fatigue [Registered report protocol]. <em>PLOS ONE, 18</em>(2), Article e0279021. https://doi.org/10.1371/journal.pone.0279021',
   },
   {
-    id: 'hjeij2023',
-    html: 'Hjeij, M., &amp; Vilks, A. (2023). A brief history of heuristics: How did research on heuristics evolve? <em>Humanities and Social Sciences Communications, 10</em>(1), 1&ndash;15.',
-  },
-  {
     id: 'hockey1997',
     html: 'Hockey, G. R. J. (1997). Compensatory control in the regulation of human performance under stress and high workload: A cognitive-energetical framework. <em>Biological Psychology, 45</em>(1&ndash;3), 73&ndash;93.',
   },
@@ -190,14 +182,6 @@ export const references: Reference[] = [
   {
     id: 'ly2021',
     html: 'Ly, D. P. (2021). The influence of the availability heuristic on physicians in the emergency department. <em>Annals of Emergency Medicine, 78</em>(5), 650&ndash;657.',
-  },
-  {
-    id: 'lyon2020',
-    html: 'Lyon, A. R., Brewer, S. K., &amp; Are&aacute;n, P. A. (2020). Leveraging human-centered design to implement modern psychological science: Return on an early investment. <em>American Psychologist, 75</em>(8), 1067.',
-  },
-  {
-    id: 'macpherson2017',
-    html: 'MacPherson, M. K., Abur, D., &amp; Stepp, C. E. (2017). <em>Acoustic measures of voice and physiologic measures of autonomic arousal during speech as a function of cognitive load</em>. https://pmc.ncbi.nlm.nih.gov/articles/PMC6081741/',
   },
   {
     id: 'margetis2021',
@@ -244,10 +228,6 @@ export const references: Reference[] = [
     html: 'Petruo, V. A., M&uuml;ckschel, M., &amp; Beste, C. (2018). On the role of the prefrontal cortex in fatigue effects on cognitive flexibility &ndash; a system neurophysiological approach. <em>Scientific Reports, 8</em>, Article 6395. https://doi.org/10.1038/s41598-018-24834-w',
   },
   {
-    id: 'pyfrom2023',
-    html: 'Pyfrom, M., Lister, J., &amp; Anand, S. (2023). <em>Influence of cognitive load on voice production: A scoping review</em>. https://www.sciencedirect.com/science/article/pii/S0892199723002710',
-  },
-  {
     id: 'reason1990',
     html: 'Reason, J. (1990). <em>Human error</em>. Cambridge University Press.',
   },
@@ -257,7 +237,7 @@ export const references: Reference[] = [
   },
   {
     id: 'reason2006',
-    html: 'Reason, J., Hollnagel, E., &amp; Pari&egrave;s, J. (2006). Revisiting the Swiss cheese model of accidents. <em>Journal of Clinical Engineering, 27</em>(4), 110&ndash;115.',
+    html: 'Reason, J., Hollnagel, E., &amp; Pari&egrave;s, J. (2006). <em>Revisiting the &ldquo;Swiss cheese&rdquo; model of accidents</em> (EEC Note No. 13/06). EUROCONTROL Experimental Centre.',
   },
   {
     id: 'redeker2019',
@@ -296,14 +276,6 @@ export const references: Reference[] = [
     html: 'Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257&ndash;285. https://doi.org/10.1207/s15516709cog1202_4',
   },
   {
-    id: 'thatcher2026',
-    html: 'Thatcher, A., et al. (2026). Ergonomics/human factors and the future of work: A global perspective. <em>Applied Ergonomics</em>.',
-  },
-  {
-    id: 'tomassi2025',
-    html: 'Tomassi, N. E., Turashvili, D. M., &amp; Williams, A. (2025). Investigating cognitive load and autonomic arousal during voice production and vocal auditory-motor adaptation. <em>Journal of Speech, Language, and Hearing Research</em>. https://sites.bu.edu/stepplab/files/2025/04/JSL6804_Tomassi.pdf',
-  },
-  {
     id: 'trist1951',
     html: 'Trist, E. L., &amp; Bamforth, K. W. (1951). Some relevant social and psychological consequences of the longwall method of coal-getting. <em>Human Relations, 4</em>(1), 3&ndash;38. https://doi.org/10.1177/001872675100400101',
   },
@@ -318,10 +290,6 @@ export const references: Reference[] = [
   {
     id: 'visciola2025',
     html: 'Visci&ograve;la, M. (2025). Rethinking human-centered design: From automation to sustainable innovation. <em>Interactions, 32</em>(4), 22&ndash;27.',
-  },
-  {
-    id: 'vohs2005',
-    html: 'Vohs, K. D., &amp; Baumeister, R. F. (2005). <em>Self-regulation and self-presentation: Regulatory resource depletion impairs impression management and effortful self-presentation depletes regulatory resources</em>. http://www.communicationcache.com/uploads/1/0/8/8/10887248/self-regulation_and_self-presentation-_regulatory_resource_depletion_impairs_impression_management_and_effortful_self-presentation_depletes_regulatory_resources.pdf',
   },
   {
     id: 'vonderlin2023',
