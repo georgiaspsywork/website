@@ -292,6 +292,10 @@ export const references: Reference[] = [
     html: 'Sonnentag, S., &amp; Fritz, C. (2015). Recovery from job stress: The stressor-detachment model as an integrative framework. <em>Journal of Organizational Behavior, 36</em>(S1), S72&ndash;S103. https://doi.org/10.1002/job.1924',
   },
   {
+    id: 'sparto1997',
+    html: 'Sparto, P. J., Parnianpour, M., Reinsel, T. E., &amp; Simon, S. (1997). The effect of fatigue on multijoint kinematics, coordination, and postural stability during a repetitive lifting test. <em>Journal of Orthopaedic &amp; Sports Physical Therapy, 25</em>(1), 3&ndash;12.',
+  },
+  {
     id: 'sweller1988',
     html: 'Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257&ndash;285. https://doi.org/10.1207/s15516709cog1202_4',
   },

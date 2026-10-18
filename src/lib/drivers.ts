@@ -99,6 +99,7 @@ export const DRIVERS: Driver[] = [
       { text: 'Fatigue involves physical, mental and muscular dimensions, which are largely influenced by the timing of work schedules (Fischer et al., 2017).', kind: 'Meta-analysis' },
       { text: 'Among 251 offshore workers, physical fatigue was linked only to physical demands such as awkward postures and heavy lifting, while mental fatigue was linked to both physical and psychological demands, including task interruptions and excessive work (Bazazan et al., 2023).', kind: 'Cross-sectional, 251 workers' },
       { text: 'A mini review of running coordination proposes that fatigue and accumulated overuse compromise coordination, so mechanical stress falls on fewer components (Kiely, 2017).', kind: 'Mini review, running' },
+      { text: 'In 12 healthy men doing repetitive lifting, a 31% fall in lifting power came with changed movement patterns and declining postural stability (Sparto et al., 1997).', kind: 'Lab study, 12 men' },
     ],
   },
   {
