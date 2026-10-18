@@ -106,7 +106,7 @@ const credentials = [
       <Eyebrow>Qualifications &amp; ethics</Eyebrow>
       <h2 class="text-title leading-title tracking-heading">Evidence-based, and accountable for it</h2>
       <p class="text-xl leading-prose text-pretty text-muted">All work follows the British Psychological Society Code of Ethics and Conduct. Findings are shared with the people who took part, not just the people who paid for them.</p>
-      <Button href="#" variant="underline" class="self-start">Read our ethics statement</Button>
+      <Button href="#ethics" variant="underline" class="self-start">Read our ethics statement</Button>
     </div>
     <RuledList>
       {
@@ -118,6 +118,23 @@ const credentials = [
         ))
       }
     </RuledList>
+  </Section>
+
+  {/* Ethics and values */}
+  <Section id="ethics" tone="deep" class="flex scroll-mt-12 flex-col gap-14">
+    <SectionHeader eyebrow="Ethics & professional standards" title="What I value, and the standards I work to" tone="amber">
+      <p class="text-xl leading-prose text-ink-soft text-pretty">
+        As a member of the British Psychological Society (BPS) and the Association for Business Psychology (ABP), I work in line with recognised professional and ethical standards across occupational psychology and organisational practice. That means a commitment to evidence-based practice, confidentiality, professional integrity, and responsible approaches to workplace wellbeing, organisational change, and the use of AI within work systems.
+      </p>
+    </SectionHeader>
+    <StepGrid>
+      <Step variant="number" stamp="01" title="Compassionate">Approach every client, organisation and context with both care and evidence.</Step>
+      <Step variant="number" stamp="02" title="Honesty">Be transparent and accountable in all interactions.</Step>
+      <Step variant="number" stamp="03" title="Curious growth">Keep a mindset of lifelong learning and continuous development.</Step>
+      <Step variant="number" stamp="04" title="Respect">Acknowledge the unique stories, cultures and systems people operate within.</Step>
+      <Step variant="number" stamp="05" title="Applied impact">Turn psychological theory into meaningful, actionable solutions.</Step>
+    </StepGrid>
+    <Button href="/contact" variant="underline" class="self-start">Want to work with us?</Button>
   </Section>
 
   {/* Client feedback */}
