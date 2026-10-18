@@ -28,6 +28,10 @@ export const references: Reference[] = [
     html: 'Booher, H. R. (Ed.). (2003). <em>Handbook of human systems integration</em>. John Wiley &amp; Sons.',
   },
   {
+    id: 'bordalo2023',
+    html: 'Bordalo, P., Conlon, J. J., Gennaioli, N., Kwon, S. Y., &amp; Shleifer, A. (2023). Memory and probability. <em>The Quarterly Journal of Economics, 138</em>(1), 265&ndash;311.',
+  },
+  {
     id: 'boschetti2022',
     html: 'Boschetti, G., Faccio, M., &amp; Granata, I. (2022). Human-centered design for productivity and safety in collaborative robots cells: A new methodological approach. <em>Electronics, 12</em>(1), 167.',
   },
@@ -96,6 +100,10 @@ export const references: Reference[] = [
     html: 'Hinss, M. F., Brock, A. M., &amp; Roy, R. N. (2023). The double task-switching protocol: An investigation into the effects of similarity and conflict on cognitive flexibility in the context of mental fatigue [Registered report protocol]. <em>PLOS ONE, 18</em>(2), Article e0279021. https://doi.org/10.1371/journal.pone.0279021',
   },
   {
+    id: 'hjeij2023',
+    html: 'Hjeij, M., &amp; Vilks, A. (2023). A brief history of heuristics: How did research on heuristics evolve? <em>Humanities and Social Sciences Communications, 10</em>(1), 1&ndash;15.',
+  },
+  {
     id: 'hockey1997',
     html: 'Hockey, G. R. J. (1997). Compensatory control in the regulation of human performance under stress and high workload: A cognitive-energetical framework. <em>Biological Psychology, 45</em>(1&ndash;3), 73&ndash;93.',
   },
@@ -126,6 +134,10 @@ export const references: Reference[] = [
   {
     id: 'leroy2009',
     html: 'Leroy, S. (2009). Why is it so hard to do my work? The challenge of attention residue when switching between work tasks. <em>Organizational Behavior and Human Decision Processes, 109</em>(2), 168&ndash;181.',
+  },
+  {
+    id: 'ly2021',
+    html: 'Ly, D. P. (2021). The influence of the availability heuristic on physicians in the emergency department. <em>Annals of Emergency Medicine, 78</em>(5), 650&ndash;657.',
   },
   {
     id: 'lyon2020',
