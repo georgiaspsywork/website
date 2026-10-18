@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Button from '../components/Button.astro';
+import StepGrid from '../components/StepGrid.astro';
+import Step from '../components/Step.astro';
+import RuledList from '../components/RuledList.astro';
+import RuledRow from '../components/RuledRow.astro';
+import Photo from '../components/Photo.astro';
+import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import headshot from '../assets/images/georgia-headshot.webp';
+import { pie, first, next, soon, later } from '../data/pie';
+
+const audience = [
+  'Business owners and entrepreneurs',
+  'HR and People professionals',
+  'Managers and team leaders',
+  'Learning and development professionals',
+  'Operational and organisational leaders',
+  'Health, safety and wellbeing professionals',
+  'Anyone interested in people, performance and workplace psychology',
+];
+---
+
+<BaseLayout
+  title="Workplace learning and networking in Bingham | PIE"
+  description="Monthly in-person workplace learning and networking in Bingham, Nottinghamshire for HR, managers and leaders. Hosted by Georgia Hodkinson and Beth Thomas."
+  footer={{ heading: 'Come for the learning. Stay for the conversations.', ctaLabel: pie.cta.label, ctaHref: pie.cta.href }}
+>
+  <PageHero
+    eyebrow="PIE · Bingham, Nottinghamshire"
+    title="People Insights <em>Exchange</em>"
+    intro={`${pie.tagline} A monthly workplace learning and networking community in Bingham, co-founded and co-hosted by Georgia Hodkinson and Beth Thomas.`}
+  >
+    <div class="flex flex-wrap gap-4 pt-2">
+      <Button href="#events" variant="brand">Explore upcoming events</Button>
+      <Button href="#about-pie" variant="outline">Learn more about PIE</Button>
+    </div>
+  </PageHero>
+
+  {/* What is PIE */}
+  <Section id="about-pie" gutter="reading" size="sm" class="grid scroll-mt-12 gap-x-24 gap-y-12 pt-0 md:grid-cols-2">
+    <div class="flex flex-col gap-5.5">
+      <SectionHeader eyebrow="What is PIE?" title="A friendly place to learn about people at work" />
+      <p class="text-xl leading-prose text-pretty text-muted">
+        People Insights Exchange, or PIE, is a monthly, in-person learning and networking event for people who care about making workplaces better. Each month we explore one workplace topic through an evidence-informed talk, then give everyone the chance to talk it through, try ideas out and meet the people in the room.
+      </p>
+      <p class="text-xl leading-prose text-pretty text-muted">
+        Good workplace learning should not depend on the size of your budget or whether you have a dedicated HR or learning team. PIE is for anyone who works with people. It is friendly, practical and designed to be genuinely useful, so you leave having learned something, made a connection and found something to try at work.
+      </p>
+    </div>
+    <RuledList class="self-start">
+      <RuledRow lead="Where" title={pie.venue} leadWidth="md">Bingham, Nottinghamshire</RuledRow>
+      <RuledRow lead="When" title={pie.usualDay} leadWidth="md">{pie.time}</RuledRow>
+      <RuledRow lead="Format" title="In person" leadWidth="md">Welcoming, interactive and conversational, not a lecture.</RuledRow>
+    </RuledList>
+  </Section>
+
+  {/* What to expect */}
+  <Section tone="deep" class="flex flex-col gap-14">
+    <SectionHeader eyebrow="What to expect" title="Practical learning, useful conversations, local connections" tone="amber" />
+    <StepGrid>
+      <Step variant="number" stamp="01" title="Practical learning">We explore real workplace challenges using organisational psychology, behavioural science and professional expertise.</Step>
+      <Step variant="number" stamp="02" title="Useful conversations">We encourage discussion, different perspectives and sharing experiences, rather than simply delivering information.</Step>
+      <Step variant="number" stamp="03" title="Local connections">We are building a community of people and organisations across Bingham, Nottinghamshire and the wider East Midlands.</Step>
+    </StepGrid>
+    <div class="flex flex-col gap-8 border-t border-line pt-10">
+      <Eyebrow tone="soft">A typical event</Eyebrow>
+      <StepGrid>
+        <Step variant="number" stamp="01" title="A warm welcome">Time to settle in and meet the people around you.</Step>
+        <Step variant="number" stamp="02" title="The talk">An engaging, evidence-informed, CPD-accredited talk on a workplace topic.</Step>
+        <Step variant="number" stamp="03" title="Hands on">Practical activities, discussion or a workshop.</Step>
+        <Step variant="number" stamp="04" title="Exchange">Time to swap experiences, ideas and connections.</Step>
+      </StepGrid>
+    </div>
+  </Section>
+
+  {/* Founders */}
+  <Section gutter="reading" class="flex flex-col gap-14">
+    <SectionHeader eyebrow="Meet the founders" title="Two founders, one shared enthusiasm for bringing people together">
+      <p class="text-xl leading-body text-ink-soft text-pretty">PIE is co-founded and co-hosted equally by Georgia and Beth.</p>
+    </SectionHeader>
+    <div class="grid gap-x-16 gap-y-14 md:grid-cols-2">
+      <div class="flex flex-col gap-6">
+        <Photo src={headshot} alt="Georgia Hodkinson, smiling, in a white shirt" ratio="4/5" sizes="(min-width: 768px) 280px, 70vw" class="max-w-[280px]" />
+        <div class="flex flex-col gap-3">
+          <h3 class="text-4xl">Georgia Hodkinson</h3>
+          <p class="text-sm tracking-label text-mint uppercase">Organisational Psychologist · Founder of Georgia&rsquo;s PsyWork</p>
+          <p class="text-lg leading-prose text-pretty text-muted">
+            Georgia&rsquo;s work focuses on understanding people and performance at work, particularly team effectiveness, leadership, organisational culture, fatigue, burnout, human factors and decision-making. She brings an evidence-informed, practical perspective to workplace challenges, helping people understand not only what is happening at work, but why, and what can be done differently.
+          </p>
+          <a class="self-start border-b border-mint text-lg text-mint" href="/about">More about Georgia</a>
+        </div>
+      </div>
+      <div class="flex flex-col gap-6">
+        <ImagePlaceholder label="BETH THOMAS · PHOTO" ratio="4/5" class="max-w-[280px]" />
+        <div class="flex flex-col gap-3">
+          <h3 class="text-4xl">Beth Thomas</h3>
+          <p class="text-sm tracking-label text-mint uppercase">Founder of Neuroinclusive Link</p>
+          <p class="text-lg leading-prose text-pretty text-muted">
+            Beth specialises in neurodiversity, ADHD, inclusion and helping organisations create more supportive working environments. She is an experienced trainer and speaker who translates complex topics into engaging, accessible learning.
+          </p>
+        </div>
+      </div>
+    </div>
+    <p class="max-w-[40em] text-xl leading-prose text-pretty text-ink-soft">
+      Together, they combine organisational psychology, neuroinclusion, practical workplace experience and a shared enthusiasm for bringing people together.
+    </p>
+  </Section>
+
+  {/* Upcoming events */}
+  <Section id="events" tone="brand" class="flex scroll-mt-12 flex-col gap-12">
+    <SectionHeader eyebrow="Upcoming events" title="A different workplace theme every month" tone="amber">
+      <p class="text-xl leading-body text-on-brand text-pretty">
+        Our first event, on {first.date}, was {first.theme}. The next one is {next.theme}, on {next.date}.
+      </p>
+    </SectionHeader>
+    <div class="flex flex-col gap-3 rounded-sm bg-brand-deep p-[clamp(24px,4vw,40px)]">
+      <Eyebrow tone="amber">Next event · {next.date}</Eyebrow>
+      <h3 class="text-title leading-title text-white">{next.theme}</h3>
+      <p class="text-lg text-on-brand-muted">{pie.venue} · {pie.time}</p>
+      <Button href={pie.cta.href} variant="amber" class="mt-3 self-start">Book on Eventbrite</Button>
+    </div>
+    <div class="flex flex-col gap-6">
+      <Eyebrow tone="soft">Coming up</Eyebrow>
+      <StepGrid>
+        {soon.map((e) => <Step variant="number" stamp={e.month} title={e.theme} tone="brand">{e.blurb}</Step>)}
+      </StepGrid>
+    </div>
+    <details class="group border-t border-brand-edge pt-6">
+      <summary class="cursor-pointer text-lg text-white">See the programme to October 2027</summary>
+      <div class="pt-8">
+        <StepGrid>
+          {later.map((e) => <Step variant="number" stamp={e.month} title={e.theme} tone="brand">{e.blurb}</Step>)}
+        </StepGrid>
+      </div>
+    </details>
+    <p class="text-base text-on-brand-muted">Current dates and bookings are on Eventbrite. Themes may be refined as each event approaches.</p>
+  </Section>
+
+  {/* Join the community */}
+  <Section gutter="reading" class="grid gap-x-24 gap-y-12 md:grid-cols-2">
+    <div class="flex flex-col gap-5.5">
+      <SectionHeader eyebrow="Join the community" title="Who PIE is for" />
+      <p class="text-xl leading-prose text-pretty text-muted">
+        If you have never been to a networking or workplace learning event before, PIE is a good place to start. You do not need to know anyone, and you do not need to work in HR. The events are designed to be useful to people in operational and leadership roles, and to organisations of all sizes, including smaller businesses without a dedicated HR or learning team.
+      </p>
+    </div>
+    <ul class="flex list-none flex-col gap-3.5 self-center text-xl leading-body text-ink-soft">
+      {audience.map((a) => <li class="border-b border-line pb-3.5">{a}</li>)}
+    </ul>
+  </Section>
+
+  {/* Partnerships */}
+  <Section tone="deep" size="sm" gutter="reading" class="flex flex-col gap-6">
+    <SectionHeader eyebrow="Partnerships" title="Support practical workplace learning" size="md" tone="amber" />
+    <p class="max-w-[38em] text-xl leading-prose text-pretty text-muted">
+      PIE works with local businesses and organisations that want to support practical workplace learning and meaningful connections. There are opportunities to get involved as an event partner or a longer-term supporter.
+    </p>
+    <p class="text-xl text-ink-soft">Interested in supporting PIE? Get in touch to explore partnership opportunities.</p>
+    <Button href={`mailto:${pie.email}`} variant="underline" class="self-start">{pie.email}</Button>
+  </Section>
+
+  {/* Final call to action */}
+  <Section gutter="reading" class="flex flex-col items-start gap-7">
+    <h2 class="max-w-[14em] text-display leading-display tracking-display text-balance">Come for the learning. Stay for the <em>conversations.</em></h2>
+    <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
+      <Button href={pie.cta.href} variant="brand">{pie.cta.label}</Button>
+      <a class="border-b border-mint text-lg text-mint" href={pie.instagram}>Follow PIE on Instagram</a>
+      {pie.website.live && <a class="border-b border-mint text-lg text-mint" href={pie.website.url}>Visit the PIE website</a>}
+    </div>
+  </Section>
+</BaseLayout>

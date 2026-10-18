@@ -8,9 +8,9 @@ export const site = {
   location: 'Leicestershire, United Kingdom',
   calendly: 'https://calendly.com/georgiaspsywork/30min',
   elsewhere: [
-    { label: 'LinkedIn', href: '#' },
-    { label: 'Instagram', href: '#' },
-    { label: 'TikTok', href: '#' },
+    { label: 'LinkedIn (Georgia)', href: 'https://www.linkedin.com/in/georgiahodkinson/' },
+    { label: "LinkedIn (Georgia's PsyWork)", href: 'https://www.linkedin.com/company/georgias-psywork/' },
+    { label: 'Instagram', href: 'https://www.instagram.com/georgia_psywork/' },
   ],
 };
 
@@ -21,5 +21,6 @@ export const nav = [
   { label: 'About', href: '/about' },
   { label: 'Resources', href: '/resources' },
   { label: 'Articles', href: '/articles' },
+  { label: 'PIE events', href: '/pie' },
   { label: 'Contact', href: '/contact', cta: true },
 ];
