@@ -10,8 +10,8 @@ import Step from '../components/Step.astro';
 import RuledList from '../components/RuledList.astro';
 import RuledRow from '../components/RuledRow.astro';
 import Photo from '../components/Photo.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import headshot from '../assets/images/georgia-headshot.webp';
+import bethHeadshot from '../assets/images/beth-thomas.webp';
 import welcome from '../assets/images/pie-welcome.webp';
 import tables from '../assets/images/pie-workshop-tables.webp';
 import stageIntro from '../assets/images/pie-stage-intro.webp';
@@ -113,7 +113,7 @@ const audience = [
         </div>
       </div>
       <div class="flex flex-col gap-6">
-        <ImagePlaceholder label="BETH THOMAS · PHOTO" ratio="4/5" class="max-w-[280px]" />
+        <Photo src={bethHeadshot} alt="Beth Thomas, with long blue hair, smiling at the camera" ratio="4/5" sizes="(min-width: 768px) 280px, 70vw" class="max-w-[280px]" />
         <div class="flex flex-col gap-3">
           <h3 class="text-4xl">Beth Thomas</h3>
           <p class="text-sm tracking-label text-mint uppercase">Founder of Neuroinclusive Link</p>
