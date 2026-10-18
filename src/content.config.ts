@@ -13,7 +13,7 @@ const articles = defineCollection({
     date: z.coerce.date(),
     topic: z.string(),
     readMinutes: z.number().int().positive(),
-    author: z.string().default('Georgia Hodkinson GMBPsS'), // see src/data/site.ts
+    author: z.string().default('Georgia Hodkinson MSc, GMBPsS'), // see src/data/site.ts
     /** Describes the missing lead photo while it is a placeholder, e.g. "Depot at night". */
     imageNote: z.string().optional(),
     /** Lead photo (from src/assets/images, shrunk with scripts/optimise-images.mjs), with its description and optional caption. */
@@ -22,6 +22,8 @@ const articles = defineCollection({
     imageCaption: z.string().optional(),
     /** The article featured at the top of the articles page. */
     lead: z.boolean().default(false),
+    /** Ids (from src/data/references.ts) of the references this article cites; they are listed at the end of the article. */
+    references: z.array(z.string()).default([]),
     /** Draft articles are not built or listed. */
     draft: z.boolean().default(false),
     /** True while the text is stand-in copy; `npm run check` lists these before publishing. */

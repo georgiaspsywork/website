@@ -4,6 +4,10 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import Photo from '../components/Photo.astro';
+import { Image } from 'astro:assets';
+import headshot from '../assets/images/georgia-headshot.webp';
+import { references } from '../data/references';
+import { site } from '../data/site';
 import Eyebrow from '../components/Eyebrow.astro';
 import { longDate, plain, withEm } from '../lib/format';
 
@@ -13,7 +17,8 @@ interface Props {
   related: CollectionEntry<'articles'>[];
 }
 const { article, headings, related } = Astro.props;
-const { title, dek, date, topic, readMinutes, author, placeholder, imageNote, image, imageAlt, imageCaption } = article.data;
+const { title, dek, date, topic, readMinutes, author, placeholder, imageNote, image, imageAlt, imageCaption, references: cited } = article.data;
+const cites = references.filter((r) => cited.includes(r.id));
 const toc = headings.filter((h) => h.depth === 2);
 ---
 
@@ -27,7 +32,7 @@ const toc = headings.filter((h) => h.depth === 2);
     <p class="max-w-[34em] text-lead leading-snug text-muted text-pretty">{dek}</p>
     <div class="flex flex-wrap items-center gap-x-7 gap-y-3 text-base text-soft">
       <span class="flex items-center gap-3">
-        <span class="size-10 flex-none rounded-full bg-brand"></span><span class="text-ink">{author}</span>
+        <Image src={headshot} alt="Georgia Hodkinson" width={80} height={80} class="size-10 flex-none rounded-full object-cover object-top" /><span class="text-ink">{author}</span>
       </span>
       <span>{longDate(date)}</span><span>{readMinutes} min read</span>
     </div>
@@ -66,17 +71,35 @@ const toc = headings.filter((h) => h.depth === 2);
     </div>
   </article>
 
+  {/* References */}
+  {
+    cites.length > 0 && (
+      <section class="grid grid-cols-[minmax(0,1fr)] gap-x-16 gap-y-6 px-gutter-reading pb-section-sm md:grid-cols-[200px_minmax(0,700px)]">
+        <Eyebrow as="span" tone="subtle" class="pt-1.5">References</Eyebrow>
+        <ol class="flex min-w-0 list-none flex-col gap-4 border-t border-line pt-7">
+          {cites.map((r) => <li class="pl-8 -indent-8 text-base leading-prose text-pretty text-soft [overflow-wrap:anywhere]" set:html={r.html} />)}
+        </ol>
+      </section>
+    )
+  }
+
   {/* Author */}
   <section class="grid gap-x-16 gap-y-6 px-gutter-reading pb-section md:grid-cols-[200px_minmax(0,700px)]">
     <Eyebrow as="span" tone="subtle" class="pt-1.5">Written by</Eyebrow>
-    <div class="flex items-start gap-6 border-t border-line pt-7">
-      <div class="size-22 flex-none rounded-full bg-brand"></div>
-      <div class="flex flex-col gap-2.5">
+    <div class="flex flex-wrap items-start gap-x-7 gap-y-5 border-t border-line pt-7">
+      <Image src={headshot} alt={`Photo of ${author}`} width={352} height={352} class="size-32 flex-none rounded-full object-cover object-top" />
+      <div class="flex min-w-0 flex-[1_1_320px] flex-col gap-3.5">
         <b class="text-2xl font-semibold">{author}</b>
         <p class="text-lg leading-prose text-muted">
-          Georgia Hodkinson is an Organisational Psychologist specialising in fatigue, human factors and work design. She helps organisations identify the hidden fatigue risks behind errors, absence, poor performance and turnover, and turn psychological research into practical changes that help people work safely and sustainably.
+          Georgia Hodkinson MSc, GMBPsS is an Organisational Psychologist and founder of Georgia&rsquo;s PsyWork, specialising in fatigue, human factors and work design. She helps organisations identify the hidden fatigue risks behind errors, absence, poor performance and turnover, and turn psychological research into practical changes that help people work safely and sustainably.
         </p>
-        <a class="self-start border-b border-mint text-md text-mint" href="/about">About Georgia</a>
+        <p class="text-lg leading-prose text-muted">
+          Her work focuses on human factors, fatigue, cognitive load and performance under pressure. She helps organisations understand how work design, communication and system conditions shape performance, safety and decision-making.
+        </p>
+        <div class="flex flex-wrap gap-x-7 gap-y-3 pt-1">
+          <a class="border-b border-mint text-md text-mint" href="/about">About Georgia</a>
+          <a class="border-b border-mint text-md text-mint" href={site.calendly} target="_blank" rel="noopener">Book a 30-minute chat</a>
+        </div>
       </div>
     </div>
   </section>
