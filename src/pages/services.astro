@@ -82,7 +82,7 @@ const services = [
   {/* Services */}
   <Section id="services" tone="deep" class="flex scroll-mt-12 flex-col gap-14">
     <SectionHeader eyebrow="How we can help" title="Four ways to work together" tone="amber" />
-    <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
         services.map((s, i) => (
           <article id={s.id} class="flex flex-col gap-6 rounded-sm border border-line-soft bg-surface p-[clamp(24px,3.5vw,40px)]">
