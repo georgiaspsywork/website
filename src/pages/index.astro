@@ -13,7 +13,7 @@ import StepGrid from '../components/StepGrid.astro';
 import Step from '../components/Step.astro';
 import MarginSection from '../components/MarginSection.astro';
 import Photo from '../components/Photo.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
+import headshot from '../assets/images/georgia-headshot.webp';
 import portrait from '../assets/images/georgia-workshop-portrait.webp';
 
 const checklist = [
@@ -109,7 +109,7 @@ const verdicts = [
 {/* Note from Georgia */}
 {/* Note from Georgia */}
 <MarginSection label="A note from Georgia" class="text-prose">
-  <ImagePlaceholder slot="aside" label="GEORGIA — HEADSHOT" ratio="4/5" class="max-w-[200px]" />
+  <Photo slot="aside" src={headshot} alt="Head-and-shoulders photo of Georgia, smiling, in a white shirt" ratio="4/5" sizes="200px" class="max-w-[200px]" />
   <div class="flex flex-col gap-5.5 text-ink-soft text-2xl leading-loose">
     <p class="text-lead-xl leading-quote text-ink italic text-pretty">&ldquo;I kept meeting capable people who were being blamed for mistakes their shift pattern made almost inevitable.&rdquo;</p>
     <p>We help organisations reduce staff turnover and sickness absence by fixing the work conditions that drive burnout, fatigue, and misuse of AI.</p>
