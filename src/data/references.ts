@@ -68,6 +68,10 @@ export const references: Reference[] = [
     html: 'Dawson, D., &amp; Reid, K. (1997). Fatigue, alcohol and performance impairment. <em>Nature, 388</em>(6639), 235. https://doi.org/10.1038/40775',
   },
   {
+    id: 'duhigg2016',
+    html: 'Duhigg, C. (2016, February 25). What Google learned from its quest to build the perfect team. <em>The New York Times Magazine</em>.',
+  },
+  {
     id: 'edmondson1999',
     html: 'Edmondson, A. (1999). Psychological safety and learning behavior in work teams. <em>Administrative Science Quarterly, 44</em>(2), 350&ndash;383.',
   },
