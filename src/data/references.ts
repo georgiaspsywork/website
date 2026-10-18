@@ -284,6 +284,10 @@ export const references: Reference[] = [
     html: 'Shneiderman, B. (2020). Human-centered artificial intelligence: Reliable, safe &amp; trustworthy. <em>International Journal of Human&ndash;Computer Interaction, 36</em>(6), 495&ndash;504.',
   },
   {
+    id: 'shriane2023',
+    html: 'Shriane, A. E., Rigney, G., Ferguson, S. A., Bin, Y. S., &amp; Vincent, G. E. (2023). Healthy sleep practices for shift workers: Consensus sleep hygiene guidelines using a Delphi methodology. <em>Sleep, 46</em>(12), Article zsad182. https://doi.org/10.1093/sleep/zsad182',
+  },
+  {
     id: 'sisk2018',
     html: 'Sisk, V. F., Burgoyne, A. P., Sun, J., Butler, J. L., &amp; Macnamara, B. N. (2018). To what extent and under which circumstances are growth mind-sets important to academic achievement? Two meta-analyses. <em>Psychological Science, 29</em>(4), 549&ndash;571.',
   },

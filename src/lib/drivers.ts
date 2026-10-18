@@ -26,6 +26,7 @@ export const DRIVERS: Driver[] = [
       { text: 'Night workers’ day sleep is often lighter, shorter and more easily disturbed, which can build a sleep debt (HSE, n.d.).', kind: 'Regulator guidance' },
       { text: 'Proper work and rest scheduling and good sleep habits are of primary importance for managing alertness (Caldwell et al., 2008).', kind: 'Review' },
       { text: 'Employer programmes to improve sleep are mostly education. Most report better self-reported sleep, but the evidence is weak (Redeker et al., 2019).', kind: 'Systematic review' },
+      { text: 'Most of 55 experts agreed that standard sleep hygiene advice needs tailoring for shift workers, in part because it can contradict fatigue management advice such as daytime napping. They agreed 18 tailored practices, which have not yet been tested for effectiveness (Shriane et al., 2023).', kind: 'Expert consensus (Delphi)' },
     ],
   },
   {
