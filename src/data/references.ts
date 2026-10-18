@@ -80,6 +80,10 @@ export const references: Reference[] = [
     html: 'Dawson, D., &amp; Reid, K. (1997). Fatigue, alcohol and performance impairment. <em>Nature, 388</em>(6639), 235. https://doi.org/10.1038/40775',
   },
   {
+    id: 'djupedal2025',
+    html: 'Djupedal, I. L. R., Harris, A., Svensen, E., Lie, S. A., Wang, A. L. H., Pallesen, S., Waage, S., Nielsen, M. B., Sunde, E., Bjorvatn, B., Holmelid, &Oslash;., &amp; Vedaa, &Oslash;. (2025). Shift schedule with fewer short daily rest periods and sickness absence among health care workers: A cluster randomized clinical trial. <em>JAMA Network Open, 8</em>(9), Article e2531568. https://doi.org/10.1001/jamanetworkopen.2025.31568',
+  },
+  {
     id: 'duhigg2016',
     html: 'Duhigg, C. (2016, February 25). What Google learned from its quest to build the perfect team. <em>The New York Times Magazine</em>.',
   },
