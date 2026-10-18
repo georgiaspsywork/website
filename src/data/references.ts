@@ -64,6 +64,10 @@ export const references: Reference[] = [
     html: 'Carayon, P., Wetterneck, T. B., Rivera-Rodriguez, A. J., Hundt, A. S., Hoonakker, P., Holden, R., &amp; Gurses, A. P. (2014). Human factors systems approach to healthcare quality and patient safety. <em>Applied Ergonomics, 45</em>(1), 14&ndash;25.',
   },
   {
+    id: 'chang2015',
+    html: 'Chang, A.-M., Aeschbach, D., Duffy, J. F., &amp; Czeisler, C. A. (2015). Evening use of light-emitting eReaders negatively affects sleep, circadian timing, and next-morning alertness. <em>Proceedings of the National Academy of Sciences, 112</em>(4), 1232&ndash;1237. https://doi.org/10.1073/pnas.1418490112',
+  },
+  {
     id: 'chen2013',
     html: 'Chen, F. (2013). <em>Effects of cognitive load on trust</em>. https://apps.dtic.mil/sti/html/tr/ADA588084/',
   },
@@ -98,6 +102,10 @@ export const references: Reference[] = [
   {
     id: 'fischer2017',
     html: 'Fischer, D., Lombardi, D. A., Folkard, S., Willetts, J., &amp; Christiani, D. C. (2017). Updating the &ldquo;Risk Index&rdquo;: A systematic review and meta-analysis of occupational injuries and work schedule characteristics. <em>Chronobiology International, 34</em>(10), 1423&ndash;1438. https://doi.org/10.1080/07420528.2017.1367305',
+  },
+  {
+    id: 'fogg2009',
+    html: 'Fogg, B. J. (2009). A behavior model for persuasive design. <em>Proceedings of the 4th International Conference on Persuasive Technology</em>, Article 40. https://doi.org/10.1145/1541948.1541999',
   },
   {
     id: 'frone2015',
@@ -200,6 +208,10 @@ export const references: Reference[] = [
     html: 'Matre, D., Skogstad, M., Sterud, T., Nordby, K. C., Knardahl, S., Christensen, J. O., &amp; Lie, J. A. S. (2021). Safety incidents associated with extended working hours. A systematic review and meta-analysis. <em>Scandinavian Journal of Work, Environment &amp; Health, 47</em>(6), 415&ndash;424. https://doi.org/10.5271/sjweh.3958',
   },
   {
+    id: 'michie2011',
+    html: 'Michie, S., van Stralen, M. M., &amp; West, R. (2011). The behaviour change wheel: A new method for characterising and designing behaviour change interventions. <em>Implementation Science, 6</em>, Article 42. https://doi.org/10.1186/1748-5908-6-42',
+  },
+  {
     id: 'mooreede2012',
     html: 'Moore-Ede, M. (2012). Evolution of fatigue risk management systems: The &ldquo;FRMS Evolution Pyramid&rdquo;. <em>Industrial Health, 50</em>(4), 303&ndash;306.',
   },
@@ -274,6 +286,14 @@ export const references: Reference[] = [
   {
     id: 'sisk2018',
     html: 'Sisk, V. F., Burgoyne, A. P., Sun, J., Butler, J. L., &amp; Macnamara, B. N. (2018). To what extent and under which circumstances are growth mind-sets important to academic achievement? Two meta-analyses. <em>Psychological Science, 29</em>(4), 549&ndash;571.',
+  },
+  {
+    id: 'sonnentag2015',
+    html: 'Sonnentag, S., &amp; Fritz, C. (2015). Recovery from job stress: The stressor-detachment model as an integrative framework. <em>Journal of Organizational Behavior, 36</em>(S1), S72&ndash;S103. https://doi.org/10.1002/job.1924',
+  },
+  {
+    id: 'sweller1988',
+    html: 'Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science, 12</em>(2), 257&ndash;285. https://doi.org/10.1207/s15516709cog1202_4',
   },
   {
     id: 'thatcher2026',
