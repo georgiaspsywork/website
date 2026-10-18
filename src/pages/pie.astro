@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
@@ -11,6 +12,7 @@ import RuledList from '../components/RuledList.astro';
 import RuledRow from '../components/RuledRow.astro';
 import Photo from '../components/Photo.astro';
 import headshot from '../assets/images/georgia-headshot.webp';
+import pieLogo from '../assets/images/pie-logo.webp';
 import bethHeadshot from '../assets/images/beth-thomas.webp';
 import welcome from '../assets/images/pie-welcome.webp';
 import tables from '../assets/images/pie-workshop-tables.webp';
@@ -40,6 +42,7 @@ const audience = [
     title="People Insights <em>Exchange</em>"
     intro={`${pie.tagline} A monthly workplace learning and networking community in Bingham, co-founded and co-hosted by Georgia Hodkinson and Beth Thomas.`}
   >
+    <Image src={pieLogo} alt="People Insights Exchange logo" width={160} height={160} class="size-20" />
     <div class="flex flex-wrap gap-4 pt-2">
       <Button href={pie.sponsor} target="_blank" variant="brand">Sponsor us</Button>
       <Button href={pie.linkedin} target="_blank" variant="outline">Learn more about PIE</Button>

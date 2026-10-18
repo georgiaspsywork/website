@@ -1,13 +1,17 @@
 ---
-// The site logo: leaf mark, "PsyWork" and a one-line descriptor. Links home.
+// The site logo: circle-and-leaf mark, "PsyWork" and a one-line descriptor. Links home.
 import { site } from '../data/site';
 ---
 
 <a href="/" class="flex items-center gap-2.5" aria-label={`${site.name}, home`}>
-  <svg class="h-10 w-auto flex-none text-mint" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M8 33C6 16 17 6 33 5C34 22 25 34 8 33Z" />
-    <path d="M8 33L24 15" />
+  <svg class="h-10 w-auto flex-none text-mint" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="20" cy="20" r="18.2" />
+    <path d="M17.6 24.2C12.6 22 13 13.4 28.8 10C29.4 16.6 25.8 23.4 17.6 24.2Z" />
+    <path d="M17.8 23.4L21.6 18.2" />
+    <path d="M2.2 22.6C8 21.6 13.4 23.6 17.6 27.4C21.8 31 28 30.6 37.6 26.8" />
+    <path d="M9.6 34.6C15.8 36.4 21 33.2 25.4 29.2C29 26 32.6 24.8 36.6 25.4" />
   </svg>
+
   <span class="flex flex-col leading-none">
     <span class="text-3xl font-semibold tracking-heading">PsyWork</span>
     <span class="mt-1.5 text-3xs tracking-label whitespace-nowrap text-mint uppercase max-[23rem]:hidden">Organisational psychology</span>
