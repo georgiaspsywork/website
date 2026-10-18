@@ -48,8 +48,8 @@ export const DRIVERS: Driver[] = [
     title: 'Handovers depend on clear information and a calm setting',
     findings: [
       { text: 'In critical care nurses, intrusions and distractions were linked to poorer handover quality. Standardised handover tools and training were named as facilitators (Abou Hashish et al., 2023).', kind: 'Survey of 201 nurses' },
-      { text: 'In a study of 96 ward nurses, momentary fatigue was explained by the task being done, how demanding and rewarding it felt, and the nurse’s level of emotional exhaustion (Fernández-Castro et al., 2017).', kind: 'Cohort study, 96 nurses' },
       { text: 'In shift workers, recall at 07:00 and 11:00 was better for information processed in depth as it was taken in (Galy et al., 2008).', kind: 'Study of shift workers' },
+      { text: 'A review of hybrid work leadership argues that unclear expectations and the lack of shared norms on responsiveness and availability undermine coordination in dispersed teams (Sharma et al., 2025).', kind: 'Conceptual review, not empirical' },
     ],
   },
   {
@@ -70,6 +70,7 @@ export const DRIVERS: Driver[] = [
     title: 'Anxiety and pressure affect safety-critical communication',
     findings: [
       { text: 'In critical care nurses, anxiety and time stress were linked to poorer handover quality (Abou Hashish et al., 2023).', kind: 'Survey of 201 nurses' },
+      { text: 'In a study of 96 ward nurses, momentary fatigue was explained by the task being done, how demanding and rewarding it felt, and the nurse’s level of emotional exhaustion (Fernández-Castro et al., 2017).', kind: 'Cohort study, 96 nurses' },
     ],
   },
   {
@@ -97,6 +98,7 @@ export const DRIVERS: Driver[] = [
       { text: 'Fatigue is generally considered a decline in mental or physical performance that results from prolonged exertion, sleep loss or disruption of the internal clock (HSE, n.d.).', kind: 'Regulator guidance' },
       { text: 'Fatigue involves physical, mental and muscular dimensions, which are largely influenced by the timing of work schedules (Fischer et al., 2017).', kind: 'Meta-analysis' },
       { text: 'Among 251 offshore workers, physical fatigue was linked only to physical demands such as awkward postures and heavy lifting, while mental fatigue was linked to both physical and psychological demands, including task interruptions and excessive work (Bazazan et al., 2023).', kind: 'Cross-sectional, 251 workers' },
+      { text: 'A mini review of running coordination proposes that fatigue and accumulated overuse compromise coordination, so mechanical stress falls on fewer components (Kiely, 2017).', kind: 'Mini review, running' },
     ],
   },
   {

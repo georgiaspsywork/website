@@ -176,6 +176,10 @@ export const references: Reference[] = [
     html: 'Keysar, B., &amp; Henly, A. S. (2002). Speakers&rsquo; overestimation of their effectiveness. <em>Psychological Science, 13</em>(3), 207&ndash;212.',
   },
   {
+    id: 'kiely2017',
+    html: 'Kiely, J. (2017). The robust running ape: Unraveling the deep underpinnings of coordinated human running proficiency. <em>Frontiers in Psychology, 8</em>, Article 892. https://doi.org/10.3389/fpsyg.2017.00892',
+  },
+  {
     id: 'koy2020',
     html: 'Koy, V., Yunibhand, J., &amp; Turale, S. (2020). &ldquo;It is really so exhausting&rdquo;: Exploring intensive care nurses&rsquo; perceptions of 24-hour long shifts. <em>Journal of Clinical Nursing, 29</em>(17&ndash;18), 3506&ndash;3515. https://doi.org/10.1111/jocn.15389',
   },
@@ -270,6 +274,10 @@ export const references: Reference[] = [
   {
     id: 'schaufeli2014',
     html: 'Schaufeli, W. B., &amp; Taris, T. W. (2014). A critical review of the Job Demands-Resources model: Implications for improving work and health. In G. F. Bauer &amp; O. H&auml;mmig (Eds.), <em>Bridging occupational, organizational and public health</em> (pp. 43&ndash;68). Springer.',
+  },
+  {
+    id: 'sharma2025',
+    html: 'Sharma, N., Gurram, N. T., Siddiqui, M. S., Soorya, D. A. M., Jindal, S., &amp; Kalita, J. P. (2025). Hybrid work leadership: Balancing productivity and employee well-being. <em>Vascular and Endovascular Review, 8</em>(11s), 417&ndash;424.',
   },
   {
     id: 'shneiderman2020',
