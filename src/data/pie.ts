@@ -11,6 +11,8 @@ export const pie = {
   time: '10:30am to 12:00pm',
   email: 'admin@peopleinsightsexchange.com',
   instagram: 'https://www.instagram.com/peopleinsightsexchange/',
+  linkedin: 'https://www.linkedin.com/company/people-insights-exchange/',
+  sponsor: 'https://peoplinsightsexchange.zoholandingpage.eu/Sponsor/',
   eventbrite: 'https://www.eventbrite.co.uk/o/121704880076',
   website: { url: 'https://peopleinsightsexchange.com', live: false },
   /** The main booking button, used in the events section and at the bottom of the page. */
