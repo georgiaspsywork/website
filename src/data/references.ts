@@ -28,6 +28,10 @@ export const references: Reference[] = [
     html: 'Bakker, A. B., &amp; Demerouti, E. (2007). The Job Demands-Resources model: State of the art. <em>Journal of Managerial Psychology, 22</em>(3), 309&ndash;328. https://doi.org/10.1108/02683940710733115',
   },
   {
+    id: 'blume2010',
+    html: 'Blume, B. D., Ford, J. K., Baldwin, T. T., &amp; Huang, J. L. (2010). Transfer of training: A meta-analytic review. <em>Journal of Management, 36</em>(4), 1065&ndash;1105.',
+  },
+  {
     id: 'booher2003',
     html: 'Booher, H. R. (Ed.). (2003). <em>Handbook of human systems integration</em>. John Wiley &amp; Sons.',
   },
@@ -74,6 +78,14 @@ export const references: Reference[] = [
   {
     id: 'duhigg2016',
     html: 'Duhigg, C. (2016, February 25). What Google learned from its quest to build the perfect team. <em>The New York Times Magazine</em>.',
+  },
+  {
+    id: 'dunlosky2013',
+    html: 'Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., &amp; Willingham, D. T. (2013). Improving students&rsquo; learning with effective learning techniques: Promising directions from cognitive and educational psychology. <em>Psychological Science in the Public Interest, 14</em>(1), 4&ndash;58.',
+  },
+  {
+    id: 'ebbinghaus1913',
+    html: 'Ebbinghaus, H. (1913). <em>Memory: A contribution to experimental psychology</em> (H. A. Ruger &amp; C. E. Bussenius, Trans.). Teachers College, Columbia University. (Original work published 1885)',
   },
   {
     id: 'edmondson1999',
@@ -182,6 +194,10 @@ export const references: Reference[] = [
   {
     id: 'mooreede2012',
     html: 'Moore-Ede, M. (2012). Evolution of fatigue risk management systems: The &ldquo;FRMS Evolution Pyramid&rdquo;. <em>Industrial Health, 50</em>(4), 303&ndash;306.',
+  },
+  {
+    id: 'murre2015',
+    html: 'Murre, J. M. J., &amp; Dros, J. (2015). Replication and analysis of Ebbinghaus&rsquo; forgetting curve. <em>PLOS ONE, 10</em>(7), Article e0120644.',
   },
   {
     id: 'nickerson1998',
