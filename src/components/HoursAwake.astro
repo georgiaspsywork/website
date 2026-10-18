@@ -14,7 +14,7 @@ const { start = 23, wokeAt = 7 } = Astro.props;
   data-awake
   data-woke-at={wokeAt}
 >
-  <span class="pt-5 text-sm tracking-label text-subtle uppercase">Hours awake</span>
+  <span class="pt-5 text-sm tracking-label text-(--sky-ink,var(--color-subtle)) uppercase transition-colors duration-700">Hours awake</span>
   <div class="flex flex-wrap items-center gap-x-14 gap-y-8 rounded-sm bg-brand p-[clamp(28px,4vw,48px)]">
     <div class="flex flex-none flex-col gap-3.5">
       <span class="text-gauge leading-none tracking-numeral text-ink-bright tabular-nums" data-value>{start}</span>
@@ -46,32 +46,25 @@ const { start = 23, wokeAt = 7 } = Astro.props;
     const line = root.querySelector('[data-line]')!;
     const wokeAt = Number(root.dataset.wokeAt);
 
-    // The section's background follows the clock: afternoon, dusk, night, then the first light of the next morning.
+    // The section's background fades from white through grey to black as the hours go by.
     const theme = getComputedStyle(document.documentElement);
     const rgb = (token: string) => {
-      const hex = theme.getPropertyValue(token).trim().replace('#', '');
+      let hex = theme.getPropertyValue(token).trim().replace('#', '');
+      if (hex.length === 3) hex = [...hex].map((c) => c + c).join('');
       return [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16));
     };
     const mix = (from: number[], to: number[], amount: number) => from.map((v, i) => v + (to[i] - v) * amount);
-    const ground = rgb('--color-ground');
-    const sky = [
-      { at: 15, colour: mix(ground, rgb('--color-mint'), 0.1) },
-      { at: 19, colour: mix(ground, rgb('--color-amber'), 0.2) },
-      { at: 22, colour: ground },
-      { at: 27, colour: rgb('--color-deep') },
-      { at: 31, colour: mix(ground, rgb('--color-mint'), 0.16) },
-    ];
-    const skyAt = (hour: number) => {
-      const t = Math.min(Math.max(hour, sky[0].at), sky[sky.length - 1].at);
-      const next = sky.findIndex((stop) => stop.at >= t);
-      if (next <= 0) return sky[0].colour;
-      const a = sky[next - 1];
-      const b = sky[next];
-      return mix(a.colour, b.colour, (t - a.at) / (b.at - a.at));
-    };
+    const day = rgb('--color-white');
+    const night = rgb('--color-deep');
+    const min = Number(input.min);
+    const max = Number(input.max);
+    const dark = `rgb(${rgb('--color-ink-dark').join(' ')})`;
+    const light = `rgb(${rgb('--color-ink-bright').join(' ')})`;
     const paint = (hours: number) => {
-      const [r, g, b] = skyAt(wokeAt + hours).map(Math.round);
+      const t = (hours - min) / (max - min);
+      const [r, g, b] = mix(day, night, t).map(Math.round);
       root.style.setProperty('--sky', `rgb(${r} ${g} ${b})`);
+      root.style.setProperty('--sky-ink', t < 0.5 ? dark : light);
     };
 
     paint(Number(input.value));
