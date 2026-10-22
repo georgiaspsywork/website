@@ -5,6 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import MarginSection from '../components/MarginSection.astro';
 import FilterGroup from '../components/FilterGroup.astro';
+import QuickCheck from '../components/QuickCheck.astro';
 import ResourceCard from '../components/ResourceCard.astro';
 import Photo from '../components/Photo.astro';
 
@@ -19,7 +20,7 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
 <BaseLayout title="Resources · Georgia's PsyWork">
   <PageHero
     eyebrow="Resources · the shift kit"
-    title="Tools you can use <em>before</em> the next incident."
+    title="Tools you can use {{<em>before</em>}} the next incident."
     intro="Checklists, templates, short videos and calculators for operations leaders. Free to use with your teams. Articles live on the blog; these are the things you put to work."
   />
 
@@ -44,6 +45,8 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
       </section>
     )
   }
+
+  <QuickCheck />
 
   {/* Library */}
   <FilterGroup

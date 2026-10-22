@@ -1,0 +1,124 @@
+---
+import Eyebrow from './Eyebrow.astro';
+import Button from './Button.astro';
+import { site } from '../data/site';
+
+// "Where does your operation sit?": eight questions (one from each area of the Fatigue Management Checklist), answered
+// Yes / Unsure / No. Yes = 2, Unsure = 1, No = 0, and the total maps to the checklist's Low / Moderate / High wording.
+// Nothing is stored or sent. Questions and verdict wording come from Georgia's Fatigue Risk Checklist.
+interface Props {
+  checklistHref?: string;
+}
+const { checklistHref = 'https://forms.gle/iF4sXX8YBKdX3pLc9' } = Astro.props;
+
+const questions = [
+  { area: 'Sleep & recovery', q: 'Do people regularly get less than 7 hours of sleep in a 24-hour period?' },
+  { area: 'Cognitive demand', q: 'Do roles require long periods of concentration or high decision-making?' },
+  { area: 'Coordination & clarity', q: 'Are priorities or instructions unclear or change frequently?' },
+  { area: 'Workload & staffing', q: 'Is workload often too high to complete in the available time?' },
+  { area: 'Emotional demands', q: 'Do roles involve high pressure or emotionally demanding situations?' },
+  { area: 'Working patterns', q: 'Are irregular shifts, on-call duties or weekend work common?' },
+  { area: 'Physical demands', q: 'Does the work involve physical strain, heavy lifting or long periods on feet?' },
+  { area: 'Culture & management', q: 'Is fatigue seen as an individual issue rather than a system risk?' },
+];
+// Her bands (0-10, 11-16, 17-32 out of 32) scaled to this shorter check (out of 16).
+const bands = [
+  { upTo: 5, name: 'Low risk', line: 'Keep monitoring and maintain good controls.' },
+  { upTo: 8, name: 'Moderate risk', line: 'There are signs fatigue may be increasing risk. Take a closer look.' },
+  { upTo: 16, name: 'High risk', line: 'Fatigue is likely a significant risk factor. Action needed.' },
+];
+const answers = [
+  { label: 'Yes', points: 2 },
+  { label: 'Unsure', points: 1 },
+  { label: 'No', points: 0 },
+];
+---
+
+<section class="flex flex-col gap-10 px-gutter-reading py-section-sm" data-quick data-bands={JSON.stringify(bands)}>
+  <div class="flex max-w-[820px] flex-col gap-4.5">
+    <Eyebrow>Quick check</Eyebrow>
+    <h2 class="text-title-lg leading-title tracking-heading">Where does your operation sit?</h2>
+    <p class="text-xl leading-body text-ink-soft text-pretty">
+      Eight questions, based on how things are most of the time in your operations. Nothing is recorded or sent.
+    </p>
+  </div>
+
+  <ol class="flex max-w-[820px] flex-col">
+    {
+      questions.map((item, i) => (
+        <li class="flex flex-col gap-3.5 border-t border-line py-6" data-question>
+          <p class="text-2xs tracking-label text-mint uppercase">{String(i + 1).padStart(2, '0')} · {item.area}</p>
+          <p class="text-2xl leading-snug text-ink-bright text-pretty">{item.q}</p>
+          <div class="flex flex-wrap gap-2.5" role="group" aria-label={item.q}>
+            {
+              answers.map((a) => (
+                <button
+                  type="button"
+                  aria-pressed="false"
+                  data-points={a.points}
+                  class="cursor-pointer rounded-xs border border-outline px-5 py-2.5 text-md hover:border-mint aria-pressed:border-amber aria-pressed:bg-amber aria-pressed:text-ground"
+                >
+                  {a.label}
+                </button>
+              ))
+            }
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="flex max-w-[820px] flex-col gap-5 rounded-sm bg-brand p-[clamp(24px,3.5vw,40px)] text-white" data-result aria-live="polite">
+    <p class="text-sm tracking-label text-amber uppercase" data-progress>Answer all eight to see where you sit</p>
+    <div hidden data-verdict class="flex flex-col gap-4">
+      <p class="text-lead-xl leading-title tracking-heading" data-band></p>
+      <p class="text-xl leading-body text-on-brand" data-line></p>
+      <p class="text-base text-on-brand-muted">This is a rapid indicator, not a full assessment. It helps you spot where fatigue risk might exist.</p>
+      <div class="flex flex-wrap gap-4 pt-1">
+        <Button href={checklistHref} target="_blank" variant="amber">Take the full checklist ↗</Button>
+        <Button href={site.calendly} target="_blank" variant="outline">Talk it through</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-quick]').forEach((root) => {
+    const bands: { upTo: number; name: string; line: string }[] = JSON.parse(root.dataset.bands ?? '[]');
+    const questions = root.querySelectorAll<HTMLElement>('[data-question]');
+    const progress = root.querySelector<HTMLElement>('[data-progress]')!;
+    const verdict = root.querySelector<HTMLElement>('[data-verdict]')!;
+    const bandEl = root.querySelector<HTMLElement>('[data-band]')!;
+    const lineEl = root.querySelector<HTMLElement>('[data-line]')!;
+
+    const update = () => {
+      let answered = 0;
+      let total = 0;
+      questions.forEach((q) => {
+        const on = q.querySelector<HTMLButtonElement>('button[aria-pressed="true"]');
+        if (on) {
+          answered++;
+          total += Number(on.dataset.points);
+        }
+      });
+      const done = answered === questions.length;
+      verdict.hidden = !done;
+      progress.hidden = done;
+      progress.textContent = `${answered} of ${questions.length} answered`;
+      if (done) {
+        const band = bands.find((b) => total <= b.upTo) ?? bands[bands.length - 1];
+        bandEl.textContent = band.name;
+        lineEl.textContent = band.line;
+      }
+    };
+
+    questions.forEach((q) =>
+      q.querySelectorAll<HTMLButtonElement>('button').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          q.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          update();
+        }),
+      ),
+    );
+  });
+</script>

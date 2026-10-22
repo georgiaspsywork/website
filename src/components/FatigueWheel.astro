@@ -1,0 +1,125 @@
+---
+import Eyebrow from './Eyebrow.astro';
+import Chip from './Chip.astro';
+import { DRIVERS } from '../lib/drivers';
+
+// The 8-factor fatigue model as a wheel: tap a segment (or a name) to see what it covers and the first two findings from the
+// research. Every panel is in the page HTML; the script only shows one at a time. Data lives in src/lib/drivers.ts.
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  intro?: string;
+}
+const {
+  eyebrow = '03:00 · what drives fatigue',
+  title = 'Fatigue has more than one cause',
+  intro = 'Working patterns are one of eight factors. Tap a segment to see what it covers and what the research says.',
+} = Astro.props;
+
+// Eight 45-degree segments around a ring, starting at the top. Paths are worked out here, once, at build time.
+const cx = 200;
+const cy = 200;
+const outer = 190;
+const inner = 108;
+const gap = 1.6;
+const point = (r: number, deg: number) => {
+  const a = ((deg - 90) * Math.PI) / 180;
+  return [cx + r * Math.cos(a), cy + r * Math.sin(a)].map((n) => n.toFixed(2));
+};
+const segments = DRIVERS.map((d, i) => {
+  const start = i * 45 + gap / 2;
+  const end = (i + 1) * 45 - gap / 2;
+  const [x1, y1] = point(outer, start);
+  const [x2, y2] = point(outer, end);
+  const [x3, y3] = point(inner, end);
+  const [x4, y4] = point(inner, start);
+  const path = `M${x1} ${y1} A${outer} ${outer} 0 0 1 ${x2} ${y2} L${x3} ${y3} A${inner} ${inner} 0 0 0 ${x4} ${y4}Z`;
+  const [tx, ty] = point((outer + inner) / 2, i * 45 + 22.5);
+  return { ...d, path, tx, ty, num: String(i + 1).padStart(2, '0') };
+});
+---
+
+<section class="flex flex-col gap-10 px-gutter pt-section-sm pb-section" data-wheel>
+  <div class="flex max-w-[820px] flex-col gap-4.5">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <h2 class="text-title-lg leading-title tracking-heading">{title}</h2>
+    <p class="text-xl leading-body text-ink-soft text-pretty">{intro}</p>
+  </div>
+
+  <div class="grid items-center gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
+    <div class="flex flex-col gap-6">
+      <svg viewBox="0 0 400 400" class="mx-auto w-full max-w-[420px]" role="group" aria-label="The eight factors that drive fatigue">
+        {
+          segments.map((s, i) => (
+            <g
+              role="button"
+              tabindex="0"
+              aria-pressed={i === 0 ? 'true' : 'false'}
+              aria-label={s.label}
+              data-driver={s.id}
+              class="group cursor-pointer outline-none"
+            >
+              <path
+                d={s.path}
+                class="fill-brand stroke-brand-edge group-hover:fill-brand-lift group-focus-visible:stroke-mint group-aria-pressed:fill-amber group-aria-pressed:stroke-amber"
+                stroke-width="1.5"
+              />
+              <text x={s.tx} y={s.ty} text-anchor="middle" dominant-baseline="central" class="fill-ink-bright text-3xl group-aria-pressed:fill-ground">{s.num}</text>
+            </g>
+          ))
+        }
+        <text x="200" y="192" text-anchor="middle" class="fill-ink-bright text-3xl italic">Fatigue</text>
+        <text x="200" y="222" text-anchor="middle" class="fill-ink-bright text-3xl italic">at work</text>
+      </svg>
+      <div class="grid grid-cols-2 gap-2.5" role="group" aria-label="Choose a factor">
+        {
+          segments.map((s, i) => (
+            <Chip pressed={i === 0} data-driver={s.id} class="flex items-center justify-center text-center">{s.num} · {s.label}</Chip>
+          ))
+        }
+      </div>
+    </div>
+
+    <div>
+      {
+        segments.map((s, i) => (
+          <div hidden={i !== 0} data-panel={s.id} class="flex flex-col gap-6">
+            <div class="flex flex-col gap-2.5">
+              <p class="text-sm tracking-label text-amber uppercase">{s.covers}</p>
+              <h3 class="text-5xl leading-heading font-normal text-ink-bright">{s.title}</h3>
+            </div>
+            <ul class="flex list-none flex-col gap-5">
+              {s.findings.slice(0, 2).map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <p class="text-xl leading-body text-ink-soft text-pretty">{f.text}</p>
+                  <span class="text-2xs tracking-label text-mint uppercase">{f.kind}</span>
+                </li>
+              ))}
+            </ul>
+            <a class="self-start border-b border-mint text-lg text-mint" href="/fatigue-model">All the evidence for this factor</a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-wheel]').forEach((root) => {
+    const controls = root.querySelectorAll<HTMLElement>('[data-driver]');
+    const panels = root.querySelectorAll<HTMLElement>('[data-panel]');
+    const select = (id: string | undefined) => {
+      controls.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.driver === id)));
+      panels.forEach((p) => (p.hidden = p.dataset.panel !== id));
+    };
+    controls.forEach((c) => {
+      c.addEventListener('click', () => select(c.dataset.driver));
+      c.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          select(c.dataset.driver);
+        }
+      });
+    });
+  });
+</script>

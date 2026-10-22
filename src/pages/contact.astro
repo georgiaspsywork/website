@@ -3,6 +3,7 @@ import { site } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Eyebrow from '../components/Eyebrow.astro';
+import PencilCircle from '../components/PencilCircle.astro';
 import Section from '../components/Section.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Step from '../components/Step.astro';
@@ -35,7 +36,7 @@ const steps = [
     <div class="flex flex-col gap-6.5">
       <Eyebrow>Contact · any hour that suits your rota</Eyebrow>
       <h1 class="max-w-[13em] text-display leading-display font-normal tracking-display text-balance">
-        Start with a <em>30-minute</em> conversation.
+        Start with a <PencilCircle><em>30-minute</em></PencilCircle> conversation.
       </h1>
       <p class="max-w-[32em] text-lead leading-snug text-muted text-pretty">
         No pitch and no obligation. Tell us what you're seeing across your shifts, and we'll tell you honestly whether we can help.

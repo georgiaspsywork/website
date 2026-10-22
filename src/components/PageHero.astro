@@ -1,6 +1,8 @@
 ---
 import Eyebrow from './Eyebrow.astro';
+import PencilCircle from './PencilCircle.astro';
 // Opening block of a page: eyebrow, big headline (wrap a word in <em> for the italic emphasis), intro paragraph.
+// Wrap the part to circle in {{double braces}} and it gets the hand-drawn pencil circle.
 // Optional slot="mark" puts a small logo or icon to the left of the headline.
 interface Props {
   eyebrow: string;
@@ -9,6 +11,7 @@ interface Props {
   class?: string;
 }
 const { eyebrow, title, intro, class: extra } = Astro.props;
+const [before, circled, after] = title.split(/\{\{|\}\}/);
 ---
 
 <section class:list={['flex flex-col gap-6.5 px-gutter-reading pt-section-sm pb-section-sm', extra]}>
@@ -16,7 +19,9 @@ const { eyebrow, title, intro, class: extra } = Astro.props;
   <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
     <slot name="mark" />
     <h1 class="max-w-[13em] text-display leading-display font-normal tracking-display text-balance">
-      <Fragment set:html={title} />
+      <Fragment set:html={before} />
+      {circled && <PencilCircle><Fragment set:html={circled} /></PencilCircle>}
+      {after && <Fragment set:html={after} />}
     </h1>
   </div>
   {intro && <p class="max-w-[32em] text-lead leading-snug text-muted text-pretty">{intro}</p>}
