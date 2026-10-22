@@ -1,11 +1,12 @@
 ---
 import { site } from '../data/site';
-import Button from './Button.astro';
+import Photo from './Photo.astro';
+import badge from '../assets/images/georgia-badge-selfie.webp';
 import RuledList from './RuledList.astro';
 import Section from './Section.astro';
 import SectionHeader from './SectionHeader.astro';
 
-// "Prefer to write?" band: contact details beside an "Email me" button (opens the visitor's email app).
+// "Prefer to write?" band: contact details beside a photo of Georgia.
 ---
 
 <Section tone="deep" gutter="reading">
@@ -36,9 +37,12 @@ import SectionHeader from './SectionHeader.astro';
       </RuledList>
     </div>
 
-    <div class="flex flex-col items-start justify-center gap-5.5">
-      <Button href={`mailto:${site.email}`} variant="primary" class="text-lg">Email me</Button>
-      <span class="text-sm text-faint">Opens your email app, addressed to {site.email}.</span>
-    </div>
+    <Photo
+      src={badge}
+      alt="Georgia smiling and holding up a conference name badge that reads 'Georgia' and 'Talk to me about everything'"
+      ratio="4/5"
+      sizes="(min-width: 1024px) 380px, 100vw"
+      class="max-w-[380px] lg:justify-self-end"
+    />
   </div>
 </Section>
