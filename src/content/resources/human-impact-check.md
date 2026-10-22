@@ -9,5 +9,6 @@ action: "Open the form"
 intro: "A practical framework I've developed to support decision-making when demand is high. It draws on organisational psychology and human-factors principles, and is informed by JD-R, recovery, compensatory-control and human-factors research. It takes about ten minutes."
 buttons: [{"label": "Open the form", "href": "https://forms.gle/eBXvX1DAN1PEWccY7", "style": "primary"}]
 facts: [{"label": "Type", "value": "Tool"}, {"label": "Time needed", "value": "10 minutes"}, {"label": "Format", "value": "Online form (Google Forms)"}]
+inside: [{"title": "What the work asks", "body": "What the demands are, and what is changing and expected."}, {"title": "Time, place and uncertainty", "body": "Whether there is the right time and place for the work, and what threat or uncertainty people face."}, {"title": "Influence and ability", "body": "What influence you have, and whether people can use and challenge it."}, {"title": "Ownership and recovery", "body": "Who owns the final decision, and where capacity can replenish."}]
 related: ["fatigue-management-checklist", "rota-red-flags"]
 ---
