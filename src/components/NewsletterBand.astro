@@ -1,32 +1,23 @@
 ---
 import Eyebrow from './Eyebrow.astro';
+import Button from './Button.astro';
 
-// Email sign-up band. Not connected to a mailing service yet: submitting does nothing.
+// Contact-list sign-up band: a button that opens the Google Form in a new tab.
 interface Props {
   eyebrow?: string;
   title?: string;
+  href?: string;
+  label?: string;
 }
-const { eyebrow = 'Once a month', title = 'One article, one resource, nothing else.' } = Astro.props;
+const { eyebrow, title = 'Join my contact list', href = 'https://forms.gle/6r8pWkmsPnrZMuj79', label = 'Join my contact list' } = Astro.props;
 ---
 
-<section class="grid items-end gap-x-18 gap-y-8 bg-brand px-gutter-reading py-section-sm text-white md:grid-cols-2">
+<section class="grid items-center gap-x-18 gap-y-8 bg-brand px-gutter-reading py-section-sm text-white md:grid-cols-2">
   <div class="flex flex-col gap-4">
-    <Eyebrow tone="amber">{eyebrow}</Eyebrow>
+    {eyebrow && <Eyebrow tone="amber">{eyebrow}</Eyebrow>}
     <h2 class="text-title leading-title tracking-heading">{title}</h2>
   </div>
-  <form class="flex flex-wrap gap-3" data-no-submit>
-    <input
-      type="email"
-      placeholder="Work email"
-      aria-label="Work email"
-      class="min-w-0 flex-[1_1_240px] rounded-xs border border-brand-line bg-brand-deep px-4 py-[15px] text-md text-white"
-    />
-    <button type="submit" class="cursor-pointer rounded-xs bg-amber px-6 py-[15px] text-md font-semibold text-ground">Subscribe</button>
-  </form>
+  <div class="md:justify-self-end">
+    <Button href={href} target="_blank" variant="amber">{label} ↗</Button>
+  </div>
 </section>
-
-<script>
-  document.querySelectorAll<HTMLFormElement>('form[data-no-submit]').forEach((form) =>
-    form.addEventListener('submit', (event) => event.preventDefault()),
-  );
-</script>
