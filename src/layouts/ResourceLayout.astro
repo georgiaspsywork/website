@@ -69,7 +69,7 @@ const hasTool = Astro.slots.has('tool');
   {/* Tool (bespoke) or preview image */}
   {hasTool ? <slot name="tool" /> : d.image ? (
     <section class="px-gutter pb-section">
-      <Photo src={d.image} alt={d.imageAlt ?? ''} ratio="21/9" />
+      <Photo src={d.image} alt={d.imageAlt ?? ''} ratio="4/3" sizes="(min-width: 768px) 420px, 100vw" class="max-w-[420px]" />
     </section>
   ) : d.previewLabel && (
     <section class="px-gutter pb-section">
