@@ -25,6 +25,7 @@ const d = resource.data;
 const everything = await getCollection('resources', ({ data }) => !data.draft);
 const related = d.related.map((id) => everything.find((r) => r.id === id)).filter((r) => r !== undefined);
 const hasTool = Astro.slots.has('tool');
+const sideImage = !hasTool && !!d.image;
 ---
 
 <BaseLayout
@@ -33,21 +34,24 @@ const hasTool = Astro.slots.has('tool');
   footer={{ heading: "Found three or more flags? Let's talk it through." }}
 >
   {/* Resource header */}
-  <section class="flex flex-col gap-6.5 px-gutter-reading py-section-sm">
-    <div class="flex flex-wrap gap-2.5 text-sm text-subtle">
-      <a class="text-mint" href="/resources">Resources</a><span>/</span><span>{d.type}</span>
+  <section class:list={['px-gutter-reading py-section-sm', sideImage && 'grid items-center gap-x-16 gap-y-10 md:grid-cols-[minmax(0,1fr)_auto]']}>
+    <div class="flex flex-col gap-6.5">
+      <div class="flex flex-wrap gap-2.5 text-sm text-subtle">
+        <a class="text-mint" href="/resources">Resources</a><span>/</span><span>{d.type}</span>
+      </div>
+      <h1 class="max-w-[14em] text-display leading-display font-normal tracking-display text-balance">{d.heading ?? d.title}</h1>
+      <p class="max-w-[32em] text-lead leading-body text-muted text-pretty">{d.intro ?? d.summary}</p>
+      {
+        d.buttons.length > 0 && (
+          <div class="mt-1.5 flex flex-wrap items-center gap-4">
+            {d.buttons.map((b) => (
+              <Button href={b.href} target={b.href.startsWith('http') ? '_blank' : undefined} variant={b.style === 'primary' ? 'amber' : 'outline'}>{b.label}</Button>
+            ))}
+          </div>
+        )
+      }
     </div>
-    <h1 class="max-w-[14em] text-display leading-display font-normal tracking-display text-balance">{d.heading ?? d.title}</h1>
-    <p class="max-w-[32em] text-lead leading-body text-muted text-pretty">{d.intro ?? d.summary}</p>
-    {
-      d.buttons.length > 0 && (
-        <div class="mt-1.5 flex flex-wrap items-center gap-4">
-          {d.buttons.map((b) => (
-            <Button href={b.href} target={b.href.startsWith('http') ? '_blank' : undefined} variant={b.style === 'primary' ? 'amber' : 'outline'}>{b.label}</Button>
-          ))}
-        </div>
-      )
-    }
+    {sideImage && d.image && <Photo src={d.image} alt={d.imageAlt ?? ''} sizes="280px" class="max-w-[280px] md:justify-self-end" />}
   </section>
 
   {/* Facts */}
@@ -67,11 +71,7 @@ const hasTool = Astro.slots.has('tool');
   }
 
   {/* Tool (bespoke) or preview image */}
-  {hasTool ? <slot name="tool" /> : d.image ? (
-    <section class="px-gutter pb-section">
-      <Photo src={d.image} alt={d.imageAlt ?? ''} ratio="4/3" sizes="(min-width: 768px) 420px, 100vw" class="max-w-[420px]" />
-    </section>
-  ) : d.previewLabel && (
+  {hasTool ? <slot name="tool" /> : !d.image && d.previewLabel && (
     <section class="px-gutter pb-section">
       <ImagePlaceholder label={d.previewLabel} ratio="16/8" />
     </section>

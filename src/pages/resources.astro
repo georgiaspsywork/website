@@ -38,7 +38,7 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
             <p class="max-w-[30em] text-lg leading-body text-on-brand text-pretty">{featured.data.featured.blurb}</p>
             <span class="self-start rounded-xs bg-amber px-6 py-3.5 text-md font-semibold text-ground">Open the resource</span>
           </div>
-          {featured.data.image ? <Photo src={featured.data.image} alt={featured.data.imageAlt ?? ''} ratio="16/10" sizes="(min-width: 768px) 50vw, 100vw" /> : <ImagePlaceholder label={featured.data.featured.previewLabel} ratio="16/10" class="bg-brand-deep" />}
+          {featured.data.image ? <Photo src={featured.data.image} alt={featured.data.imageAlt ?? ''} sizes="240px" class="max-w-[240px] md:justify-self-center" /> : <ImagePlaceholder label={featured.data.featured.previewLabel} ratio="16/10" class="bg-brand-deep" />}
         </a>
       </section>
     )
