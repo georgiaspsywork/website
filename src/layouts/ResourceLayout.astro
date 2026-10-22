@@ -51,7 +51,7 @@ const sideImage = !hasTool && !!d.image;
         )
       }
     </div>
-    {sideImage && d.image && <Photo src={d.image} alt={d.imageAlt ?? ''} sizes="280px" class="max-w-[280px] md:justify-self-end" />}
+    {sideImage && d.image && <Photo src={d.image} alt={d.imageAlt ?? ''} sizes="(min-width: 768px) 460px, 100vw" class:list={['md:justify-self-end', d.image.width > d.image.height ? 'max-w-[460px]' : 'max-w-[280px]']} />}
   </section>
 
   {/* Facts */}
