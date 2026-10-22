@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { site } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import MarginSection from '../components/MarginSection.astro';
@@ -61,6 +62,6 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
     <p class="text-lead-xl leading-lead text-pretty">
       If there's a tool you wish you had for your shift teams, tell us. Most of these started as a question from a client.
     </p>
-    <a class="self-start border-b border-mint text-lg text-mint" href="#">Suggest a resource</a>
+    <a class="self-start border-b border-mint text-lg text-mint" href={`mailto:${site.email}?subject=Suggest%20a%20resource`}>Suggest a resource</a>
   </MarginSection>
 </BaseLayout>
