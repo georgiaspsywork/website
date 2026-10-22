@@ -42,7 +42,7 @@ const hasTool = Astro.slots.has('tool');
       d.buttons.length > 0 && (
         <div class="mt-1.5 flex flex-wrap items-center gap-4">
           {d.buttons.map((b) => (
-            <Button href={b.href} variant={b.style === 'primary' ? 'amber' : 'outline'}>{b.label}</Button>
+            <Button href={b.href} target={b.href.startsWith('http') ? '_blank' : undefined} variant={b.style === 'primary' ? 'amber' : 'outline'}>{b.label}</Button>
           ))}
         </div>
       )
