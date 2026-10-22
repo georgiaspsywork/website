@@ -2,7 +2,7 @@
 import { site } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
-import PageHero from '../components/PageHero.astro';
+import Eyebrow from '../components/Eyebrow.astro';
 import Section from '../components/Section.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Step from '../components/Step.astro';
@@ -30,46 +30,36 @@ const steps = [
 ---
 
 <BaseLayout title="Contact · Georgia's PsyWork" footer={{ ctaHref: calendly }}>
-  {/* Contact hero */}
-  <PageHero
-    eyebrow="Contact · any hour that suits your rota"
-    title="Start with a <em>30-minute</em> conversation."
-    intro="No pitch and no obligation. Tell us what you're seeing across your shifts, and we'll tell you honestly whether we can help."
-  />
-
-  {/* Booking options */}
-  <Section size="none" class="pb-section">
-    <div class="grid max-w-[40rem] gap-8">
-      {
-        bookings.map((b) => (
-          <a
-            href={b.href}
-            rel="noopener"
-            target="_blank"
-            class:list={[
-              'flex flex-col gap-4.5 rounded-sm p-[clamp(28px,3.5vw,40px)]',
-              b.featured
-                ? 'bg-brand text-white hover:bg-brand-lift hover:text-white'
-                : 'border border-line-soft bg-surface text-ink hover:border-mint hover:text-ink',
-            ]}
-          >
-            <div class="flex justify-between gap-4 text-xs tracking-label uppercase">
-              <span class={b.featured ? 'text-amber' : 'text-mint'}>{b.tag}</span>
-              <span class={b.featured ? 'text-on-brand-muted' : 'text-subtle'}>{b.meta}</span>
-            </div>
-            <h2 class="text-lead-xl leading-title tracking-heading">{b.title}</h2>
-            <p class:list={['text-lg leading-body text-pretty', b.featured ? 'text-on-brand' : 'text-muted']}>{b.body}</p>
-            <span
-              class:list={[
-                'mt-auto self-start rounded-xs px-6 py-3.5 text-md font-semibold',
-                b.featured ? 'bg-amber text-ground' : 'border border-mint text-mint',
-              ]}>Book on Calendly ↗</span
-            >
-          </a>
-        ))
-      }
+  {/* Contact hero, with the booking card to its right */}
+  <section class="grid items-center gap-x-16 gap-y-10 px-gutter-reading pt-section-sm pb-section lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)]">
+    <div class="flex flex-col gap-6.5">
+      <Eyebrow>Contact · any hour that suits your rota</Eyebrow>
+      <h1 class="max-w-[13em] text-display leading-display font-normal tracking-display text-balance">
+        Start with a <em>30-minute</em> conversation.
+      </h1>
+      <p class="max-w-[32em] text-lead leading-snug text-muted text-pretty">
+        No pitch and no obligation. Tell us what you're seeing across your shifts, and we'll tell you honestly whether we can help.
+      </p>
     </div>
-  </Section>
+    {
+      bookings.map((b) => (
+        <a
+          href={b.href}
+          rel="noopener"
+          target="_blank"
+          class="flex flex-col gap-4.5 rounded-sm bg-brand p-[clamp(28px,3.5vw,40px)] text-white hover:bg-brand-lift hover:text-white"
+        >
+          <div class="flex justify-between gap-4 text-xs tracking-label uppercase">
+            <span class="text-amber">{b.tag}</span>
+            <span class="text-on-brand-muted">{b.meta}</span>
+          </div>
+          <h2 class="text-lead-xl leading-title tracking-heading">{b.title}</h2>
+          <p class="text-lg leading-body text-pretty text-on-brand">{b.body}</p>
+          <span class="mt-auto self-start rounded-xs bg-amber px-6 py-3.5 text-md font-semibold text-ground">Book on Calendly ↗</span>
+        </a>
+      ))
+    }
+  </section>
 
   {/* Message form */}
   <ContactForm />
