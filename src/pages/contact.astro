@@ -19,22 +19,6 @@ const bookings = [
     body: "A first conversation about your operation, what's prompting the question, and whether a fatigue review is the right next step.",
     href: calendly,
   },
-  {
-    featured: false,
-    tag: 'Bring your rota',
-    meta: '60 min · video call',
-    title: 'Rota walk-through',
-    body: "Share one real shift pattern and we'll go through it together, flagging where fatigue risk is likely to build.",
-    href: 'https://calendly.com/georgiaspsywork/rota-review',
-  },
-  {
-    featured: false,
-    tag: 'For leadership teams',
-    meta: '45 min · video call',
-    title: 'Leadership briefing',
-    body: "A short session for your ops or exec team on fatigue, turnover and what they're costing the business.",
-    href: 'https://calendly.com/georgiaspsywork/board-briefing',
-  },
 ];
 
 const steps = [
@@ -55,7 +39,7 @@ const steps = [
 
   {/* Booking options */}
   <Section size="none" class="pb-section">
-    <div class="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
+    <div class="grid max-w-[40rem] gap-8">
       {
         bookings.map((b) => (
           <a
