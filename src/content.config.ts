@@ -34,7 +34,7 @@ const articles = defineCollection({
 // Resources: tools, templates, guides. Library cards and standard detail pages are built from these fields.
 const resources = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     /** What kind of thing it is: Tool, Video, Template, Guide or Pack. */
     type: z.string(),
@@ -67,6 +67,9 @@ const resources = defineCollection({
     buttons: z.array(z.object({ label: z.string(), href: z.string(), style: z.enum(['primary', 'outline']).default('primary') })).default([]),
     facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
     previewLabel: z.string().optional(),
+    /** Picture shown under the facts and on the featured card, with its description. Use instead of previewLabel. */
+    image: image().optional(),
+    imageAlt: z.string().optional(),
     insideTitle: z.string().default("What's inside"),
     inside: z.array(z.object({ title: z.string(), body: z.string() })).default([]),
     stepsEyebrow: z.string().default('How to use it'),

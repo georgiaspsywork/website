@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero.astro';
 import MarginSection from '../components/MarginSection.astro';
 import FilterGroup from '../components/FilterGroup.astro';
 import ResourceCard from '../components/ResourceCard.astro';
+import Photo from '../components/Photo.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 
 const library = (await getCollection('resources', ({ data }) => !data.draft)).sort(
@@ -37,7 +38,7 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
             <p class="max-w-[30em] text-lg leading-body text-on-brand text-pretty">{featured.data.featured.blurb}</p>
             <span class="self-start rounded-xs bg-amber px-6 py-3.5 text-md font-semibold text-ground">Open the resource</span>
           </div>
-          <ImagePlaceholder label={featured.data.featured.previewLabel} ratio="16/10" class="bg-brand-deep" />
+          {featured.data.image ? <Photo src={featured.data.image} alt={featured.data.imageAlt ?? ''} ratio="16/10" sizes="(min-width: 768px) 50vw, 100vw" /> : <ImagePlaceholder label={featured.data.featured.previewLabel} ratio="16/10" class="bg-brand-deep" />}
         </a>
       </section>
     )

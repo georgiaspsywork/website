@@ -14,5 +14,7 @@ inside: [{"title": "Shift length and sequence", "body": "Runs of nights, long sh
 stepsTitle: "Ten minutes, three steps"
 steps: [{"stamp": "00:00", "title": "Pick one rota", "body": "Use a real four-week pattern from one site or crew, not the template."}, {"stamp": "00:02", "title": "Work through the questions", "body": "Answer honestly. Mark anything you're unsure of; that's often where the risk sits."}, {"stamp": "00:10", "title": "Read your flags", "body": "Three or more is a pattern worth looking at with the people who work it."}]
 note: {"label": "Why we made this", "quote": "Most rotas I review are compliant. Very few have been checked for how tired people will actually be. This is the first ten minutes of that check.", "by": "Georgia Hodkinson GMBPsS"}
+image: ../../assets/images/night-road.webp
+imageAlt: "A road and bay seen from above at night, lit by street lights, with a crane silhouetted against the dark sky"
 related: ["rota-builder"]
 ---
