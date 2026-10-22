@@ -9,7 +9,7 @@ action: "Use the tool"
 href: "/resources/rota-builder"
 heading: "Most rotas pass compliance and still wear people down. Build a week and see where."
 intro: "Click any shift to cycle Off, Early, Late, Night. We flag quick returns, long runs of nights and backward rotation as you go. This is a sketch of what a fatigue review looks at first."
-buttons: [{"label": "Build a week", "href": "#rota", "style": "primary"}, {"label": "Send us your real rota", "href": "#", "style": "outline"}]
+buttons: [{"label": "Build a week", "href": "#rota", "style": "primary"}, {"label": "Send us your real rota", "href": "mailto:Georgia@georgiaspsywork.com", "style": "outline"}]
 facts: [{"label": "Type", "value": "Tool"}, {"label": "Time needed", "value": "5 minutes"}, {"label": "Format", "value": "Interactive, in your browser"}, {"label": "Best for", "value": "Rota planners and ops leaders"}]
 insideTitle: "What it checks"
 inside: [{"title": "Quick returns", "body": "Less than 11 hours between the end of one shift and the start of the next. In a randomised trial in hospital units, halving these short rests led to a smaller rise in sickness absence (Djupedal et al., 2025)."}, {"title": "Long runs of nights", "body": "More than three nights in a row, where injury risk climbs (Fischer et al., 2017)."}, {"title": "Days without rest", "body": "More than five working days before a day off. Work stretches of over five or six days are generally associated with fatigue, burnout and low morale (Emmons & Burns, 1991)."}, {"title": "Backward rotation", "body": "Lates into earlies, or nights into lates. Forward rotation is easier to recover from."}]
