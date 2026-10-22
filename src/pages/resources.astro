@@ -6,7 +6,6 @@ import MarginSection from '../components/MarginSection.astro';
 import FilterGroup from '../components/FilterGroup.astro';
 import ResourceCard from '../components/ResourceCard.astro';
 import Photo from '../components/Photo.astro';
-import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 
 const library = (await getCollection('resources', ({ data }) => !data.draft)).sort(
   (a, b) => a.data.order - b.data.order,
@@ -28,7 +27,7 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
       <section class="px-gutter pb-section-sm">
         <a
           href={featured.data.href ?? `/resources/${featured.id}`}
-          class="grid items-center gap-x-16 gap-y-8 rounded-sm bg-brand p-[clamp(28px,4vw,48px)] text-white hover:bg-brand-lift hover:text-white md:grid-cols-2"
+          class:list={['grid items-center gap-x-16 gap-y-8 rounded-sm bg-brand p-[clamp(28px,4vw,48px)] text-white hover:bg-brand-lift hover:text-white', featured.data.image && 'md:grid-cols-2']}
         >
           <div class="flex flex-col gap-4.5">
             <div class="flex flex-wrap gap-x-5 gap-y-2.5 text-xs tracking-label text-amber uppercase">
@@ -38,7 +37,7 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
             <p class="max-w-[30em] text-lg leading-body text-on-brand text-pretty">{featured.data.featured.blurb}</p>
             <span class="self-start rounded-xs bg-amber px-6 py-3.5 text-md font-semibold text-ground">Open the resource</span>
           </div>
-          {featured.data.image ? <Photo src={featured.data.image} alt={featured.data.imageAlt ?? ''} sizes="240px" class="max-w-[240px] md:justify-self-center" /> : <ImagePlaceholder label={featured.data.featured.previewLabel} ratio="16/10" class="bg-brand-deep" />}
+          {featured.data.image && <Photo src={featured.data.image} alt={featured.data.imageAlt ?? ''} sizes="240px" class="max-w-[240px] md:justify-self-center" />}
         </a>
       </section>
     )
