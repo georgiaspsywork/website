@@ -52,6 +52,8 @@ const resources = defineCollection({
     parts: z.number().int().min(0).max(3).default(0),
     /** Set when the resource has its own bespoke page (e.g. the rota builder) instead of the standard resource page. */
     href: z.string().optional(),
+    /** A teaser card: shows "Coming soon" instead of the time, and `href` (e.g. a mailto link) is the sign-up. No page is built. */
+    comingSoon: z.boolean().default(false),
     /** Shown large at the top of the resources page (use on one resource only). */
     featured: z
       .object({ meta: z.string(), blurb: z.string(), previewLabel: z.string() })

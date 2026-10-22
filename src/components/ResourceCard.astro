@@ -11,7 +11,7 @@ interface Props {
   compact?: boolean;
 }
 const { resource, filterable = false, compact = false } = Astro.props;
-const { title, type, meta, summary, audience, action, parts, href } = resource.data;
+const { title, type, meta, summary, audience, action, parts, href, comingSoon } = resource.data;
 const stacks = ['', 'mr-2 mb-2 shadow-stack-1', 'mr-4 mb-4 shadow-stack-2', 'mr-6 mb-6 shadow-stack-3'];
 ---
 
@@ -26,7 +26,7 @@ const stacks = ['', 'mr-2 mb-2 shadow-stack-1', 'mr-4 mb-4 shadow-stack-2', 'mr-
   ]}
 >
   <div class="flex justify-between gap-4 text-xs tracking-label uppercase">
-    <span class="text-mint">{type}</span><span class="text-subtle">{meta}</span>
+    <span class="text-mint">{type}</span><span class:list={comingSoon ? 'text-amber' : 'text-subtle'}>{comingSoon ? 'Coming soon' : meta}</span>
   </div>
   <h3 class="text-3xl leading-heading text-pretty">{title}</h3>
   {

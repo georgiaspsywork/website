@@ -12,6 +12,7 @@ const library = (await getCollection('resources', ({ data }) => !data.draft)).so
   (a, b) => a.data.order - b.data.order,
 );
 const featured = library.find((r) => r.data.featured);
+const listed = library.filter((r) => r !== featured);
 const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => library.some((r) => r.data.type === t));
 ---
 
@@ -48,12 +49,12 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
   <FilterGroup
     options={types}
     noun="resource"
-    total={library.length}
+    total={listed.length}
     class="gap-9 px-gutter pb-section"
     barClass="border-t border-line pt-8"
   >
     <div class="grid grid-cols-[repeat(auto-fill,minmax(min(100%,320px),1fr))] gap-x-10 gap-y-12">
-      {library.map((resource) => <ResourceCard resource={resource} filterable />)}
+      {listed.map((resource) => <ResourceCard resource={resource} filterable />)}
     </div>
   </FilterGroup>
 
