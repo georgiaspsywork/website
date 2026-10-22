@@ -22,6 +22,5 @@ export const nav = [
   { label: 'Services', href: '/services' },
   { label: 'Resources', href: '/resources' },
   { label: 'Articles', href: '/articles' },
-  { label: 'PIE events', href: '/pie' },
   { label: 'Contact', href: '/contact', cta: true },
 ];
