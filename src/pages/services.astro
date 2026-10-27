@@ -49,7 +49,7 @@ const services = [
   },
   {
     id: 'training',
-    title: 'Fatigue Capability & Manager Training',
+    title: 'Fatigue & Manager Training',
     audience: 'Managing Fatigue in Operational Teams',
     what: 'Managers learn how to identify fatigue risk, have fatigue conversations, assess immediate operational risk, respond after disrupted on-call nights, escalate concerns, understand their responsibilities and distinguish individual tiredness from systemic fatigue risk.',
     listLabel: 'Three levels',
@@ -62,6 +62,14 @@ const services = [
     what: 'Assess the work around the technology. Placeholder: workshop description to be confirmed by Georgia.',
     listLabel: "Georgia's Human Impact Check looks at",
     list: ['Demand', 'Control', 'Clarity', 'Capability', 'Capacity', 'Accountability', 'Security', 'Recovery'],
+  },
+  {
+    id: 'change-fatigue',
+    title: 'Change Fatigue',
+    audience: 'A training session or workplace assessment.',
+    what: 'Placeholder: description of the change fatigue service to be confirmed by Georgia.',
+    listLabel: 'Includes',
+    list: ['Placeholder: to be confirmed by Georgia'],
   },
 ];
 ---
@@ -77,14 +85,14 @@ const services = [
   >
     <div class="flex flex-wrap items-center gap-x-6 gap-y-4 pt-2">
       <Button href="/contact" variant="brand">Get in touch</Button>
-      <Button href="#services" variant="outline">See the five services</Button>
+      <Button href="#services" variant="outline">See the six services</Button>
       <Button href="/fatigue-model" variant="underline">Our 8-factor fatigue model</Button>
     </div>
   </PageHero>
 
   {/* Services */}
   <Section id="services" tone="deep" class="flex scroll-mt-12 flex-col gap-14">
-    <SectionHeader eyebrow="How we can help" title="Five ways to work together" tone="amber" />
+    <SectionHeader eyebrow="How we can help" title="Six ways to work together" tone="amber" />
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
         services.map((s, i) => (
