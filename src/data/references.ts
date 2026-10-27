@@ -216,6 +216,10 @@ export const references: Reference[] = [
     html: 'Michie, S., van Stralen, M. M., &amp; West, R. (2011). The behaviour change wheel: A new method for characterising and designing behaviour change interventions. <em>Implementation Science, 6</em>, Article 42. https://doi.org/10.1186/1748-5908-6-42',
   },
   {
+    id: 'mitchell2026',
+    html: 'Mitchell, M., Ghosh, A., &amp; Passi, S. (2026). <em>AI agents push humans out of the loop</em>. arXiv. https://arxiv.org/abs/2608.23642',
+  },
+  {
     id: 'mooreede2012',
     html: 'Moore-Ede, M. (2012). Evolution of fatigue risk management systems: The &ldquo;FRMS Evolution Pyramid&rdquo;. <em>Industrial Health, 50</em>(4), 303&ndash;306.',
   },

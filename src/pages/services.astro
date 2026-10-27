@@ -62,6 +62,7 @@ const services = [
     what: 'Assess the work around the technology. Placeholder: workshop description to be confirmed by Georgia.',
     listLabel: "Georgia's Human Impact Check looks at",
     list: ['Demand', 'Control', 'Clarity', 'Capability', 'Capacity', 'Accountability', 'Security', 'Recovery'],
+    link: { label: 'Further reading: AI agents push humans out of the loop', href: '/sources#mitchell2026', note: "Mitchell, Ghosh & Passi (2026) argue that keeping a human in the loop doesn't guarantee effective oversight, and that extended AI use can erode the very skills people need to oversee it." },
   },
   {
     id: 'change-fatigue',
@@ -109,6 +110,8 @@ const services = [
                 {s.list.map((item) => <li class="py-2.5 text-lg text-ink-soft">{item}</li>)}
               </ul>
             </div>
+            {s.link && <p class="text-lg leading-prose text-pretty text-muted">{s.link.note}</p>}
+            {s.link && <Button href={s.link.href} variant="underline">{s.link.label}</Button>}
           </article>
         ))
       }

@@ -14,7 +14,7 @@ import { references } from '../data/references';
   />
   <Section gutter="reading" size="sm" class="pt-0">
     <ol class="flex max-w-[44em] list-none flex-col gap-6">
-      {references.map((ref) => <li class="pl-8 -indent-8 text-lg leading-prose text-pretty text-muted [overflow-wrap:anywhere]" set:html={ref.html} />)}
+      {references.map((ref) => <li id={ref.id} class="pl-8 -indent-8 text-lg leading-prose text-pretty text-muted scroll-mt-12 [overflow-wrap:anywhere]" set:html={ref.html} />)}
     </ol>
   </Section>
 </BaseLayout>
