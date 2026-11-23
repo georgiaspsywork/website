@@ -5,7 +5,7 @@ import BaseLayout from './BaseLayout.astro';
 import ImagePlaceholder from '../components/ImagePlaceholder.astro';
 import Photo from '../components/Photo.astro';
 import { Image } from 'astro:assets';
-import headshot from '../assets/images/georgia-headshot.webp';
+import headshot from '../assets/images/georgia-red-dress-brick-wall.webp';
 import { references } from '../data/references';
 import { site } from '../data/site';
 import Eyebrow from '../components/Eyebrow.astro';
@@ -32,7 +32,7 @@ const toc = headings.filter((h) => h.depth === 2);
     <p class="max-w-[34em] text-lead leading-snug text-muted text-pretty">{dek}</p>
     <div class="flex flex-wrap items-center gap-x-7 gap-y-3 text-base text-soft">
       <span class="flex items-center gap-3">
-        <Image src={headshot} alt="Georgia Hodkinson" width={80} height={80} class="size-10 flex-none rounded-full object-cover object-top" /><span class="text-ink">{author}</span>
+        <Image src={headshot} alt="Georgia Hodkinson, smiling, in a red dress" width={80} height={80} class="size-10 flex-none rounded-full object-cover object-top" /><span class="text-ink">{author}</span>
       </span>
       <span>{longDate(date)}</span><span>{readMinutes} min read</span>
     </div>
