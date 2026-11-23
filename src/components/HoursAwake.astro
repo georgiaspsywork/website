@@ -67,13 +67,46 @@ const { start = 23, wokeAt = 7 } = Astro.props;
       root.style.setProperty('--sky-ink', t < 0.5 ? dark : light);
     };
 
-    paint(Number(input.value));
-    input.addEventListener('input', () => {
-      const hours = Number(input.value);
+    const show = (hours: number) => {
       value.textContent = String(hours);
       clock.textContent = clockAfter(wokeAt, hours);
       line.textContent = awakeLine(hours);
       paint(hours);
+    };
+
+    paint(Number(input.value));
+    let sweeping = false;
+    input.addEventListener('input', () => {
+      sweeping = false; // the visitor has taken over
+      show(Number(input.value));
     });
+
+    // When the section scrolls into view, the day runs from morning to the starting hour, once.
+    // Skipped for people who prefer reduced motion.
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const finish = Number(input.value);
+      input.value = String(min);
+      show(min);
+      const seen = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((e) => e.isIntersecting)) return;
+          seen.disconnect();
+          sweeping = true;
+          const started = performance.now();
+          const duration = 3200;
+          const tick = (now: number) => {
+            if (!sweeping) return;
+            const t = Math.min((now - started) / duration, 1);
+            const hours = Math.round(min + (finish - min) * (1 - Math.pow(1 - t, 2)));
+            input.value = String(hours);
+            show(hours);
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        },
+        { threshold: 0.5 },
+      );
+      seen.observe(root);
+    }
   });
 </script>

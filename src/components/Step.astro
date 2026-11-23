@@ -14,7 +14,7 @@ const { stamp, title, variant = 'time', tone = 'dark' } = Astro.props;
 <div class="flex flex-col gap-3.5">
   {
     variant === 'time' ? (
-      <span class="text-7xl leading-none text-amber tabular-nums">{stamp}</span>
+      <span class="text-7xl leading-none text-amber tabular-nums" data-count-up>{stamp}</span>
     ) : (
       <span class="text-sm tracking-label text-mint">{stamp}</span>
     )
@@ -22,3 +22,41 @@ const { stamp, title, variant = 'time', tone = 'dark' } = Astro.props;
   <h3 class:list={[variant === 'time' ? 'text-3xl' : 'text-5xl']}>{title}</h3>
   <p class:list={['text-lg leading-body', tone === 'brand' ? 'text-on-brand' : 'text-ink-dim']}><slot /></p>
 </div>
+
+<script>
+  // Big number stamps (e.g. "+36%", "4 yrs") count up once when they scroll into view.
+  // Skipped for people who prefer reduced motion; stamps with more than one number ("8 v 12") stay as they are.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const duration = 1400;
+    const run = (el: HTMLElement, lead: string, target: number, tail: string) => {
+      const started = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min((now - started) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = `${lead}${Math.round(target * eased)}${tail}`;
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const seen = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          seen.unobserve(entry.target);
+          const el = entry.target as HTMLElement;
+          run(el, el.dataset.lead!, Number(el.dataset.target), el.dataset.tail!);
+        });
+      },
+      { threshold: 0.6 },
+    );
+    document.querySelectorAll<HTMLElement>('[data-count-up]').forEach((el) => {
+      const match = (el.textContent ?? '').trim().match(/^(\D*)(\d+)(\D*)$/);
+      if (!match) return;
+      el.dataset.lead = match[1];
+      el.dataset.target = match[2];
+      el.dataset.tail = match[3];
+      el.textContent = `${match[1]}0${match[3]}`;
+      seen.observe(el);
+    });
+  }
+</script>
