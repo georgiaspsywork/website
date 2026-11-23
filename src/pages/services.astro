@@ -59,7 +59,12 @@ const services = [
     id: 'ai-workshop',
     title: 'The Human Behind the AI',
     audience: 'A workshop for organisations introducing AI into shift-based teams.',
-    what: 'Assess the work around the technology. Placeholder: workshop description to be confirmed by Georgia.',
+    what: [
+      'AI can make tasks quicker, but what happens to the person doing the work?',
+      'This interactive workshop explores how AI changes the jobs, decisions and demands around it. Participants will consider what AI removes from work, what it adds, and what people may be left to manage: checking outputs, monitoring systems, learning new processes, making difficult decisions and carrying accountability.',
+      'Using practical examples and discussion, we’ll explore cognitive demand, fatigue, automation bias and what people need to exercise meaningful judgement and oversight. Participants will leave with Georgia’s Human Impact Check, a practical framework for examining demand, control, clarity, capability, capacity, accountability, security and recovery, plus questions to bring into AI planning and change conversations.',
+      'The focus is on understanding the work people will experience and designing AI-enabled change with that human impact in view.',
+    ],
     listLabel: "Georgia's Human Impact Check looks at",
     list: ['Demand', 'Control', 'Clarity', 'Capability', 'Capacity', 'Accountability', 'Security', 'Recovery'],
     link: { label: 'Further reading: AI agents push humans out of the loop', href: '/sources#mitchell2026', note: "Mitchell, Ghosh & Passi (2026) argue that keeping a human in the loop doesn't guarantee effective oversight, and that extended AI use can erode the very skills people need to oversee it." },
@@ -103,7 +108,7 @@ const services = [
               <h3 class="text-title leading-title tracking-heading text-ink-bright">{s.title}</h3>
               <p class="text-xl leading-body text-mint italic text-pretty">{s.audience}</p>
             </div>
-            <p class="text-lg leading-prose text-pretty text-muted">{s.what}</p>
+            <div class="flex flex-col gap-4">{(Array.isArray(s.what) ? s.what : [s.what]).map((para) => <p class="text-lg leading-prose text-pretty text-muted">{para}</p>)}</div>
             <div class="flex flex-col gap-3">
               <Eyebrow tone="soft" size="xs">{s.listLabel}</Eyebrow>
               <ul class="flex list-none flex-col border-b border-line *:border-t *:border-line">
