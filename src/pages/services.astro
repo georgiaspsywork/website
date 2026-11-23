@@ -73,9 +73,14 @@ const services = [
     id: 'change-fatigue',
     title: 'Change Fatigue',
     audience: 'A training session or workplace assessment.',
-    what: 'In the workplace assessment, I look for signs in the team and explore how best to alter the environment to avoid mistakes and errors happening in the workplace. In the training session, I train people to understand and use strategies during change.',
+    what: [
+      'Change can ask a lot of people, especially when new priorities, systems or ways of working keep arriving before they have had time to adjust.',
+      'This interactive workshop explores how ongoing change can affect people’s workload, attention, confidence and capacity. We’ll look at what may sit behind behaviours sometimes labelled as “resistance”, and consider how uncertainty, competing demands and limited recovery can shape people’s experience of change.',
+      'Through practical examples and discussion, participants will reflect on what change is asking of their teams, where pressure is building and how the working environment could better support people through it. They’ll leave with useful questions to bring into change conversations and planning.',
+      'The focus is on understanding the human impact of change and making the work around it more manageable.',
+    ],
     listLabel: 'Includes',
-    list: ['Placeholder: to be confirmed by Georgia'],
+    list: [],
   },
 ];
 ---
@@ -109,12 +114,14 @@ const services = [
               <p class="text-xl leading-body text-mint italic text-pretty">{s.audience}</p>
             </div>
             <div class="flex flex-col gap-4">{(Array.isArray(s.what) ? s.what : [s.what]).map((para) => <p class="text-lg leading-prose text-pretty text-muted">{para}</p>)}</div>
+            {s.list.length > 0 && (
             <div class="flex flex-col gap-3">
               <Eyebrow tone="soft" size="xs">{s.listLabel}</Eyebrow>
               <ul class="flex list-none flex-col border-b border-line *:border-t *:border-line">
                 {s.list.map((item) => <li class="py-2.5 text-lg text-ink-soft">{item}</li>)}
               </ul>
             </div>
+            )}
             {s.link && <p class="text-lg leading-prose text-pretty text-muted">{s.link.note}</p>}
             {s.link && <Button href={s.link.href} variant="underline">{s.link.label}</Button>}
           </article>
