@@ -1,101 +1,59 @@
 ---
 import Section from './Section.astro';
 import Eyebrow from './Eyebrow.astro';
-import {
-  CREW,
-  ROTA0,
-  analyseRota,
-  flagCountLabel,
-  shiftHours,
-  shiftName,
-  summariseFindings,
-} from '../lib/rota';
+import { PRESETS } from '../lib/rota';
 
-// Interactive rota builder. Click a day to cycle Off > E > L > N. Flags, load bars and the
-// findings list are worked out in src/lib/rota.ts, both here (initial HTML) and in the script.
-// Slot: the right-hand column (copy and buttons).
+// Interactive rota builder. Click a day, then set it to Off, a Shift or On-call and type its hours (or pick a preset).
+// Flags, load bars and the findings list are worked out in src/lib/rota.ts and drawn by the script below.
+// Nothing is saved or sent. Slot: the right-hand column (copy and buttons).
 
-const analysed = analyseRota(ROTA0);
-const { total, shown } = summariseFindings(ROTA0, analysed);
-
-const cell =
-  'flex h-14 cursor-pointer flex-col items-center justify-center gap-0.5 rounded-xs border border-transparent bg-transparent text-base text-ink ' +
-  'data-[shift=-]:border-dashed data-[shift=-]:border-outline data-[shift=-]:text-shift-off ' +
-  'data-[shift=E]:bg-shift-early data-[shift=E]:text-ink-dark data-[shift=L]:bg-shift-late data-[shift=N]:bg-shift-night ' +
-  'data-flagged:border-2 data-flagged:border-amber';
-const row = 'group grid grid-cols-[130px_repeat(7,minmax(0,1fr))_160px] items-center gap-2';
-const finding = 'border-t border-line pt-3 text-lg leading-snug';
+const field = 'rounded-xs border border-brand-line bg-transparent px-3 py-2 text-base text-ink [color-scheme:dark] disabled:opacity-40';
+const pill = 'cursor-pointer rounded-xs border border-brand-line px-3.5 py-2 text-sm text-ink hover:border-mint disabled:cursor-default disabled:opacity-40';
 ---
 
 <Section id="rota" size="none" class="pb-section">
 <div class="flex flex-col gap-10" data-rota>
   <div class="overflow-x-auto rounded-sm bg-brand p-[clamp(20px,3vw,32px)]">
-    <div class="min-w-215">
-      <div class="grid grid-cols-[130px_repeat(7,minmax(0,1fr))_160px] gap-2 pb-3 text-xs tracking-label text-on-brand-muted uppercase">
+    <div class="min-w-230">
+      <div class="grid grid-cols-[150px_repeat(7,minmax(0,1fr))_160px] gap-2 pb-3 text-xs tracking-label text-on-brand-muted uppercase">
         <span>Crew</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
         <span class="text-right">Fatigue load</span>
       </div>
-      <div class="flex flex-col gap-2">
-        {
-          ROTA0.map((shifts, ri) => (
-            <div class={row} data-level={analysed[ri].level} data-rota-row>
-              <span class="text-lg">{CREW[ri]}</span>
-              {shifts.map((shift, d) => (
-                <button
-                  type="button"
-                  class={cell}
-                  data-cell
-                  data-shift={shift}
-                  data-flagged={analysed[ri].flags[d] ? true : undefined}
-                  title={analysed[ri].flags[d]}
-                >
-                  <b class="font-semibold">{shiftName(shift)}</b>
-                  <span class="text-3xs tabular-nums opacity-75">{shiftHours(shift)}</span>
-                </button>
-              ))}
-              <div class="flex items-center justify-end gap-2.5">
-                <div class="h-1.5 w-17.5 overflow-hidden rounded-xs bg-line">
-                  <div
-                    class="h-full bg-mint group-data-[level=High]:bg-amber group-data-[level=Watch]:bg-amber-soft"
-                    style={`width:${analysed[ri].pct}%`}
-                    data-fill
-                  />
-                </div>
-                <span class="min-w-14 text-right text-base text-mint group-data-[level=High]:text-amber group-data-[level=Watch]:text-amber-soft" data-level-text>
-                  {analysed[ri].level}
-                </span>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-      <div class="mt-5.5 flex flex-wrap items-center gap-7 text-sm text-on-brand-muted">
-        <span>E 06–14</span>
-        <span>L 14–22</span>
-        <span>N 22–06</span>
+      <div class="flex flex-col gap-2" data-rows></div>
+      <div class="mt-5.5 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-on-brand-muted">
+        <span>Click a day to set its hours</span>
         <span class="text-amber">◆ amber outline = flagged</span>
-        <button type="button" class="ml-auto cursor-pointer rounded-xs border border-brand-line px-3 py-1.5 text-xs text-ink" data-rota-reset>Reset example</button>
+        <div class="ml-auto flex gap-3">
+          <button type="button" class={pill} data-add-crew>Add crew</button>
+          <button type="button" class={pill} data-rota-reset>Reset example</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-7 flex flex-col gap-4 border-t border-brand-line pt-6" data-editor>
+      <p class="text-lg" data-editor-title></p>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+        <div class="flex gap-2" role="group" aria-label="Type of day">
+          <button type="button" class={pill + ' aria-pressed:border-mint aria-pressed:bg-mint aria-pressed:text-ground'} data-kind="off">Off</button>
+          <button type="button" class={pill + ' aria-pressed:border-mint aria-pressed:bg-mint aria-pressed:text-ground'} data-kind="work">Shift</button>
+          <button type="button" class={pill + ' aria-pressed:border-mint aria-pressed:bg-mint aria-pressed:text-ground'} data-kind="call">On-call</button>
+        </div>
+        <label class="flex items-center gap-2.5 text-sm text-on-brand-muted">Start <input type="time" class={field} data-start /></label>
+        <label class="flex items-center gap-2.5 text-sm text-on-brand-muted">End <input type="time" class={field} data-end /></label>
+        <span class="text-sm text-on-brand-muted" data-length></span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Common shifts">
+        <span class="mr-1 text-xs tracking-label text-on-brand-muted uppercase">Quick set</span>
+        {PRESETS.map((p) => <button type="button" class={pill} data-preset={`${p.s}-${p.e}`}>{p.label}</button>)}
+        <button type="button" class={pill + ' md:ml-auto'} data-copy-row>Copy to every day this row</button>
       </div>
     </div>
   </div>
   <div class="grid gap-10 md:grid-cols-2 md:gap-x-18">
     <div class="flex flex-col gap-3.5">
-      <Eyebrow>What we found · <span data-flag-count>{flagCountLabel(total)}</span></Eyebrow>
-      <div class="flex flex-col gap-3.5" data-findings>
-        {
-          shown.map((f) => (
-            <p class={finding}>
-              <span class="text-amber">{f.who}</span> · {f.what}
-            </p>
-          ))
-        }
-      </div>
-      <template data-finding-template>
-        <p class={finding}>
-          <span class="text-amber" data-who></span> · <span data-what></span>
-        </p>
-      </template>
-      <p class="text-lg text-muted italic" data-rota-clean hidden={total > 0}>
+      <Eyebrow>What we found · <span data-flag-count>0 flags</span></Eyebrow>
+      <div class="flex flex-col gap-3.5" data-findings></div>
+      <p class="text-lg text-muted italic" data-rota-clean hidden>
         Nothing flagged. A well-designed week, on paper. The next question is what happens when someone calls in sick.
       </p>
     </div>
@@ -108,71 +66,201 @@ const finding = 'border-t border-line pt-3 text-lg leading-snug';
 
 <script>
   import {
-    ROTA0,
+    DAYS,
+    MAX_CREWS,
+    MAX_FINDINGS,
     analyseRota,
-    cloneRota,
+    blankCrew,
+    clock,
+    exampleRota,
+    findingsFor,
     flagCountLabel,
-    nextShift,
-    shiftHours,
-    shiftName,
-    summariseFindings,
-    type Row,
+    hoursLabel,
+    length,
+    look,
+    span,
+    type Crew,
+    type Kind,
   } from '../lib/rota';
+
+  const cellBase =
+    'flex h-14 w-full cursor-pointer flex-col items-center justify-center gap-0.5 rounded-xs border border-transparent bg-transparent text-base text-ink outline-mint ' +
+    'aria-pressed:outline-2 aria-pressed:outline-offset-2 data-[look=off]:border-dashed data-[look=off]:border-outline data-[look=off]:text-shift-off ' +
+    'data-[look=early]:bg-shift-early data-[look=early]:text-ink-dark data-[look=late]:bg-shift-late data-[look=night]:bg-shift-night ' +
+    'data-[look=call]:border-dashed data-[look=call]:border-mint data-[look=call]:text-mint data-flagged:border-2 data-flagged:border-solid data-flagged:border-amber';
+  const rowBase = 'group grid grid-cols-[150px_repeat(7,minmax(0,1fr))_160px] items-center gap-2';
+  const finding = 'border-t border-line pt-3 text-lg leading-snug';
 
   const root = document.querySelector<HTMLElement>('[data-rota]');
   if (root) {
-    const rowEls = Array.from(root.querySelectorAll<HTMLElement>('[data-rota-row]'));
+    const rowsEl = root.querySelector<HTMLElement>('[data-rows]')!;
     const findingsEl = root.querySelector<HTMLElement>('[data-findings]')!;
-    const template = root.querySelector<HTMLTemplateElement>('[data-finding-template]')!;
     const flagCountEl = root.querySelector<HTMLElement>('[data-flag-count]')!;
     const cleanEl = root.querySelector<HTMLElement>('[data-rota-clean]')!;
-    let rota: Row[] = cloneRota(ROTA0);
+    const addBtn = root.querySelector<HTMLButtonElement>('[data-add-crew]')!;
+    const titleEl = root.querySelector<HTMLElement>('[data-editor-title]')!;
+    const kindBtns = root.querySelectorAll<HTMLButtonElement>('[data-kind]');
+    const startEl = root.querySelector<HTMLInputElement>('[data-start]')!;
+    const endEl = root.querySelector<HTMLInputElement>('[data-end]')!;
+    const lengthEl = root.querySelector<HTMLElement>('[data-length]')!;
+    const presetBtns = root.querySelectorAll<HTMLButtonElement>('[data-preset]');
+    const copyBtn = root.querySelector<HTMLButtonElement>('[data-copy-row]')!;
 
-    const render = () => {
-      const analysed = analyseRota(rota);
-      const { total, shown } = summariseFindings(rota, analysed);
+    let rota: Crew[] = exampleRota();
+    let sel = { r: 0, d: 0 };
 
-      rowEls.forEach((rowEl, ri) => {
-        const state = analysed[ri];
-        rowEl.dataset.level = state.level;
-        rowEl.querySelector<HTMLElement>('[data-fill]')!.style.width = `${state.pct}%`;
-        rowEl.querySelector('[data-level-text]')!.textContent = state.level;
+    const el = <K extends keyof HTMLElementTagNameMap>(tag: K, cls = '', text = '') => {
+      const node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (text) node.textContent = text;
+      return node;
+    };
+    const toTime = (h: number) => {
+      const total = Math.round(h * 60) % 1440;
+      return `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
+    };
+    const fromTime = (v: string) => {
+      const [h, m] = v.split(':').map(Number);
+      return Number.isFinite(h) ? h + (m || 0) / 60 : null;
+    };
+    const crewName = (ri: number) => rota[ri].name || `Crew ${ri + 1}`;
 
-        rowEl.querySelectorAll<HTMLButtonElement>('[data-cell]').forEach((cellEl, d) => {
-          const shift = rota[ri][d];
-          const flag = state.flags[d];
-          cellEl.dataset.shift = shift;
-          cellEl.toggleAttribute('data-flagged', flag !== '');
-          cellEl.title = flag;
-          cellEl.querySelector('b')!.textContent = shiftName(shift);
-          cellEl.querySelector('span')!.textContent = shiftHours(shift);
-        });
-      });
-
-      findingsEl.replaceChildren(
-        ...shown.map((f) => {
-          const node = template.content.firstElementChild!.cloneNode(true) as HTMLElement;
-          node.querySelector('[data-who]')!.textContent = f.who;
-          node.querySelector('[data-what]')!.textContent = f.what;
-          return node;
-        }),
-      );
-      flagCountEl.textContent = flagCountLabel(total);
-      cleanEl.hidden = total !== 0;
+    const renderEditor = () => {
+      const cell = rota[sel.r].days[sel.d];
+      titleEl.textContent = `Editing ${crewName(sel.r)} · ${DAYS[sel.d]}`;
+      kindBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kind === cell.kind)));
+      startEl.value = toTime(cell.s);
+      endEl.value = toTime(cell.e);
+      startEl.disabled = endEl.disabled = cell.kind === 'off';
+      presetBtns.forEach((b) => (b.disabled = false));
+      lengthEl.textContent = cell.kind === 'off' ? '' : `${hoursLabel(length(cell))}${cell.e <= cell.s ? ' · finishes the next day' : ''}`;
     };
 
-    rowEls.forEach((rowEl, ri) => {
-      rowEl.querySelectorAll<HTMLButtonElement>('[data-cell]').forEach((cellEl, d) => {
-        cellEl.addEventListener('click', () => {
-          rota[ri][d] = nextShift(rota[ri][d]);
-          render();
-        });
-      });
-    });
+    const renderRows = (analysed: ReturnType<typeof analyseRota>) => {
+      rowsEl.replaceChildren(
+        ...rota.map((crew, ri) => {
+          const state = analysed[ri];
+          const row = el('div', rowBase);
+          row.dataset.level = state.level;
 
-    root.querySelector<HTMLButtonElement>('[data-rota-reset]')!.addEventListener('click', () => {
-      rota = cloneRota(ROTA0);
+          const label = el('div', 'flex flex-col gap-0.5');
+          const name = el('input', 'w-full border-b border-transparent bg-transparent text-lg text-ink outline-none focus:border-mint');
+          name.type = 'text';
+          name.value = crew.name;
+          name.maxLength = 24;
+          name.setAttribute('aria-label', `Name of row ${ri + 1}`);
+          name.addEventListener('input', () => {
+            crew.name = name.value;
+            renderResults();
+          });
+          const meta = el('div', 'flex items-center gap-2 text-xs text-on-brand-muted');
+          const hrs = el('span', 'tabular-nums', hoursLabel(state.hours));
+          hrs.title = 'Hours this week';
+          meta.append(hrs);
+          if (rota.length > 1) {
+            const remove = el('button', 'cursor-pointer underline hover:text-ink', 'Remove');
+            remove.type = 'button';
+            remove.setAttribute('aria-label', `Remove ${crewName(ri)}`);
+            remove.addEventListener('click', () => {
+              rota.splice(ri, 1);
+              sel = { r: Math.min(sel.r, rota.length - 1), d: sel.d };
+              render();
+            });
+            meta.append(remove);
+          }
+          label.append(name, meta);
+          row.append(label);
+
+          crew.days.forEach((cell, d) => {
+            const btn = el('button', cellBase);
+            btn.type = 'button';
+            btn.dataset.look = look(cell);
+            const flags = state.flags[d];
+            if (flags.length) {
+              btn.dataset.flagged = '';
+              btn.title = flags.join(' · ');
+            }
+            btn.setAttribute('aria-pressed', String(sel.r === ri && sel.d === d));
+            btn.setAttribute('aria-label', `${crewName(ri)}, ${DAYS[d]}: ${cell.kind === 'off' ? 'off' : `${cell.kind === 'call' ? 'on-call ' : ''}${span(cell)}`}${flags.length ? `. Flagged: ${flags.join(', ')}` : ''}`);
+            if (cell.kind === 'off') {
+              btn.append(el('b', 'font-semibold', 'Off'));
+            } else {
+              btn.append(el('b', 'font-semibold', cell.kind === 'call' ? 'On-call' : hoursLabel(length(cell))), el('span', 'text-3xs tabular-nums opacity-75', span(cell)));
+            }
+            btn.addEventListener('click', () => {
+              sel = { r: ri, d };
+              render();
+            });
+            row.append(btn);
+          });
+
+          const load = el('div', 'flex items-center justify-end gap-2.5');
+          const track = el('div', 'h-1.5 w-17.5 overflow-hidden rounded-xs bg-line');
+          const fill = el('div', 'h-full bg-mint group-data-[level=High]:bg-amber group-data-[level=Watch]:bg-amber-soft');
+          fill.style.width = `${state.pct}%`;
+          track.append(fill);
+          load.append(track, el('span', 'min-w-14 text-right text-base text-mint group-data-[level=High]:text-amber group-data-[level=Watch]:text-amber-soft', state.level));
+          row.append(load);
+          return row;
+        }),
+      );
+    };
+
+    const renderResults = () => {
+      const analysed = analyseRota(rota);
+      const all = findingsFor(rota, analysed);
+      findingsEl.replaceChildren(
+        ...all.slice(0, MAX_FINDINGS).map((f) => {
+          const p = el('p', finding);
+          p.append(el('span', 'text-amber', f.who), ` · ${f.what}`);
+          return p;
+        }),
+      );
+      if (all.length > MAX_FINDINGS) findingsEl.append(el('p', finding + ' text-muted', `And ${all.length - MAX_FINDINGS} more`));
+      flagCountEl.textContent = flagCountLabel(all.length);
+      cleanEl.hidden = all.length !== 0;
+      titleEl.textContent = `Editing ${crewName(sel.r)} · ${DAYS[sel.d]}`;
+      return analysed;
+    };
+
+    const render = () => {
+      addBtn.disabled = rota.length >= MAX_CREWS;
+      const analysed = renderResults();
+      renderRows(analysed);
+      renderEditor();
+    };
+
+    /** Redraw after a change made in the editor, keeping keyboard focus where it is. */
+    const edit = (change: (cell: Crew['days'][number]) => void) => {
+      change(rota[sel.r].days[sel.d]);
+      render();
+    };
+
+    kindBtns.forEach((b) => b.addEventListener('click', () => edit((c) => (c.kind = b.dataset.kind as Kind))));
+    startEl.addEventListener('change', () => edit((c) => (c.s = fromTime(startEl.value) ?? c.s)));
+    endEl.addEventListener('change', () => edit((c) => (c.e = fromTime(endEl.value) ?? c.e)));
+    presetBtns.forEach((b) =>
+      b.addEventListener('click', () => {
+        const [s, e] = b.dataset.preset!.split('-').map(Number);
+        edit((c) => Object.assign(c, { kind: 'work', s, e }));
+      }),
+    );
+    copyBtn.addEventListener('click', () => {
+      const from = rota[sel.r].days[sel.d];
+      rota[sel.r].days = rota[sel.r].days.map(() => ({ ...from }));
       render();
     });
+    addBtn.addEventListener('click', () => {
+      rota.push(blankCrew(`Crew ${String.fromCharCode(65 + rota.length)}`));
+      sel = { r: rota.length - 1, d: 0 };
+      render();
+    });
+    root.querySelector<HTMLButtonElement>('[data-rota-reset]')!.addEventListener('click', () => {
+      rota = exampleRota();
+      sel = { r: 0, d: 0 };
+      render();
+    });
+
+    render();
   }
 </script>
