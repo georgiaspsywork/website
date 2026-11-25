@@ -47,7 +47,7 @@ const segments = DRIVERS.map((d, i) => {
   </div>
 
   <div class="grid items-center gap-x-10 gap-y-10 lg:grid-cols-3">
-      <svg viewBox="0 0 400 400" class="mx-auto w-full max-w-[420px] lg:max-w-none" role="group" aria-label="The eight factors that drive fatigue">
+      <svg viewBox="0 0 400 400" class="mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none" role="group" aria-label="The eight factors that drive fatigue">
         {
           segments.map((s, i) => (
             <g
@@ -70,7 +70,7 @@ const segments = DRIVERS.map((d, i) => {
         <text x="200" y="192" text-anchor="middle" class="fill-ink-bright text-3xl italic">Fatigue</text>
         <text x="200" y="222" text-anchor="middle" class="fill-ink-bright text-3xl italic">at work</text>
       </svg>
-    <div class="grid grid-cols-2 gap-2.5" role="group" aria-label="Choose a factor">
+    <div class="grid grid-cols-2 gap-2.5 lg:order-3" role="group" aria-label="Choose a factor">
         {
           segments.map((s, i) => (
             <Chip pressed={i === 0} data-driver={s.id} class="flex items-center justify-center text-center">{s.num} · {s.label}</Chip>
@@ -78,7 +78,7 @@ const segments = DRIVERS.map((d, i) => {
         }
     </div>
 
-    <div>
+    <div class="lg:order-1">
       {
         segments.map((s, i) => (
           <div hidden={i !== 0} data-panel={s.id} class="flex flex-col gap-6">
