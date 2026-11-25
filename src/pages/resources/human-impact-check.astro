@@ -1,0 +1,15 @@
+---
+import { getEntry } from 'astro:content';
+import ResourceLayout from '../../layouts/ResourceLayout.astro';
+import HumanImpactCheck from '../../components/HumanImpactCheck.astro';
+
+// Bespoke resource page: the standard resource layout with the interactive tool as its centrepiece.
+// The words around it come from src/content/resources/human-impact-check.md.
+const resource = (await getEntry('resources', 'human-impact-check'))!;
+---
+
+<ResourceLayout resource={resource}>
+  <Fragment slot="tool">
+    <HumanImpactCheck />
+  </Fragment>
+</ResourceLayout>

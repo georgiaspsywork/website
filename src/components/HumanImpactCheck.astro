@@ -1,0 +1,36 @@
+---
+import Section from './Section.astro';
+
+// The Human Impact Check: eight prompts for a leader to think through. Wording is Georgia's, from her handout.
+// There is no scoring. Each prompt has a notes box for the reader's own thinking; nothing is stored or sent.
+const PROMPTS = [
+  { name: 'Demand', prompt: 'What are the demands?' },
+  { name: 'Clarity', prompt: 'What is changing and expected?' },
+  { name: 'Capacity', prompt: 'Do we have the right time and place for this?' },
+  { name: 'Security', prompt: 'What threat or uncertainty?' },
+  { name: 'Control', prompt: 'What influence do you have?' },
+  { name: 'Capability', prompt: 'Can people use and challenge it?' },
+  { name: 'Accountability', prompt: 'Who owns the final decision?' },
+  { name: 'Recovery', prompt: 'Where can capacity replenish?' },
+];
+---
+
+<Section id="check" size="none" class="scroll-mt-12 pb-section">
+  <div class="mx-auto flex max-w-[960px] flex-col gap-8">
+    <p class="text-xs tracking-label text-mint uppercase">Assess the work</p>
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        PROMPTS.map((p, i) => (
+          <label class="flex flex-col gap-3 rounded-sm border border-line-soft bg-surface p-6.5">
+            <span class="text-xs tracking-label text-amber uppercase">{String(i + 1).padStart(2, '0')}</span>
+            <span class="text-3xl leading-heading font-semibold text-ink-bright uppercase">{p.name}</span>
+            <span class="text-xl leading-body text-ink-soft">{p.prompt}</span>
+            <textarea rows="3" aria-label={`Your notes on ${p.name}`} placeholder="Your notes" class="mt-2 w-full resize-y rounded-xs border border-outline bg-transparent p-3 text-base text-ink placeholder:text-faint focus-visible:border-mint focus-visible:outline-none" />
+          </label>
+        ))
+      }
+    </div>
+    <p class="text-md text-subtle">Informed by JD-R, recovery, compensatory-control and human-factors research.</p>
+    <p class="text-sm text-faint">Your notes stay on this page and are not saved or sent anywhere.</p>
+  </div>
+</Section>

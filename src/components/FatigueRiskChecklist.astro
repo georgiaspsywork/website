@@ -1,0 +1,113 @@
+---
+import Section from './Section.astro';
+
+// Interactive Fatigue Risk Checklist. One answer per factor (Yes = 2, Unsure = 1, No = 0), so the score runs 0 to 16.
+// Wording is Georgia's, from her checklist. The score bands are 0-5 Low, 6-10 Moderate, 11-16 High. Nothing is stored or sent.
+const FACTORS = [
+  { name: 'Sleep & recovery', covers: 'Quality, quantity and opportunity to recover', qs: ['Do people regularly get less than 7 hours of sleep in a 24-hour period?', 'Are short recovery periods between shifts or duties common?', 'Do people struggle to recover after nights, early starts or call-outs?'] },
+  { name: 'Cognitive demand', covers: 'Concentration, decision-making and task switching', qs: ['Do roles require long periods of concentration or high decision-making?', 'Are there frequent task switches or competing demands?', 'Is there pressure to make decisions with limited information or time?'] },
+  { name: 'Coordination & clarity', covers: 'Clear information, priorities, instructions and handovers', qs: ['Are priorities or instructions unclear or change frequently?', 'Are handovers between shifts/teams inconsistent or rushed?', 'Do people receive constant messages or conflicting demands?'] },
+  { name: 'Workload & staffing', covers: 'Enough people, realistic workload, capacity available', qs: ['Is workload often too high to complete in the available time?', 'Are overtime and extended shifts common?', 'Are vacancies, absences or last-minute changes regularly an issue?'] },
+  { name: 'Emotional demands', covers: 'Pressure, customer facing, care, trauma exposure', qs: ['Do roles involve high pressure or emotionally demanding situations?', 'Is there regular exposure to conflict, complaints or critical incidents?', 'Do people have time and support to decompress after difficult events?'] },
+  { name: 'Working patterns', covers: 'Shifts, on-call, overtime, unpredictability', qs: ['Are irregular shifts, on-call duties or weekend work common?', 'Do people have little control over their shifts or working hours?', 'Are long or consecutive shifts/duties a regular occurrence?'] },
+  { name: 'Physical demands', covers: 'Repetitive, strenuous or prolonged activity', qs: ['Does the work involve physical strain, heavy lifting or long periods on feet?', 'Are people exposed to uncomfortable environments (heat, cold, noise)?', 'Is there time pressure that leads to rushing or skipping breaks?'] },
+  { name: 'Culture & management', covers: 'Psychological safety, support, ability to speak up', qs: ['Do people feel able to speak up if they are too fatigued to work safely?', 'Do managers notice and respond to signs of fatigue?', 'Is fatigue seen as an individual issue rather than a system risk?'] },
+];
+const OPTIONS = [
+  { label: 'Yes', value: 2 },
+  { label: 'Unsure', value: 1 },
+  { label: 'No', value: 0 },
+];
+---
+
+<Section id="check" size="none" class="scroll-mt-12 pb-section">
+  <div class="mx-auto flex max-w-[960px] flex-col gap-10" data-fatigue-check>
+    <div class="flex flex-col border-b border-line *:border-t *:border-line">
+      {
+        FACTORS.map((f, i) => (
+          <fieldset class="flex flex-col gap-5 border-l-2 border-l-transparent py-6 pl-4 data-[flag]:border-l-amber md:flex-row md:justify-between md:gap-10" data-row>
+            <div class="flex max-w-[34em] flex-col gap-3">
+              <legend class="float-left mb-1 w-full">
+                <span class="block text-xs tracking-label text-mint uppercase">{i + 1} · {f.name}</span>
+                <span class="mt-1 block text-md text-subtle">{f.covers}</span>
+              </legend>
+              <ul class="flex list-disc flex-col gap-2 pl-5 text-lg leading-snug text-ink-soft">
+                {f.qs.map((q) => <li>{q}</li>)}
+              </ul>
+            </div>
+            <div class="flex flex-none gap-2.5 self-start">
+              {OPTIONS.map((o) => (
+                <label class="cursor-pointer">
+                  <input type="radio" name={`factor-${i}`} value={o.value} class="peer sr-only" data-answer />
+                  <span class="block rounded-xs border border-outline px-4 py-[9px] text-base peer-checked:border-mint peer-checked:bg-mint peer-checked:text-ground peer-hover:border-mint peer-focus-visible:outline-2 peer-focus-visible:outline-mint">{o.label}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ))
+      }
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="flex flex-col gap-3 rounded-sm bg-brand p-7" aria-live="polite">
+        <p class="text-xs tracking-label text-on-brand-muted uppercase">Your score</p>
+        <p class="text-4xl leading-heading text-white tabular-nums"><span data-score>0</span> of 16 <span class="text-lg text-on-brand-muted">· <span data-answered>0</span> of 8 answered</span></p>
+        <p class="text-md text-on-brand-muted" data-prompt>Answer every row to see your result.</p>
+        <div hidden data-band="low" class="flex flex-col gap-1">
+          <p class="text-2xl text-white">Low risk</p>
+          <p class="text-lg leading-body text-on-brand">Keep monitoring and maintain good controls.</p>
+        </div>
+        <div hidden data-band="moderate" class="flex flex-col gap-1">
+          <p class="text-2xl text-amber-soft">Moderate risk</p>
+          <p class="text-lg leading-body text-on-brand">There are signs fatigue may be increasing risk. Take a closer look.</p>
+        </div>
+        <div hidden data-band="high" class="flex flex-col gap-1">
+          <p class="text-2xl text-amber">High risk</p>
+          <p class="text-lg leading-body text-on-brand">Fatigue is likely a significant risk factor. Action needed.</p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3 rounded-sm border border-line p-7">
+        <p class="text-xs tracking-label text-mint uppercase">Scoring guide</p>
+        <p class="text-md leading-body text-muted">Yes = 2 points · Unsure = 1 point · No = 0 points</p>
+        <ul class="flex flex-col gap-1 text-lg">
+          <li><b class="font-semibold">0 – 5 points</b> · Low risk</li>
+          <li><b class="font-semibold">6 – 10 points</b> · Moderate risk</li>
+          <li><b class="font-semibold">11 – 16 points</b> · High risk</li>
+        </ul>
+        <p class="text-xs tracking-label text-mint uppercase pt-3">What next?</p>
+        <p class="text-md leading-body text-muted text-pretty">This checklist is a rapid indicator, not a full assessment. It helps you spot where fatigue risk might exist. Use your score and the areas flagged 'Yes' or 'Unsure' to prioritise where to investigate further. If your score is Moderate or High, a structured Fatigue Risk Diagnostic can identify the root causes and practical solutions.</p>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-fatigue-check]').forEach((root) => {
+    const rows = root.querySelectorAll<HTMLElement>('[data-row]');
+    const score = root.querySelector('[data-score]')!;
+    const answered = root.querySelector('[data-answered]')!;
+    const prompt = root.querySelector<HTMLElement>('[data-prompt]')!;
+    const bands = root.querySelectorAll<HTMLElement>('[data-band]');
+    const update = () => {
+      let total = 0;
+      let done = 0;
+      rows.forEach((row) => {
+        const picked = row.querySelector<HTMLInputElement>('[data-answer]:checked');
+        if (picked) {
+          done++;
+          total += Number(picked.value);
+        }
+        if (picked && Number(picked.value) > 0) row.setAttribute('data-flag', '');
+        else row.removeAttribute('data-flag');
+      });
+      score.textContent = String(total);
+      answered.textContent = String(done);
+      const complete = done === rows.length;
+      prompt.hidden = complete;
+      const band = total <= 5 ? 'low' : total <= 10 ? 'moderate' : 'high';
+      bands.forEach((b) => (b.hidden = !complete || b.dataset.band !== band));
+    };
+    root.querySelectorAll('[data-answer]').forEach((r) => r.addEventListener('change', update));
+    update();
+  });
+</script>

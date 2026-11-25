@@ -1,0 +1,15 @@
+---
+import { getEntry } from 'astro:content';
+import ResourceLayout from '../../layouts/ResourceLayout.astro';
+import FatigueRiskChecklist from '../../components/FatigueRiskChecklist.astro';
+
+// Bespoke resource page: the standard resource layout with the interactive tool as its centrepiece.
+// The words around it come from src/content/resources/fatigue-management-checklist.md.
+const resource = (await getEntry('resources', 'fatigue-management-checklist'))!;
+---
+
+<ResourceLayout resource={resource}>
+  <Fragment slot="tool">
+    <FatigueRiskChecklist />
+  </Fragment>
+</ResourceLayout>
