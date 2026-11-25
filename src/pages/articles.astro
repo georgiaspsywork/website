@@ -59,6 +59,7 @@ const rest = all.filter((a) => a !== lead);
     options={orderedTopics(rest.map((a) => a.data.topic))}
     noun="article"
     total={rest.length}
+    pageSize={5}
     class="gap-7 px-gutter-reading pb-section"
   >
     <div class="flex flex-col border-b border-line">

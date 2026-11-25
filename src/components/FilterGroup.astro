@@ -9,11 +9,12 @@ interface Props {
   total: number;
   class?: string;
   barClass?: string;
+  pageSize?: number; // optional: show this many items per page, with a page bar at the bottom
 }
-const { options, noun, total, class: extra, barClass } = Astro.props;
+const { options, noun, total, class: extra, barClass, pageSize } = Astro.props;
 ---
 
-<section class:list={['flex flex-col', extra]} data-filter-group data-noun={noun}>
+<section class:list={['flex flex-col', extra]} data-filter-group data-noun={noun} data-page-size={pageSize}>
   <div class:list={['flex flex-wrap items-center justify-between gap-x-10 gap-y-5', barClass]}>
     <div class="flex flex-wrap gap-2.5">
       {['All', ...options].map((option) => <Chip pressed={option === 'All'} data-filter={option}>{option}</Chip>)}
@@ -21,27 +22,66 @@ const { options, noun, total, class: extra, barClass } = Astro.props;
     <span class="text-base text-subtle tabular-nums" data-count>{total} {noun}{total === 1 ? '' : 's'}</span>
   </div>
   <slot />
+  {pageSize && <nav class="flex flex-wrap items-center justify-center gap-2.5 pt-2" aria-label="Pages" data-pager hidden></nav>}
 </section>
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-filter-group]').forEach((group) => {
     const chips = group.querySelectorAll<HTMLButtonElement>('[data-filter]');
-    const items = group.querySelectorAll<HTMLElement>('[data-filter-item]');
+    const items = Array.from(group.querySelectorAll<HTMLElement>('[data-filter-item]'));
     const count = group.querySelector('[data-count]')!;
+    const pager = group.querySelector<HTMLElement>('[data-pager]');
     const noun = group.dataset.noun ?? 'item';
+    const pageSize = Number(group.dataset.pageSize) || 0;
+    let category = 'All';
+    let page = 1;
+
+    const button = (label: string, target: number, opts: { current?: boolean; disabled?: boolean; aria?: string } = {}) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = label;
+      b.className =
+        'cursor-pointer rounded-xs border border-outline px-4 py-[9px] text-base tabular-nums hover:border-mint aria-pressed:border-mint aria-pressed:bg-mint aria-pressed:text-ground disabled:cursor-default disabled:opacity-40 disabled:hover:border-outline';
+      if (opts.aria) b.setAttribute('aria-label', opts.aria);
+      if (opts.current) {
+        b.setAttribute('aria-pressed', 'true');
+        b.setAttribute('aria-current', 'page');
+      }
+      b.disabled = !!opts.disabled;
+      b.addEventListener('click', () => {
+        page = target;
+        render();
+        group.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      return b;
+    };
+
+    const render = () => {
+      const matching = items.filter((item) => category === 'All' || item.dataset.category === category);
+      const pages = pageSize ? Math.max(1, Math.ceil(matching.length / pageSize)) : 1;
+      page = Math.min(page, pages);
+      items.forEach((item) => (item.hidden = true));
+      matching.forEach((item, i) => {
+        item.hidden = pageSize ? Math.floor(i / pageSize) + 1 !== page : false;
+      });
+      count.textContent = `${matching.length} ${noun}${matching.length === 1 ? '' : 's'}`;
+      if (!pager) return;
+      pager.hidden = pages < 2;
+      pager.replaceChildren(
+        button('Previous', page - 1, { disabled: page === 1 }),
+        ...Array.from({ length: pages }, (_, i) => button(String(i + 1), i + 1, { current: i + 1 === page, aria: `Page ${i + 1}` })),
+        button('Next', page + 1, { disabled: page === pages }),
+      );
+    };
 
     chips.forEach((chip) =>
       chip.addEventListener('click', () => {
-        const category = chip.dataset.filter;
-        let shown = 0;
-        items.forEach((item) => {
-          const visible = category === 'All' || item.dataset.category === category;
-          item.hidden = !visible;
-          if (visible) shown++;
-        });
+        category = chip.dataset.filter ?? 'All';
+        page = 1;
         chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
-        count.textContent = `${shown} ${noun}${shown === 1 ? '' : 's'}`;
+        render();
       }),
     );
+    render();
   });
 </script>
