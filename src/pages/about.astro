@@ -54,7 +54,8 @@ const credentials = [
 
 <BaseLayout title="About · Georgia's PsyWork">
   {/* Hero */}
-  <Section gutter="reading" class="grid items-end gap-x-24 gap-y-14 md:grid-cols-2">
+  <Section class="md:px-0">
+   <div class="mx-auto grid items-center gap-x-10 gap-y-12 md:w-4/5 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
     <div class="flex flex-col gap-7">
       <Eyebrow>About · 06:00 handover</Eyebrow>
       <h1 class="text-display leading-display font-normal tracking-display text-balance">
@@ -64,7 +65,8 @@ const credentials = [
         Georgia's PsyWork is an organisational psychology practice for operations that never switch off. We work with the people who build rotas, run sites and answer for the incident log.
       </p>
     </div>
-    <Photo src={speaking} alt="Georgia presenting at a lectern to a workshop audience, mid-sentence with a clipboard in one hand" ratio="4/5" loading="eager" class="max-w-[440px] justify-self-end object-[61%_50%]" />
+    <Photo src={speaking} alt="Georgia presenting at a lectern to a workshop audience, mid-sentence with a clipboard in one hand" ratio="4/5" loading="eager" class="max-w-[440px] md:max-w-none object-[61%_50%]" />
+   </div>
   </Section>
 
   {/* Story */}

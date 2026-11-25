@@ -9,8 +9,8 @@ import SectionHeader from './SectionHeader.astro';
 // "Prefer to write?" band: contact details beside a photo of Georgia.
 ---
 
-<Section tone="deep" gutter="reading">
-  <div class="grid gap-x-24 gap-y-14 lg:grid-cols-2">
+<Section tone="deep" class="md:px-0">
+  <div class="mx-auto grid items-center gap-x-10 gap-y-14 md:w-4/5 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
     <div class="flex flex-col gap-5.5">
       <SectionHeader eyebrow="Prefer to write?" size="md" title="Send a message">
         <p class="max-w-[28em] text-lg leading-prose text-muted text-pretty">
@@ -41,8 +41,8 @@ import SectionHeader from './SectionHeader.astro';
       src={badge}
       alt="Georgia smiling and holding up a conference name badge that reads 'Georgia' and 'Talk to me about everything'"
       ratio="4/5"
-      sizes="(min-width: 1024px) 380px, 100vw"
-      class="max-w-[380px] lg:justify-self-end"
+      sizes="(min-width: 768px) 30vw, 100vw"
+      class="max-w-[380px] md:max-w-none"
     />
   </div>
 </Section>

@@ -131,7 +131,8 @@ const services = [
   </Section>
 
   {/* Closing call to action */}
-  <Section gutter="reading" class="grid items-center gap-x-16 gap-y-10 md:grid-cols-[minmax(0,1fr)_300px]">
+  <Section class="md:px-0">
+   <div class="mx-auto grid items-center gap-x-10 gap-y-10 md:w-4/5 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
     <div class="flex flex-col items-start gap-7">
       <h2 class="max-w-[14em] text-display leading-display tracking-display text-balance">Not sure where to start? <em>Let&rsquo;s talk it through.</em></h2>
       <p class="max-w-[34em] text-xl leading-prose text-pretty text-muted">
@@ -139,6 +140,7 @@ const services = [
       </p>
       <Button href="/contact" variant="brand">Get in touch</Button>
     </div>
-    <Photo src={headshot} alt="Georgia Hodkinson, smiling, in a red polo-neck dress, leaning on the back of a blue armchair in a sunlit room with a brick wall behind her" ratio="4/5" sizes="(min-width: 768px) 300px, 70vw" class="max-w-[300px]" />
+    <Photo src={headshot} alt="Georgia Hodkinson, smiling, in a red polo-neck dress, leaning on the back of a blue armchair in a sunlit room with a brick wall behind her" ratio="4/5" sizes="(min-width: 768px) 300px, 70vw" class="max-w-[300px] md:max-w-none" />
+   </div>
   </Section>
 </BaseLayout>
