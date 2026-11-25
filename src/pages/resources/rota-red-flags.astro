@@ -1,0 +1,15 @@
+---
+import { getEntry } from 'astro:content';
+import ResourceLayout from '../../layouts/ResourceLayout.astro';
+import RotaRedFlags from '../../components/RotaRedFlags.astro';
+
+// Bespoke resource page: the standard resource layout with the interactive checklist as its centrepiece.
+// The words around it come from src/content/resources/rota-red-flags.md.
+const resource = (await getEntry('resources', 'rota-red-flags'))!;
+---
+
+<ResourceLayout resource={resource}>
+  <Fragment slot="tool">
+    <RotaRedFlags />
+  </Fragment>
+</ResourceLayout>
