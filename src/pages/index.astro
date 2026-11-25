@@ -83,9 +83,10 @@ const verdicts = [
 </Section>
 {/* Georgia */}
 {/* Georgia */}
-<Section id="georgia" size="none" class="grid scroll-mt-12 items-center gap-x-18 gap-y-12 pb-section md:grid-cols-2">
-  <Photo src={portrait} alt="Georgia standing on a stage in front of a projected 'Workshop activity' slide, holding a clipboard and smiling as she talks to the room" ratio="4/5" class="max-w-[380px]" />
-  <div class="flex flex-col gap-5.5">
+<Section id="georgia" size="none" class="scroll-mt-12 pb-section md:px-0">
+ <div class="mx-auto grid items-center gap-x-10 gap-y-12 md:w-4/5 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+  <Photo src={portrait} alt="Georgia standing on a stage in front of a projected 'Workshop activity' slide, holding a clipboard and smiling as she talks to the room" ratio="4/5" class="max-w-[380px] md:max-w-none" />
+  <div class="flex min-w-0 flex-col gap-5.5">
     <Eyebrow>06:00 · handover</Eyebrow>
     <h2 class="text-title leading-title tracking-heading">Georgia Hodkinson GMBPsS</h2>
     <p class="max-w-[36em] text-ink-soft text-xl text-pretty leading-prose">By combining occupational psychology and systems thinking, we uncover the conditions affecting performance, retention, sickness absence, and risk, then help redesign work so people and organisations can perform sustainably.</p>
@@ -95,6 +96,7 @@ const verdicts = [
       <a class="border-b border-brand-edge" href="/pie">See Georgia live</a>
     </div>
   </div>
+ </div>
 </Section>
 {/* Closing statement */}
 <Section tone="deep" class="flex flex-col gap-8">
