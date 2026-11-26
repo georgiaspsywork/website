@@ -4,6 +4,7 @@ import { getEntry } from 'astro:content';
 import ResourceLayout from '../../layouts/ResourceLayout.astro';
 import RotaBuilder from '../../components/RotaBuilder.astro';
 import Button from '../../components/Button.astro';
+import HiddenLeaf from '../../components/HiddenLeaf.astro';
 
 // Bespoke resource page: the standard resource layout with the interactive rota builder as its centrepiece.
 // The words around it come from src/content/resources/rota-builder.md.
@@ -21,7 +22,7 @@ const resource = (await getEntry('resources', 'rota-builder'))!;
           <Button href={`mailto:${site.email}`}>Send me your real rota</Button>
           <Button href={site.calendly} target="_blank" variant="outline" class="px-6.5 py-3.5 text-md">Book a chat</Button>
         </div>
-        <p class="text-xs text-faint">Rules simplified for illustration. Nothing you enter is saved or sent.</p>
+        <p class="text-xs text-faint">Rules simplified for illustration. Nothing you enter is saved or sent. <HiddenLeaf id="rota" /></p>
       </div>
     </RotaBuilder>
   </Fragment>

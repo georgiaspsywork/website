@@ -1,0 +1,19 @@
+---
+import LeafIcon from './LeafIcon.astro';
+
+// A leaf from the logo, hidden in the copy for visitors to find (see GameProgress). Put it inline at the end of a
+// sentence or on a line of its own. Each one needs its own `id`; GameProgress counts them, so ids must be unique across the site.
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+---
+
+<button
+  type="button"
+  data-leaf={id}
+  aria-label="A hidden leaf. Select it to collect it."
+  class="group relative inline-flex size-6 cursor-pointer items-center justify-center align-middle text-faint opacity-40 transition-all duration-300 hover:opacity-100 focus-visible:opacity-100 data-found:cursor-default data-found:text-mint data-found:opacity-100 motion-reduce:transition-none"
+>
+  <LeafIcon class="size-4 transition-transform duration-300 group-data-found:scale-125 motion-reduce:transition-none" />
+</button>

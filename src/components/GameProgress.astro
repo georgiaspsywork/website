@@ -1,0 +1,138 @@
+---
+import LeafIcon from './LeafIcon.astro';
+
+// A small, optional progress bar in the corner of every page. It fills as someone explores the site: half for the pages they
+// have opened and half for the leaves (HiddenLeaf) they have found. Progress is kept in the visitor's own browser only;
+// nothing is sent or tracked anywhere. Change what counts in the script below (PAGES) and add leaves with <HiddenLeaf id="..." />.
+---
+
+<aside
+  hidden
+  data-explore
+  aria-label="Exploration progress"
+  class="fixed bottom-4 left-4 z-40 max-w-[min(20rem,calc(100vw-2rem))] rounded-sm border border-line bg-surface text-ink shadow-stack-1"
+>
+  <button
+    type="button"
+    aria-expanded="false"
+    aria-controls="progress-details"
+    data-explore-toggle
+    class="flex w-full cursor-pointer items-center gap-3 px-3.5 py-2.5 text-left text-sm"
+  >
+    <LeafIcon class="size-5 flex-none text-mint group-data-[done]:text-amber" />
+    <span class="relative h-1.5 w-24 flex-none overflow-hidden rounded-xs bg-line" role="progressbar" aria-label="Exploration progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-explore-track>
+      <span class="absolute inset-y-0 left-0 bg-mint transition-[width] duration-500 motion-reduce:transition-none" data-explore-fill style="width:0%"></span>
+    </span>
+    <span class="tabular-nums text-muted" data-explore-percent>0%</span>
+  </button>
+  <div id="progress-details" hidden class="flex flex-col gap-1.5 border-t border-line px-3.5 py-3 text-sm text-muted">
+    <p>Pages explored: <span class="tabular-nums text-ink" data-explore-pages>0 of 0</span></p>
+    <p>Leaves found: <span class="tabular-nums text-ink" data-explore-leaves>0 of 0</span></p>
+    <p class="text-subtle" data-explore-hint>Leaves from the logo are hidden around the site.</p>
+    <p class="text-amber" data-explore-done hidden>Placeholder: you found everything. Thank you for exploring.</p>
+  </div>
+  <p class="sr-only" role="status" aria-live="polite" data-explore-live></p>
+</aside>
+
+<script>
+  // Pages that count towards progress, matched on the first part of the address.
+  const PAGES = ['', 'about', 'services', 'fatigue-model', 'articles', 'resources', 'contact', 'pie'];
+  // Every HiddenLeaf on the site (the id each one is given). Add a new id here when you hide another leaf.
+  const LEAVES = ['home', 'about', 'sources', 'rota'];
+  const KEY = 'gpw-explore';
+
+  type State = { pages: string[]; leaves: string[] };
+  const load = (): State => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) ?? '{}');
+      return { pages: Array.isArray(saved.pages) ? saved.pages : [], leaves: Array.isArray(saved.leaves) ? saved.leaves : [] };
+    } catch {
+      return { pages: [], leaves: [] };
+    }
+  };
+  const save = (s: State) => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(s));
+    } catch {
+      /* storage blocked: progress just lasts for this visit */
+    }
+  };
+
+  const root = document.querySelector<HTMLElement>('[data-explore]');
+  if (root) {
+    const state = load();
+    const leafEls = Array.from(document.querySelectorAll<HTMLElement>('[data-leaf]'));
+    const totalLeaves = LEAVES.length;
+    const q = <T extends HTMLElement>(sel: string) => root.querySelector<T>(sel)!;
+    const fill = q('[data-explore-fill]');
+    const track = q('[data-explore-track]');
+    const percentEl = q('[data-explore-percent]');
+    const pagesEl = q('[data-explore-pages]');
+    const leavesEl = q('[data-explore-leaves]');
+    const hintEl = q('[data-explore-hint]');
+    const doneEl = q('[data-explore-done]');
+    const live = q('[data-explore-live]');
+    const toggle = q<HTMLButtonElement>('[data-explore-toggle]');
+    const details = q('#progress-details');
+
+    const section = location.pathname.replace(/\.html$/, '').split('/').filter(Boolean)[0] ?? '';
+    if (PAGES.includes(section) && !state.pages.includes(section)) {
+      state.pages.push(section);
+      save(state);
+    }
+
+    const render = (message = '') => {
+      const pages = state.pages.filter((p) => PAGES.includes(p)).length;
+      const found = state.leaves.filter((l) => LEAVES.includes(l)).length;
+      const pagePart = pages / PAGES.length;
+      const leafPart = found / totalLeaves;
+      const pct = Math.round((0.5 * pagePart + 0.5 * leafPart) * 100);
+      fill.style.width = `${pct}%`;
+      track.setAttribute('aria-valuenow', String(pct));
+      percentEl.textContent = `${pct}%`;
+      pagesEl.textContent = `${pages} of ${PAGES.length}`;
+      leavesEl.textContent = `${found} of ${totalLeaves}`;
+      const done = pct >= 100;
+      doneEl.hidden = !done;
+      hintEl.hidden = done;
+      root.toggleAttribute('data-done', done);
+      fill.classList.toggle('bg-amber', done);
+      fill.classList.toggle('bg-mint', !done);
+      if (message) live.textContent = message;
+    };
+
+    let closeTimer: ReturnType<typeof setTimeout>;
+    leafEls.forEach((el) => {
+      const id = el.dataset.leaf!;
+      const markFound = () => {
+        el.setAttribute('data-found', '');
+        el.setAttribute('aria-label', 'Leaf found');
+      };
+      if (state.leaves.includes(id)) markFound();
+      el.addEventListener('click', () => {
+        if (state.leaves.includes(id)) return;
+        state.leaves.push(id);
+        save(state);
+        markFound();
+        const n = state.leaves.filter((l) => LEAVES.includes(l)).length;
+        render(`Leaf found. ${n} of ${LEAVES.length}.`);
+        details.hidden = false;
+        toggle.setAttribute('aria-expanded', 'true');
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(() => {
+          details.hidden = true;
+          toggle.setAttribute('aria-expanded', 'false');
+        }, 6000);
+      });
+    });
+
+    toggle.addEventListener('click', () => {
+      const open = details.hidden;
+      details.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    render();
+    root.hidden = false;
+  }
+</script>

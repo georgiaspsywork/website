@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Section from '../components/Section.astro';
+import HiddenLeaf from '../components/HiddenLeaf.astro';
 import { references } from '../data/references';
 
 ---
@@ -16,5 +17,6 @@ import { references } from '../data/references';
     <ol class="flex max-w-[44em] list-none flex-col gap-6">
       {references.map((ref) => <li id={ref.id} class="pl-8 -indent-8 text-lg leading-prose text-pretty text-muted scroll-mt-12 [overflow-wrap:anywhere]" set:html={ref.html} />)}
     </ol>
+    <div class="pt-10"><HiddenLeaf id="sources" /></div>
   </Section>
 </BaseLayout>

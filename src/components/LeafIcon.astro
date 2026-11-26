@@ -1,0 +1,12 @@
+---
+// The leaf from the logo, drawn as a simple outline so it can take any text colour.
+interface Props {
+  class?: string;
+}
+const { class: extra } = Astro.props;
+---
+
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class={extra}>
+  <path d="M18 3C11 3.5 5.5 7.5 5.5 13.5c0 3.6 2.6 6 5.7 6C17 19.5 19 12 18 3Z" />
+  <path d="M17 5C13 8.5 9.5 12.5 8 21" />
+</svg>
