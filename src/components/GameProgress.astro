@@ -25,7 +25,15 @@ import LeafIcon from './LeafIcon.astro';
     </span>
     <span class="tabular-nums text-muted" data-explore-percent>0%</span>
   </button>
-  <div id="progress-details" hidden class="flex flex-col gap-1.5 border-t border-line px-3.5 py-3 text-sm text-muted">
+  <div id="progress-details" hidden class="relative flex flex-col gap-1.5 border-t border-line py-3 pr-10 pl-3.5 text-sm text-muted">
+    <button
+      type="button"
+      aria-label="Close"
+      data-explore-close
+      class="absolute top-2 right-2 flex size-6 cursor-pointer items-center justify-center rounded-xs text-muted hover:text-ink"
+    >
+      <svg viewBox="0 0 16 16" aria-hidden="true" class="size-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13" /></svg>
+    </button>
     <p>Pages explored: <span class="tabular-nums text-ink" data-explore-pages>0 of 0</span></p>
     <p>Leaves found: <span class="tabular-nums text-ink" data-explore-leaves>0 of 0</span></p>
     <p class="text-subtle" data-explore-hint>Leaves from the logo are hidden around the site.</p>
@@ -154,6 +162,13 @@ import LeafIcon from './LeafIcon.astro';
       }, 6000);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    q<HTMLButtonElement>('[data-explore-close]').addEventListener('click', () => {
+      clearTimeout(closeTimer);
+      details.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    });
 
     toggle.addEventListener('click', () => {
       clearTimeout(closeTimer);
