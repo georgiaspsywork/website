@@ -27,9 +27,9 @@ const {
   </div>
   <div class="flex flex-col gap-2.5 text-md text-on-brand-muted">
     <span class="mb-1.5 text-xs tracking-label text-mint uppercase">Contact</span>
-    <span>{site.email}</span>
-    <span>{site.phone}</span>
-    <span>{site.location}</span>
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+    <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>
+    <a href={site.mapUrl} target="_blank" rel="noopener">{site.location}</a>
     <a href="/fatigue-model">Read about my 8-factor model</a>
   </div>
   <div class="flex flex-col gap-2.5 text-md text-on-brand-muted">
