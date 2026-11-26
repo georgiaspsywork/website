@@ -30,7 +30,7 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
       <section class="px-gutter pb-section-sm">
         <a
           href={featured.data.href ?? `/resources/${featured.id}`}
-          class:list={['grid items-center gap-x-16 gap-y-8 rounded-sm bg-brand p-[clamp(28px,4vw,48px)] text-white hover:bg-brand-lift hover:text-white', featured.data.image && 'md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-x-10 md:px-[10%]']}
+          class:list={['grid items-center gap-x-16 gap-y-8 rounded-sm bg-brand p-[clamp(28px,4vw,48px)] text-white hover:bg-brand-lift hover:text-white', featured.data.image && 'md:grid-cols-2']}
         >
           <div class="flex flex-col gap-4.5">
             <div class="flex flex-wrap gap-x-5 gap-y-2.5 text-xs tracking-label text-amber uppercase">
@@ -40,7 +40,7 @@ const types = ['Tool', 'Video', 'Template', 'Guide', 'Pack'].filter((t) => libra
             <p class="max-w-[30em] text-lg leading-body text-on-brand text-pretty">{featured.data.featured.blurb}</p>
             <span class="self-start rounded-xs bg-amber px-6 py-3.5 text-md font-semibold text-ground">Open the resource</span>
           </div>
-          {featured.data.image && <Photo src={featured.data.image} alt={featured.data.imageAlt ?? ''} ratio="4/5" sizes="(min-width: 768px) 800px, 240px" class="max-w-[240px] object-[68%_50%] md:max-w-none" />}
+          {featured.data.image && <Photo src={featured.data.image} alt={featured.data.imageAlt ?? ''} ratio="4/5" sizes="560px" class="max-w-[240px] object-[68%_50%] md:justify-self-center" />}
         </a>
       </section>
     )
