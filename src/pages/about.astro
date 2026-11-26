@@ -14,6 +14,7 @@ import Photo from '../components/Photo.astro';
 import listening from '../assets/images/georgia-listening.webp';
 import speaking from '../assets/images/georgia-speaking.webp';
 import HiddenLeaf from '../components/HiddenLeaf.astro';
+import hseStage from '../assets/images/georgia-stage-hse-standards.webp';
 import chapterLogo from '../assets/images/a-chapter-of-curiosity-logo.webp';
 
 // Recommendations received on LinkedIn, quoted word for word (long ones trimmed to complete sentences).
@@ -140,11 +141,14 @@ const credentials = [
 
   {/* Ethics and values */}
   <Section id="ethics" tone="deep" class="flex scroll-mt-12 flex-col gap-14">
+    <div class="grid items-center gap-x-10 gap-y-12 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
     <SectionHeader eyebrow="Ethics & professional standards" title="What I value, and the standards I work to" tone="amber">
       <p class="text-xl leading-prose text-ink-soft text-pretty">
         As a Graduate Member of the British Psychological Society (BPS) and a member of the Association for Business Psychology (ABP), I work in line with their codes of conduct and recognised professional and ethical standards across occupational psychology and organisational practice. That means a commitment to evidence-based practice, confidentiality, professional integrity, and responsible approaches to workplace wellbeing, organisational change, and the use of AI within work systems. <HiddenLeaf id="about" />
       </p>
     </SectionHeader>
+    <Photo src={hseStage} alt="Georgia on a stage in front of a projected slide headed Health and Safety Executive, with the HSE Management Standards (demands, control, support, relationships, role and change), mid-sentence with one hand raised" ratio="4/3" sizes="(min-width: 768px) 900px, 100vw" class="object-[5%_50%]" />
+    </div>
     <StepGrid class="lg:grid-cols-3 min-[1400px]:grid-cols-5 min-[1400px]:gap-x-8">
       <Step variant="number" stamp="01" title="Compassionate">Approach every client, organisation and context with both care and evidence.</Step>
       <Step variant="number" stamp="02" title="Honesty">Be transparent and accountable in all interactions.</Step>
