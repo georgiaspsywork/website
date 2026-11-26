@@ -1,6 +1,7 @@
 ---
 import { site } from '../data/site';
 import Photo from './Photo.astro';
+import HiddenLeaf from './HiddenLeaf.astro';
 import badge from '../assets/images/georgia-badge-selfie.webp';
 import RuledList from './RuledList.astro';
 import Section from './Section.astro';
@@ -14,7 +15,7 @@ import SectionHeader from './SectionHeader.astro';
     <div class="flex flex-col gap-5.5">
       <SectionHeader eyebrow="Prefer to write?" size="md" title="Send a message">
         <p class="max-w-[28em] text-lg leading-prose text-muted text-pretty">
-          I reply to every message within two working days. If it's easier, call or email directly.
+          I reply to every message within two working days. If it's easier, call or email directly. <HiddenLeaf id="contact" />
         </p>
       </SectionHeader>
       <RuledList class="mt-3">

@@ -1,6 +1,7 @@
 ---
 import Eyebrow from './Eyebrow.astro';
 import Chip from './Chip.astro';
+import HiddenLeaf from './HiddenLeaf.astro';
 import { DRIVERS } from '../lib/drivers';
 
 // The 8-factor fatigue model as a wheel: tap a segment (or a name) to see what it covers and the first two findings from the
@@ -94,7 +95,10 @@ const segments = DRIVERS.map((d, i) => {
                 </li>
               ))}
             </ul>
-            <a class="self-start border-b border-mint text-lg text-mint" href="/fatigue-model">All the evidence for this factor</a>
+            <div class="flex items-center gap-3">
+              <a class="self-start border-b border-mint text-lg text-mint" href="/fatigue-model">All the evidence for this factor</a>
+              {s.id === 'workload' && <HiddenLeaf id="wheel" />}
+            </div>
           </div>
         ))
       }

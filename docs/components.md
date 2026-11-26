@@ -40,7 +40,7 @@ spacing come from the theme tokens at the top of `src/styles/global.css` (`bg-br
 | `RotaBuilder` | The interactive rota fatigue builder (logic in `src/lib/rota.ts`). |
 | `Chip` | Pill toggle used by the filters and the contact form. |
 | `GameProgress` | The small progress bar in the corner of every page (in `BaseLayout`). Counts pages opened and `HiddenLeaf`s found; kept in the visitor's browser only. |
-| `HiddenLeaf` | A leaf from the logo, hidden in the copy for visitors to find. Needs a unique `id`. Four are placed: Home, About, Sources, Rota builder. |
+| `HiddenLeaf` | A leaf from the logo, hidden in the copy for visitors to find. Needs a unique `id`. Five are placed: Home (note from Georgia), About (ethics), Rota builder (small print), Home fatigue wheel (Workload & staffing panel), Contact (Send a message). Add the id to `LEAVES` in `GameProgress` too. |
 
 ## Content cards and article extras
 `ArticleRow`, `ResourceCard` (library and "use it alongside"), `Callout`, `PullQuote`, `ResourceLink` (the last three are
