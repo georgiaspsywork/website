@@ -77,7 +77,7 @@ const resources = defineCollection({
     stepsEyebrow: z.string().default('How to use it'),
     stepsTitle: z.string().optional(),
     steps: z.array(z.object({ stamp: z.string(), title: z.string(), body: z.string() })).default([]),
-    note: z.object({ label: z.string().default('Why we made this'), quote: z.string(), by: z.string() }).optional(),
+    note: z.object({ label: z.string().default('Why I made this'), quote: z.string(), by: z.string() }).optional(),
     /** Slugs of resources to suggest underneath. */
     related: z.array(z.string()).default([]),
   }),
