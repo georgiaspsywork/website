@@ -149,7 +149,7 @@ const audience = [
 
   {/* Upcoming events */}
   <Section id="events" tone="brand" class="flex scroll-mt-12 flex-col gap-12">
-    <script type="application/json" id="pie-events" set:html={JSON.stringify(items.map((e) => ({ until: e.until, label: e.label, theme: e.theme, href: e.href })))} />
+    <script type="application/json" id="pie-events" set:html={JSON.stringify(items.map((e) => ({ until: e.until, label: e.label, theme: e.theme, href: e.href, description: e.description ?? [] })))} />
     <SectionHeader eyebrow="Upcoming events" title="A different workplace theme every month" tone="amber">
       <p class="text-xl leading-body text-on-brand text-pretty">
         Our first event, on {formatDate(first.iso!)}, was {first.theme}. The next one is <span data-next-theme>{next.theme}</span>, on <span data-next-label>{next.label}</span>.
@@ -159,7 +159,10 @@ const audience = [
       <Eyebrow tone="amber">Next event · <span data-next-label>{next.label}</span></Eyebrow>
       <h3 class="text-title leading-title text-white" data-next-theme>{next.theme}</h3>
       <p class="text-lg text-on-brand-muted">{pie.venue} · {pie.time}</p>
-      <div class="mt-3 self-start" data-next-link><Button href={next.href} variant="amber">Book on Eventbrite</Button></div>
+      <div class="flex max-w-[44em] flex-col gap-3.5 pt-2 text-lg leading-body text-on-brand text-pretty" data-next-description>
+        {(next.description ?? []).map((para) => <p>{para}</p>)}
+      </div>
+      <div class="mt-5 self-start" data-next-link><Button href={next.href} variant="amber">Book on Eventbrite</Button></div>
     </div>
     <div class="flex flex-col gap-6">
       <Eyebrow tone="soft">Coming up</Eyebrow>
@@ -220,7 +223,7 @@ const audience = [
 <script>
   // Keeps "next event" and the lists up to date by today's date, whenever the page is opened (past events drop off by
   // themselves). The same sums are done when the site is built, so the page is right even before this runs.
-  type Ev = { until: string; label: string; theme: string; href: string };
+  type Ev = { until: string; label: string; theme: string; href: string; description: string[] };
   const data = document.getElementById('pie-events');
   if (data) {
     const events: Ev[] = JSON.parse(data.textContent ?? '[]');
@@ -232,6 +235,16 @@ const audience = [
       document.querySelectorAll('[data-next-label]').forEach((el) => (el.textContent = next.label));
       const link = document.querySelector<HTMLAnchorElement>('[data-next-link] a');
       if (link) link.href = next.href;
+      const desc = document.querySelector<HTMLElement>('[data-next-description]');
+      if (desc) {
+        desc.replaceChildren(
+          ...next.description.map((text) => {
+            const p = document.createElement('p');
+            p.textContent = text;
+            return p;
+          }),
+        );
+      }
     }
     // Hide events that have passed, and share the rest between "Coming up" (three) and the full programme.
     const items = [...document.querySelectorAll<HTMLElement>('[data-event-item]')];
