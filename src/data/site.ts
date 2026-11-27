@@ -5,7 +5,7 @@ export const site = {
   authorShort: 'Georgia Hodkinson',
   email: 'Georgia@georgiaspsywork.com',
   phone: '+44 7507 627754',
-  location: 'Leicestershire, East Midlands, United Kingdom',
+  location: 'Leicester and Leicestershire, East Midlands, United Kingdom',
   /** Opens the location in the visitor's maps app or Google Maps. */
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=Leicestershire%2C%20United%20Kingdom',
   calendly: 'https://calendly.com/georgiaspsywork/30min',
