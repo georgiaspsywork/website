@@ -37,7 +37,7 @@ import LeafIcon from './LeafIcon.astro';
     <p>Pages explored: <span class="tabular-nums text-ink" data-explore-pages>0 of 0</span></p>
     <p>Leaves found: <span class="tabular-nums text-ink" data-explore-leaves>0 of 0</span></p>
     <p class="text-subtle" data-explore-hint>Leaves from the logo are hidden around the site.</p>
-    <p class="text-amber" data-explore-done hidden>You found everything. Thank you for exploring. Mention Website10 on your call for 10% off your first project, until 27 December 2026.</p>
+    <p class="text-amber" data-explore-done hidden>You found everything. Thank you for exploring. Mention Website10 on your call for 10% off your first project, until <span data-explore-expiry>30 days from today</span>.</p>
   </div>
   <p class="sr-only" role="status" aria-live="polite" data-explore-live></p>
 </aside>
@@ -49,11 +49,15 @@ import LeafIcon from './LeafIcon.astro';
   const LEAVES = ['home', 'about', 'rota', 'wheel', 'contact'];
   const KEY = 'gpw-explore';
 
-  type State = { pages: string[]; leaves: string[] };
+  type State = { pages: string[]; leaves: string[]; doneAt?: number };
   const load = (): State => {
     try {
       const saved = JSON.parse(localStorage.getItem(KEY) ?? '{}');
-      return { pages: Array.isArray(saved.pages) ? saved.pages : [], leaves: Array.isArray(saved.leaves) ? saved.leaves : [] };
+      return {
+        pages: Array.isArray(saved.pages) ? saved.pages : [],
+        leaves: Array.isArray(saved.leaves) ? saved.leaves : [],
+        doneAt: typeof saved.doneAt === 'number' ? saved.doneAt : undefined,
+      };
     } catch {
       return { pages: [], leaves: [] };
     }
@@ -79,6 +83,7 @@ import LeafIcon from './LeafIcon.astro';
     const leavesEl = q('[data-explore-leaves]');
     const hintEl = q('[data-explore-hint]');
     const doneEl = q('[data-explore-done]');
+    const expiryEl = q('[data-explore-expiry]');
     const live = q('[data-explore-live]');
     const toggle = q<HTMLButtonElement>('[data-explore-toggle]');
     const details = q('#progress-details');
@@ -101,6 +106,14 @@ import LeafIcon from './LeafIcon.astro';
       pagesEl.textContent = `${pages} of ${PAGES.length}`;
       leavesEl.textContent = `${found} of ${totalLeaves}`;
       const done = pct >= 100;
+      if (done) {
+        // The offer lasts 30 days from the moment this visitor finished everything.
+        if (!state.doneAt) {
+          state.doneAt = Date.now();
+          save(state);
+        }
+        expiryEl.textContent = new Date(state.doneAt + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      }
       doneEl.hidden = !done;
       hintEl.hidden = done;
       root.toggleAttribute('data-done', done);
