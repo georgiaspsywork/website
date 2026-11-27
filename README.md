@@ -70,8 +70,8 @@ Colours, type sizes and spacing are theme tokens in `src/styles/global.css`; use
 - **Copy rules:** keep client-supplied copy verbatim. Plain, matter-of-fact UK English. No stats unless sourced. Placeholder copy is flagged (`placeholder: true` in content files, "Placeholder:" in text) so `npm run check` can list it.
 
 ## Open items
-- All imagery is placeholder (portrait, lead images, previews).
-- Placeholder/invented copy needing Georgia's sign-off: About story, career timeline dates, MSc, client quote, all resource and article copy except the two sample pieces, "note from Georgia", tick-list items. The check script lists these.
+- Custom domain: confirm `georgiaspsywork.com` is connected to the production site. Then set `site` in `astro.config.mjs` and add a sitemap, robots file, canonical addresses and a social share image.
+- Privacy notice (`/privacy`): drafted, not yet checked by Georgia. Retention period is still a placeholder.
+- Services page has no outcomes or client list yet (needs Georgia's own wording and permission to use client names or logos).
 - Sign-off needed on: Dawson & Reid comparison, rota rule thresholds.
-- Contact form backend, newsletter backend, real Calendly URLs, social links, the many `href="#"` links.
 - Fonts: only the Latin subset of Source Serif 4 is included (UK English); other alphabets would fall back to a system serif.

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Section from '../components/Section.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Privacy notice · Georgia's PsyWork"
+  description="What personal information Georgia's PsyWork collects through this website and how it is used."
+>
+  <PageHero
+    eyebrow="Privacy · how your information is handled"
+    title="Privacy <em>notice.</em>"
+    intro="Short and plain. This explains what information I collect through this website, why, and what your rights are."
+  />
+  <Section gutter="reading" size="sm" class="pt-0">
+    <div class="flex max-w-[44em] flex-col gap-6 text-lg leading-prose text-pretty text-muted">
+      <h2 class="text-title leading-title text-ink">Who I am</h2>
+      <p>This website is run by Georgia's PsyWork Ltd (Georgia Hodkinson). I am the person responsible for your personal information. You can contact me at <a class="text-mint" href={`mailto:${site.email}`}>{site.email}</a>.</p>
+
+      <h2 class="text-title leading-title text-ink">What I collect, and why</h2>
+      <p><strong class="text-ink">If you book a call.</strong> The 30-minute conversation is booked through Calendly. Calendly collects the details you enter (such as your name, email address and anything you write in the booking form) and passes them to me so we can have the call. Calendly has its own privacy notice, which applies to the information you give it.</p>
+      <p><strong class="text-ink">If you email or phone me.</strong> I receive your email address or phone number and whatever you tell me. I use it to reply and, if we work together, to run the work.</p>
+      <p><strong class="text-ink">Cookies and tracking.</strong> This website does not use advertising or analytics cookies.</p>
+      <p><strong class="text-ink">The leaf game.</strong> The pages and leaves you have found, and the date you finished, are saved in your own browser so the game remembers your progress. This stays on your device. I cannot see it, and clearing your browser data removes it.</p>
+      <p><strong class="text-ink">Hosting.</strong> The website is hosted by Cloudflare. Like any web host, it handles technical information such as your IP address when you visit.</p>
+
+      <h2 class="text-title leading-title text-ink">How long I keep it</h2>
+      <p>Placeholder: how long I keep enquiry emails and call notes. Georgia to confirm.</p>
+
+      <h2 class="text-title leading-title text-ink">Your rights</h2>
+      <p>Under UK data protection law you can ask to see the information I hold about you, ask me to correct or delete it, or object to how I use it. Email me and I will respond. If you are unhappy with how I have handled your information, you can complain to the Information Commissioner's Office at <a class="text-mint" href="https://ico.org.uk/" target="_blank" rel="noopener">ico.org.uk</a>.</p>
+
+      <p class="text-base text-subtle">Last updated 27 November 2026.</p>
+    </div>
+  </Section>
+</BaseLayout>
